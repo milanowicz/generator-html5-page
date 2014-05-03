@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+
+        <meta charset="utf-8">
+        <meta http-equiv="Content-Type" charset="UTF-8">
+        <title><%= websiteName %></title>
+
+        <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+		<meta http-equiv="X-UA-Compatible" content="IE=100,chrome=1">
+
+        <link type="text/css" rel="stylesheet" href="CSS/<%= _.slugify(websiteName) %>.min.css" media="all">
+
+        <% if (includeModernizr) { %>
+        <script type="text/javascript" src="JS/Modernizr.min.js"></script><% } %>
+
+        <link rel="apple-touch-icon-precomposed" sizes="144x144" href="Images/Favicon/apple-touch-icon-144x144-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="Images/Favicon/apple-touch-icon-114x114-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="Images/Favicon/apple-touch-icon-72x72-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" href="Images/Favicon/apple-touch-icon-57x57-precomposed.png">
+        <link rel="shortcut icon" sizes="196x196" href="Images/Favicon/touch-icon-196x196.png">
+        <link rel="shortcut icon" href="Images/Favicon/apple-touch-icon.png">
+
+        <meta name="msapplication-TileImage" content="Images/Favicon/apple-touch-icon-144x144-precomposed.png">
+        <meta name="msapplication-TileColor" content="#222222">
+
+        <% if (includePolyfill) { %>
+        <!--[if (gte IE 6)&(lte IE 9)]>
+        <script type="text/javascript" src="JS/PIE.js"></script>
+        <![endif]-->
+        <!--[if (gte IE 6)&(lte IE 8)]>
+        <script type="text/javascript" src="JS/Selectivizr.min.js"></script>
+        <![endif]--><% }%>
+
+    </head>
+	
+	
+    <body>
+	
+		<header class="page">
+
+            <h1>HTML5 Skeleton Website</h1>
+
+		</header>
+
+
+		<main>
+            <div class="Wrapper">
+                <section>
+
+                    <p>Project <%= websiteName %> create</p>
+
+                </section>
+            </div>
+		</main>
+
+
+		<footer class="page">
+			<p>
+                <%= websiteName %> <time datetime="<%= year %>"><%= year %></time>
+			</p>
+		</footer>
+		
+		<script type="text/javascript" src="JS/<%= _.slugify(websiteName) %>.min.js"></script>
+
+    </body>
+</html>

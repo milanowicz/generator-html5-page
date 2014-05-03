@@ -1,0 +1,27 @@
+{
+  "name": "<%= _.slugify(websiteName) %>",
+  "version": "0.0.1",
+  "dependencies": {<% if (includeCreate) { %>
+    "createjs-preloadjs": "*",
+    "createjs-tweenjs": "*",
+    "createjs-soundjs": "*",
+    "easeljs": "*",<% } if (includePolyfill) { %>
+    "css3pie": "*",
+    "selectivizr": "*",
+    "background-size-polyfill": "*",
+    "box-sizing-polyfill": "*",
+    "respond": "*",<% } if (includeJquery) { %>
+    "jquery": "*",
+    "jqueryui": "*",
+    "jqueryui-touch-punch": "*",
+    "jquery-backstretch": "*",
+    "jquery-hashchange": "*",
+    "jquery-waypoints": "*",
+    "Buttons": "*",
+    "masonry": "*",
+    "imagesloaded": "*",<% } if (includeModernizr) { %>
+    "modernizr": "*",<% } %>
+    "normalize-css": "*"
+  }
+}
+

@@ -1,0 +1,34 @@
+{
+  "name": "generator-html5",
+  "version": "0.0.1",
+  "description": "Yeoman HTML5 Skeleton Website generator",
+  "license": "MIT",
+  "main": "app/index.js",
+  "repository": "milanowicz/generator-html5",
+  "author": {
+    "name": "Milanowicz",
+    "email": "amaru-jive@gmx.de"
+  },
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "files": [
+    "app"
+  ],
+  "keywords": [
+    "yeoman-generator"
+  ],
+  "dependencies": {
+    "yeoman-generator": "~0.16.0",
+    "chalk": "~0.4.0"
+  },
+  "devDependencies": {
+    "mocha": "*"
+  },
+  "peerDependencies": {
+    "yo": ">=1.0.0"
+  }
+}
