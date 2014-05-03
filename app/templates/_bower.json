@@ -15,12 +15,13 @@
     "jqueryui": "*",
     "jqueryui-touch-punch": "*",
     "jquery-backstretch": "*",
-    "jquery-hashchange": "*",
     "jquery-waypoints": "*",
+    "FitText.js": "https://github.com/Milanowicz/FitText.js.git",
     "Buttons": "*",
     "masonry": "*",
     "imagesloaded": "*",<% } if (includeModernizr) { %>
     "modernizr": "*",<% } %>
+    "font-awesome": "~4.0.3",
     "normalize-css": "*"
   }
 }

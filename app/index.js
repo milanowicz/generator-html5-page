@@ -6,6 +6,7 @@ var chalk = require('chalk');
 
 
 var Html5Generator = yeoman.generators.Base.extend({
+
     init: function () {
         this.pkg = require('../package.json');
 
@@ -21,14 +22,16 @@ var Html5Generator = yeoman.generators.Base.extend({
 
         // have Yeoman greet the user
         this.log(this.yeoman);
-
-        // replace it with a short and sweet description of your generator
         this.log(chalk.magenta('Welcome to the HTML5 Website Skeleton Generator!'));
 
         var prompts = [{
             type: 'input',
             name: 'websiteName',
             message: 'What do you want to call your Website?'
+        },{
+            type: 'input',
+            name: 'websiteDescription',
+            message: 'What is your description for it?'
         },{
             type: 'checkbox',
             name: 'features',
@@ -62,6 +65,8 @@ var Html5Generator = yeoman.generators.Base.extend({
             }
 
             this.websiteName = answers.websiteName;
+            this.websiteDescription = answers.websiteDescription;
+
             this.includeJquery = hasFeature('includeJquery');
             this.includeModernizr = hasFeature('includeModernizr');
             this.includeCreate = hasFeature('includeCreate');
@@ -81,12 +86,19 @@ var Html5Generator = yeoman.generators.Base.extend({
         this.mkdir('JavaScript');
         this.mkdir('JavaScript/Main');
 
-        this.directory('Main', 'JavaScript/Main');
+        if (!this.includeCreate) {
+            this.copy('Main/Canvas.js', 'JavaScript/Canvas.js');
+        }
+
+        this.copy('Main/Detection.js', 'JavaScript/Detection.js');
+
+        this.copy('Main/Main.js', 'JavaScript/Main/Main.js');
+        this.copy('Main/MainTools.js', 'JavaScript/Main/MainTools.js');
+
     },
 
     less : function () {
         this.mkdir('Less');
-        this.mkdir('Less/Library');
         this.mkdir('Less/Mixins');
         this.mkdir('Less/Styles');
 
@@ -103,6 +115,7 @@ var Html5Generator = yeoman.generators.Base.extend({
         this.mkdir('Public/JS');
 
         this.directory('Favicon', 'Public/Images/Favicon');
+        this.directory('Images', 'Public/Images/Logo');
     },
 
     app: function () {

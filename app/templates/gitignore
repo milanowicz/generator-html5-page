@@ -16,6 +16,7 @@ local.json
 
 .settings/
 bower_components/
+Documentation/
 node_modules/
 npm-debug.log
 

@@ -73,6 +73,10 @@ a {
   }
 }
 
+figure {
+  .MarginPadding();
+}
+
 img {
   .OutlineBorder;
 }
@@ -123,9 +127,28 @@ header.page {
   .BackgroundOpacity(@ColorBlack, 0.2);
   text-align: center;
 
-  h1 {
-    .MarginPadding(0, 20px 0);
+  figure {
+    .MarginPadding(0 auto);
+
+    img {
+      &.Html {
+        float: left;
+        .BoxSize(auto, 80px);
+        .MarginPadding(10px 0 0 0);
+      }
+    }
+
+    h1 {
+      float: left;
+      .MarginPadding(30px 0 0 0);
+    }
+
+    h2 {
+      .MarginPadding(0, 0 0 10px 0);
+    }
   }
+
+
 }
 
 

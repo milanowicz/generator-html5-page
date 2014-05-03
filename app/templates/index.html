@@ -15,7 +15,7 @@
         <link type="text/css" rel="stylesheet" href="CSS/<%= _.slugify(websiteName) %>.min.css" media="all">
 
         <% if (includeModernizr) { %>
-        <script type="text/javascript" src="JS/Modernizr.min.js"></script><% } %>
+        <script type="text/javascript" src="JS/modernizr.min.js"></script><% } %>
 
         <link rel="apple-touch-icon-precomposed" sizes="144x144" href="Images/Favicon/apple-touch-icon-144x144-precomposed.png">
         <link rel="apple-touch-icon-precomposed" sizes="114x114" href="Images/Favicon/apple-touch-icon-114x114-precomposed.png">
@@ -32,7 +32,7 @@
         <script type="text/javascript" src="JS/PIE.js"></script>
         <![endif]-->
         <!--[if (gte IE 6)&(lte IE 8)]>
-        <script type="text/javascript" src="JS/Selectivizr.min.js"></script>
+        <script type="text/javascript" src="JS/selectivizr.js"></script>
         <![endif]--><% }%>
 
     </head>
@@ -42,18 +42,714 @@
 	
 		<header class="page">
 
-            <h1>HTML5 Skeleton Website</h1>
+            <figure>
+                <img class="Html" src="Images/Logo/HTML5/HTML5_Logo.svg" title="HTML5 Logo">
+                <figcaption>
+                    <h1>Skeleton Website</h1>
+                </figcaption>
+            </figure>
+
+            <div class="clear"></div>
+
+            <figure>
+                <figcaption>
+                    <h2>Welcome to your new project <%= websiteName %> !</h2>
+                    <h3>served by Yeoman</h3>
+                </figcaption>
+                <img src="Images/Logo/yeoman-masthead.png" title="Yeoman">
+            </figure>
 
 		</header>
 
 
 		<main>
             <div class="Wrapper">
+
+                <section>
+                    <article class="Usage">
+                        <figure>
+                            <img src="Images/Logo/Bower.png" title="Bower Logo">
+                        </figure>
+                    </article>
+                </section>
+
+                <section>
+                    <article class="Usage">
+                        <figure>
+                            <img src="Images/Logo/Grunt_Logo.png" title="GruntJS">
+                        </figure>
+    
+                        <h4>
+                            GruntJS Installation
+                        </h4>
+    
+                        <p>
+                            Install before your use GruntJS the first time!
+                        </p>
+                        <pre>$ npm install -g grunt-cli</pre>
+    
+                        <p>
+                            Install all Grunt modules in your project directory and let's roll
+                        </p>
+                        <pre>$ cd project/</pre>
+                        <pre>$ npm install</pre>
+    
+                        <h4>
+                            Development and Release
+                        </h4>
+    
+                        <p>
+                            Generate development files
+                        </p>
+                        <pre>$ grunt dev</pre>
+    
+                        <p>
+                            Let Grunt watch if some file are change and let him do his task
+                        </p>
+                        <pre>$ grunt watch</pre>
+    
+                        <p>
+                            Do run all Tasks for a Release
+                        </p>
+                        <pre>$ grunt</pre>
+    
+                        <h4>
+                            Special Tasks
+                        </h4>
+    
+                        <p>
+                            Create a archiv from the Public and Documentation
+                        </p>
+                        <pre>$ grunt zip</pre>
+    
+                    </article>
+                </section>
+
                 <section>
 
-                    <p>Project <%= websiteName %> create</p>
+                    <article class="Usage">
+                        <figure>
+                            <img src="Images/Logo/Git-Logo-2Color.png" title="Git">
+                        </figure>
+
+                        <h4>
+                            Git Configuration
+                        </h4>
+
+                        <p>
+                            set a config value globally for this user
+                        </p>
+                        <pre>$ git config --global user.name "My Name"</pre>
+
+                        <p>
+                            set a config value globally for the user email
+                        </p>
+                        <pre>$ git config --global user.email "a@b.c"</pre>
+
+
+                        <h4>
+                            Fork a Project
+                        </h4>
+
+                        <pre>$ git clone url</pre>
+                        <pre>$ cd project</pre>
+                        <pre>$ (edit files)</pre>
+                        <pre>$ git add (files)</pre>
+                        <pre>$ git commit -m 'Explain what I changed'</pre>
+                        <pre>$ git pull origin master</pre>
+                        <pre>$ git push origin master</pre>
+
+                        <h4>
+                            Branch and Merge
+                        </h4>
+                        <p>
+                            create a branch and immediately switch to it
+                        </p>
+                        <pre>$ git checkout -b [branch]</pre>
+                        <pre>$ (edit files)</pre>
+                        <pre>$ git add (files)</pre>
+                        <pre>$ git commit -m 'Explain what I changed'</pre>
+                        <pre>$ git checkout master</pre>
+                        <pre>$ git merge [branch]</pre>
+                        <pre>$ git pull origin master</pre>
+                        <pre>$ git push origin master</pre>
+
+                    </article>
+                </section>
+
+                <section>
+
+                    <article class="Info">
+
+                        <h3>Documentation</h3>
+
+                        <p>
+                            Documentation from the HTML5 Skeleton Website Project, the HTML files are generated from Markdown files and JavaScript files by jsDoc.
+                        </p>
+                        <p>
+                            <a href="../Documentation/index.html" target="_blank" title="Documentation Site generate from Markdown files">../Documentation/index.html</a>
+                        </p>
+
+                    </article>
 
                 </section>
+
+                <section>
+
+                    <article class="Info">
+                        <figure>
+                            <img src="Images/Logo/HTML5/css3.svg" title="CSS3">
+                        </figure>
+
+                        <ul class="List">
+                            <li><a href="http://necolas.github.io/normalize.css/" target="_blank" title="normalize.css">normalize.css v3.0.0</a></li>
+                            <li><a href="http://fontawesome.io/" target="_blank" title="Font Awesome">Font Awesome v4.0.3</a></li>
+                            <li><a href="http://alexwolfe.github.io/Buttons/" target="_blank" title="">Buttons - A CSS button library</a></li>
+                            <li><a href="http://meyerweb.com/eric/tools/css/reset/" target="_blank" title="Reset">Reset v2.0</a></li>
+                        </ul>
+
+                        <figure>
+                            <img src="Images/Logo/Less_Logo.png" title="Less">
+                            <figcaption>
+                                <h5>
+                                    The dynamic stylesheet language.
+                                </h5>
+                                <p>
+                                    LESS extends CSS with dynamic behavior such as variables, mixins, operations and functions.
+                                </p>
+                                <p>
+                                    LESS runs on both the server-side (with Node.js and Rhino) or client-side (modern browsers only).
+                                </p>
+                                <p>
+                                    <a href="http://www.lesscss.de/" target="_blank" title="Less Website">http://www.lesscss.de/</a>
+                                </p>
+                            </figcaption>
+                        </figure>
+
+                        <ul class="List">
+                            <li><a href="" target="_blank" title=""></a>Less Mixin Toolkit</li>
+                        </ul>
+
+                        <% if (includePolyfill) { %>
+                        <figure>
+                            <img src="Images/Logo/pie.png" title="CSS3 PIE - progressive internet explorer">
+                            <figcaption>
+                                <h5>
+                                    progressive internet explorer - CSS3 PIE
+                                </h5>
+                                <p>
+                                    PIE makes Internet Explorer 6-9 capable of rendering several of the most useful CSS3 decoration features.
+                                </p>
+                                <p>
+                                    <a href="http://css3pie.com/" target="_blank" title="CSS3 PIE Website">CSS3 PIE v2.0 beta 1</a>
+                                </p>
+                            </figcaption>
+                        </figure>
+
+                        <h5>
+                            JavaScripts for StyleSheets
+                        </h5>
+                        <ul class="List">
+                            <li><a href="https://github.com/lojjic/PIE" target="_blank" title="CSS3 PIE - GitHub Page">CSS3 PIE - GitHub Page</a></li>
+                            <li><a href="http://louisremi.github.io/background-size-polyfill/" target="_blank" title="Stretch background image using CSS3 for IE8">Stretch background image using CSS3 for IE8</a></li>
+                            <li><a href="https://github.com/Schepp/box-sizing-polyfill" target="_blank" title="box-sizing-polyfill - GitHubPage">A CSS box-sizing: border-box polyfill for IE 6/7</a></li>
+                            <li><a href="https://code.google.com/p/css3-mediaqueries-js/" target="_blank" title="css3-mediaqueries.js - Google Code Page">css3-mediaqueries.js</a></li>
+                            <li><a href="http://selectivizr.com/" target="_blank" title="CSS3 selectors for IE">selectivizr.js</a></li>
+                        </ul>
+                        <% } %>
+                    </article>
+                </section>
+
+                <section>
+
+                    <article class="Info">
+                        <h3>JavaScript</h3>
+
+                        <ul class="List">
+                            <% if (includeCreate) { %>
+                            <li><a href="http://createjs.com/" target="_blank" title="CreateJS">CreateJS</a>
+                                <ul>
+                                    <li>EaselJS v0.7.1</li>
+                                    <li>PreloadJS v0.4.1</li>
+                                    <li>SoundJS v0.5.2</li>
+                                    <li>TweenJS v0.5.1</li>
+                                </ul>
+                            </li>
+                            <% } if (includeJquery) { %>
+                            <li><a href="http://jquery.com/" target="_blank" title="jQuery">jQuery Framework</a>
+                                <ul>
+                                    <li>jQuery v1.11.0</li>
+                                    <li>jQuery User Interface v1.10.4</li>
+                                </ul>
+                            </li>
+                            <li><a href="http://plugins.jquery.com/" target="_blank" title="jQuery Plug-Ins">jQuery Plug-Ins</a>
+                                <ul>
+                                    <li><a href="http://srobbin.com/jquery-plugins/backstretch/" target="_blank" title="Backstretch">Backstretch v2.0.4</a></li>
+                                    <li><a href="https://github.com/Milanowicz/FitText.js" target="_blank" title="FitText.js">FitText.js v1.2.1</a></li>
+                                    <li><a href="https://github.com/furf/jquery-ui-touch-punch" target="_blank" title="jQuery UI Touch Punch">jQuery UI Touch Punch v0.2.2</a></li>
+                                    <li><a href="https://github.com/imakewebthings/jquery-waypoints/" target="_blank" title="jQuery Waypoints">Waypoints v2.0.4</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="http://masonry.desandro.com/" target="_blank" title="Masonry - Cascading grid layout library">Masonry v3.1.4</a>
+                            </li>
+                            <li>
+                                <a href="http://desandro.github.io/imagesloaded/" target="_blank" title="JavaScript is all like 'You images done yet or what?'">imagesLoaded v3.1.4</a>
+                            </li>
+                            <% } if (includeModernizr) { %>
+                            <li>
+                                <a href="http://modernizr.com/" target="_blank" title="Modernizr">Modernizr v2.7.1</a>
+                            </li>
+                            <% } if (includePolyfill) { %>
+                            <li>
+                                <a href="https://github.com/scottjehl/Respond" target="_blank" title="A fast & lightweight polyfill for min/max-width CSS3 Media Queries (for IE 6-8, and more)">respond.js</a>
+                            </li>
+                            <% } %>
+                        </ul>
+                    </article>
+                </section>
+
+                <section>
+                    <article class="Info">
+
+                        <figure>
+                            <img src="Images/Logo/Grunt_Logo.png" title="GruntJS">
+                            <figcaption>
+                                <p>
+                                    <a href="http://gruntjs.com/plugins" target="_blank" title="GruntJS Plug-Ins">GruntJS Plug-Ins</a>
+                                </p>
+                                <p>
+                                    <a href="https://github.com/gruntjs" target="_blank" title="GitHub Page">GitHub Page</a>
+                                </p>
+                            </figcaption>
+                        </figure>
+
+                        <ul class="List">
+                            <li>contrib-clean</li>
+                            <li>contrib-concat</li>
+                            <li>contrib-compress</li>
+                            <li>contrib-copy</li>
+                            <li>contrib-less</li>
+                            <li>contrib-jshint</li>
+                            <li>contrib-uglify</li>
+                            <li>contrib-watch</li>
+                            <li>devtools</li>
+                            <li>dev-update</li>
+                            <li>jsdoc</li>
+                            <li>markdown</li>
+                            <li>notify</li>
+                            <li>recess</li>
+                            <li>text-replace</li>
+                        </ul>
+
+                    </article>
+                </section>
+                <section>
+                    <article>
+                        <figure>
+                            <img src="Images/Logo/w3c.svg" title="W3C">
+                            <figcaption>
+                                <ul class="List">
+                                    <li><a href="http://www.w3.org/" target="_blank" title="">W3C</a>
+                                        <ul>
+                                            <li>
+                                                <a href="http://www.w3.org/TR/html5/" target="_blank" title="">W3C HTML5</a>
+                                            </li>
+                                            <li>
+                                                <a href="http://dev.w3.org/html5/markup/elements.html" target="_blank" title="HTML: The Markup Language (an HTML language reference)">HTML: Elements reference</a>
+                                            </li>
+                                            <li>
+                                                <a href="http://www.w3.org/TR/html-markup/elements-by-function.html" target="_blank" title="HTML: The Markup Language (an HTML language reference)">HTML: Elements by Function</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </figcaption>
+                        </figure>
+                    </article>
+                </section>
+
+                <section>
+                    <article>
+                        <figure>
+                            <img src="Images/Logo/HTML5/HTML5_Logo.png" title="HTML5">
+                        </figure>
+
+                        <ul class="List">
+                            <li>
+                                <a href="http://www.w3schools.com/tags/" target="_blank" title="w3schools.com">HTML Reference - (HTML5 Compliant)</a>
+                            </li>
+
+                            <li>
+                                <a href="http://caniuse.com/" target="_blank" title="Can I use...">Can I use...</a>
+                            </li>
+                            <li>
+                                <a href="http://www.initializr.com/" target="_blank" title="Initializr">Initializr</a>
+                            </li>
+                            <li>
+                                <a href="http://html5boilerplate.com/" target="_blank" title="HTML5 Boilerplate">HTML5 Boilerplate</a>
+                            </li>
+                            <li>
+                                <a href="http://html5doctor.com/" target="_blank" title="HTML5 Doctor">HTML5 Doctor</a>
+                            </li>
+                            <li>
+                                <a href="http://webkompetenz.wikidot.com/docs:html-handbuch" target="_blank" title="HTML5-Handbuch">HTML5-Handbuch</a>
+                            </li>
+                            <li>
+                                <a href="http://www.html5rocks.com/de/" target="_blank" title="HTML5 Rocks">HTML5 Rocks</a>
+                            </li>
+                            <li>
+                                <a href="http://html5please.com/" target="_blank" title="HTML5 Please">HTML5 Please</a>
+                            </li>
+                        </ul>
+                    </article>
+                </section>
+                <% if (includeModernizr) { %>
+                <section>
+                    <article class="Description">
+                        <figure>
+                            <img src="Images/Logo/Modernizr/Modernizr-2-Logo-vertical-big.png" title="Modernizr">
+                            <figcaption>
+                                <h5>Modernizr is a JavaScript library that detects HTML5 and CSS3 features in the user’s browser.</h5>
+                                <p>
+                                    Taking advantage of cool new web technologies is great fun, until you have to support browsers that lag behind. Modernizr makes it easy for you to write conditional JavaScript and CSS to handle each situation, whether a browser supports a feature or not. It’s perfect for doing progressive enhancement easily.
+                                </p>
+                                <p>
+                                    <a href="http://modernizr.com/" target="_blank" title="Modernizr">http://modernizr.com/</a>
+                                </p>
+                            </figcaption>
+                        </figure>
+                    </article>
+                </section>
+                <% } %>
+                <section>
+                    <article class="Description">
+                        <figure>
+                            <img src="Images/Logo/Grunt_Logo.png" title="GruntJS">
+                            <figcaption>
+                                <h5>The JavaScript Task Runner</h5>
+                                <h6>Why use a task runner?</h6>
+                                <p>
+                                    In one word: automation. The less work you have to do when performing repetitive tasks like minification, compilation, unit testing, linting, etc, the easier your job becomes. After you've configured it, a task runner can do most of that mundane work for you—and your team—with basically zero effort.
+                                </p>
+
+                                <h6>Why use Grunt?</h6>
+                                <p>
+                                    The Grunt ecosystem is huge and it's growing every day. With literally hundreds of plugins to choose from, you can use Grunt to automate just about anything with a minimum of effort. If someone hasn't already built what you need, authoring and publishing your own Grunt plugin to npm is a breeze.
+                                </p>
+                                <p>
+                                    <a href="http://gruntjs.com/" target="_blank" title="GruntJS">http://gruntjs.com/</a>
+                                </p>
+                            </figcaption>
+                        </figure>
+                    </article>
+                </section>
+
+                <section>
+                    <article class="Description">
+                        <figure>
+                            <img src="Images/Logo/Git-Logo-2Color.png" title="Git">
+                            <figcaption>
+                                <p>
+                                    Git is a free and open source distributed version control system designed to handle everything from small to very large projects with speed and efficiency.
+                                </p>
+                                <p>
+                                    Git is easy to learn and has a tiny footprint with lightning fast performance. It outclasses SCM tools like Subversion, CVS, Perforce, and ClearCase with features like cheap local branching, convenient staging areas, and multiple workflows.
+                                </p>
+                                <p>
+                                    <a href="http://git-scm.com/" target="_blank" title="Git">http://git-scm.com/</a>
+                                </p>
+                            </figcaption>
+                        </figure>
+
+                        <p>
+                            Visual Git Cheat Sheet
+                        </p>
+                        <p>
+                            <a href="http://ndpsoftware.com/git-cheatsheet.html" target="_blank" title="Visual Git Cheat Sheet">http://ndpsoftware.com/git-cheatsheet.html</a>
+                        </p>
+                        <p>
+                            Heroku Cheat Sheet
+                        </p>
+                        <p>
+                            <a href="https://na1.salesforce.com/help/pdfs/en/salesforce_git_developer_cheatsheet.pdf" target="_blank" title="Heroku Cheat Sheet	">https://na1.salesforce.com/help/pdfs/en/salesforce_git_developer_cheatsheet.pdf</a>
+                        </p>
+                        <p>
+                            Git cheat sheet
+                        </p>
+                        <p>
+                            <a href="http://zrusin.blogspot.de/2007/09/git-cheat-sheet.html" target="_blank" title="Git cheat sheet">http://zrusin.blogspot.de/2007/09/git-cheat-sheet.html</a>
+                        </p>
+                    </article>
+                </section>
+
+                <section>
+                    <article class="Description">
+                        <figure>
+                            <img src="Images/Logo/Node.js_Logo.png" title="NodeJS">
+                            <figcaption>
+                                <h5>NodeJS</h5>
+                                <p>
+                                    Nodejs is a platform built on Chrome's JavaScript runtime for easily building fast, scalable network applications. Nodejs uses an event-driven, non-blocking I/O model that makes it lightweight and efficient, perfect for data-intensive real-time applications that run across distributed devices.
+                                </p>
+                                <p>
+                                    <a href="http://nodejs.org/" target="_blank" title="NodeJS">http://nodejs.org/</a>
+                                </p>
+                            </figcaption>
+                        </figure>
+                    </article>
+                </section>
+                <% if (includeCreate) { %>
+                <section>
+                    <article class="Description">
+                        <figure>
+                            <img src="Images/Logo/CreateJS/easeljs.png" title="EaselJS">
+                            <figcaption>
+                                <h5>A Javascript library that makes working with the HTML5 Canvas element easy.</h5>
+                                <p>
+                                    EaselJS provides straight forward solutions for working with rich graphics and interactivity with HTML5 Canvas. It provides an API that is familiar to Flash developers, but embraces Javascript sensibilities. It consists of a full, hierarchical display list, a core interaction model, and helper classes to make working with Canvas much easier.
+                                </p>
+                                <p>
+                                    <a href="http://createjs.com/#!/EaselJS" target="_blank" title="EaselJS">http://createjs.com/#!/EaselJS</a>
+                                </p>
+                            </figcaption>
+                        </figure>
+                    </article>
+                </section>
+
+                <section>
+                    <article class="Description">
+                        <figure>
+                            <img src="Images/Logo/CreateJS/tweenjs.png" title="TweenJS">
+                            <figcaption>
+                                <h5>A Javascript library for tweening and animating HTML5 and Javascript properties.</h5>
+                                <p>
+                                    TweenJS is a simple tweening library for use in Javascript. It was developed to integrate well with the EaselJS library, but is not dependent on or specific to it. It supports tweening of both numeric object properties & CSS style properties. The API is simple but very powerful, making it easy to create complex tweens by chaining commands.
+                                </p>
+                                <p>
+                                    <a href="http://createjs.com/#!/TweenJS" target="_blank" title="TweenJS">http://createjs.com/#!/TweenJS</a>
+                                </p>
+                            </figcaption>
+                        </figure>
+                    </article>
+                </section>
+
+                <section>
+                    <article class="Description">
+                        <figure>
+                            <img src="Images/Logo/CreateJS/preloadjs.png" title="PreloadJS">
+                            <figcaption>
+                                <h5>A Javascript library that lets you manage and co-ordinate the loading of assets.</h5>
+                                <p>
+                                    PreloadJS makes it easy to preload your assets:images, sounds, JS, data, or others. It uses XHR2 to provide real progress information when available, or fall back to tag loading and eased progress when it isn’t. It allows multiple queues, multiple connections, pausing queues, and a lot more.
+                                </p>
+                                <p>
+                                    <a href="http://createjs.com/#!/PreloadJS" target="_blank" title="PreloadJS">http://createjs.com/#!/PreloadJS</a>
+                                </p>
+                            </figcaption>
+                        </figure>
+                    </article>
+                </section>
+
+                <section>
+                    <article class="Description">
+                        <figure>
+                            <img src="Images/Logo/CreateJS/soundjs.png" title="SoundJS">
+                            <figcaption>
+                                <h5>A Javascript library that provides a simple API, and powerful features to make working with audio a breeze.</h5>
+                                <p>
+                                    Consistant cross-browser support for audio is currently a mess in HTML5, but SoundJS works to abstract away the problems and makes adding sound to your games or rich experiences much easier. You can query for capabilities, then specify and prioritize what APIs, plugins, and features are leveraged for specific devices or browsers.
+                                </p>
+                                <p>
+                                    <a href="http://createjs.com/#!/SoundJS" target="_blank" title="SoundJS">http://createjs.com/#!/SoundJS</a>
+                                </p>
+                            </figcaption>
+                        </figure>
+                    </article>
+                </section>
+                <% } %>
+                <section>
+                    <article class="Description">
+                        <figure>
+                            <img src="Images/Logo/GitHub-Mark-120px-plus.png" title="GitHub">
+                            <figcaption>
+                                <h5>Build software better, together.</h5>
+                                <p>
+                                    Powerful collaboration, code review, and code management for open source and private projects. Need private repositories?
+                                </p>
+                                <p>
+                                    <a href="https://github.com/" target="_blank" title="Website">https://github.com/</a>
+                                </p>
+                            </figcaption>
+                        </figure>
+                    </article>
+                </section>
+
+                <section>
+                    <article class="Description">
+                        <figure>
+                            <img src="Images/Logo/HTML5/HTML5_Badge.svg" title="HTML5 Logo">
+                            <figcaption>
+                                <h5>HTML5 Logo</h5>
+                                <p>
+                                    Imagination, meet implementation. HTML5 is the cornerstone of the W3C's open web platform; a framework designed to support innovation and foster the full potential the web has to offer. Heralding this revolutionary collection of tools and standards, the HTML5 identity system provides the visual vocabulary to clearly classify and communicate our collective efforts.
+                                </p>
+                                <p>
+                                    <a href="http://www.w3.org/html/logo/" target="_blank" title="HTML5 Logos">http://www.w3.org/html/logo/</a>
+                                </p>
+                            </figcaption>
+                        </figure>
+                    </article>
+                </section>
+
+                <section>
+                    <article class="Description">
+                        <figure>
+                            <img src="Images/Logo/HTML5/html5_css3_styling.svg" title="Class: CSS3">
+                            <figcaption>
+                                <h5>Class: CSS3</h5>
+                                <p>
+                                    CSS3 delivers a wide range of stylization and effects, enhancing the web app without sacrificing your semantic structure or performance. Additionally Web Open Font Format (WOFF) provides typographic flexibility and control far beyond anything the web has offered before.
+                                </p>
+                            </figcaption>
+                        </figure>
+                    </article>
+                </section>
+
+                <section>
+                    <article class="Description">
+                        <figure>
+                            <img src="Images/Logo/HTML5/html5_multimedia.svg" title="Class: Multimedia">
+                            <figcaption>
+                                <h5>Class: Multimedia</h5>
+                                <p>
+                                    Audio and video are first class citizens in the HTML5 web, living in harmony with your apps and sites. Lights, camera, action!
+                                </p>
+                            </figcaption>
+                        </figure>
+                    </article>
+                </section>
+
+                <section>
+                    <article class="Description">
+                        <figure>
+                            <img src="Images/Logo/HTML5/html5_3d_effects.svg" title="Class: 3D, Graphics and Effects">
+                            <figcaption>
+                                <h5>Class: 3D, Graphics and Effects</h5>
+                                <p>
+                                    Between SVG, Canvas, WebGL, and CSS3 3D features, you're sure to amaze your users with stunning visuals natively rendered in the browser.
+                                </p>
+                            </figcaption>
+                        </figure>
+                    </article>
+                </section>
+
+                <section>
+                    <article class="Description">
+                        <figure>
+                            <img src="Images/Logo/HTML5/html5_connectivity.svg" title="Class: Connectivity">
+                            <figcaption>
+                                <h5>Class: Connectivity</h5>
+                                <p>
+                                    More efficient connectivity means more real-time chats, faster games, and better communication. Web Sockets and Server-Sent Events are pushing (pun intended) data between client and server more efficiently than ever before.
+                                </p>
+                            </figcaption>
+                        </figure>
+                    </article>
+                </section>
+
+                <section>
+                    <article class="Description">
+                        <figure>
+                            <img src="Images/Logo/HTML5/html5_device_access.svg" title="Class: Device Access">
+                            <figcaption>
+                                <h5>Class: Device Access</h5>
+                                <p>
+                                    Beginning with the Geolocation API, Web Applications can present rich, device-aware features and experiences. Incredible device access innovations are being developed and implemented, from audio/video input access to microphones and cameras, to local data such as contacts & events, and even tilt orientation.
+                                </p>
+                            </figcaption>
+                        </figure>
+                    </article>
+                </section>
+
+                <section>
+                    <article class="Description">
+                        <figure>
+                            <img src="Images/Logo/HTML5/html5_offline_storage.svg" title="Class: Offline and Storage">
+                            <figcaption>
+                                <h5>Class: Offline and Storage</h5>
+                                <p>
+                                    Web Apps can start faster and work even if there is no internet connection, thanks to the HTML5 App Cache, as well as the Local Storage, Indexed DB, and the File API specifications.
+                                </p>
+                            </figcaption>
+                        </figure>
+                    </article>
+                </section>
+
+                <section>
+                    <article class="Description">
+                        <figure>
+                            <img src="Images/Logo/HTML5/html5_perfintegration.svg" title="Class: Performance and Integration">
+                            <figcaption>
+                                <h5>Class: Performance and Integration</h5>
+                                <p>
+                                    Make your Web Apps and dynamic web content faster with a variety of techniques and technologies such as Web Workers and XMLHttpRequest 2. No user should ever wait on your watch.
+                                </p>
+                            </figcaption>
+                        </figure>
+                    </article>
+                </section>
+
+                <section>
+                    <article class="Description">
+                        <figure>
+                            <img src="Images/Logo/HTML5/html5_semantics.svg" title="Class: Semantics">
+                            <figcaption>
+                                <h5>Class: Semantics</h5>
+                                <p>
+                                    Giving meaning to structure, semantics are front and center with HTML5. A richer set of tags, along with RDFa, microdata, and microformats, are enabling a more useful, data driven web for both programs and your users.
+                                </p>
+                            </figcaption>
+                        </figure>
+                    </article>
+                </section>
+
+                <section>
+                    <article>
+                        <img src="Images/Logo/HTML5/HTML5_sticker.svg" title="HTML5 Sticker">
+                    </article>
+                </section>
+
+                <section>
+                    <article>
+
+                        <h3>jiji tatata bala tu butt</h3>
+
+                        <p>
+                            po kass butt aaaaaah. Me want bananaaa! jiji tatata bala tu butt la bodaaa BEE DO BEE DO BEE DO. Chasy poulet tikka masala poopayee bappleees baboiii pepete poulet tikka masala hahaha po kass hana dul sae tatata bala tu. Tatata bala tu jeje baboiii ti aamoo! La bodaaa jeje tank yuuu! Daa poulet tikka masala. Para tú poulet tikka masala belloo! Tank yuuu! Para tú butt ti aamoo! Para tú BEE DO BEE DO BEE DO. Gelatooo jeje butt tatata bala tu. Wiiiii bananaaaa daa butt chasy daa hana dul sae hana dul sae jeje la bodaaa. Butt poopayee chasy baboiii underweaaar. Jeje poopayee gelatooo bananaaaa.
+                        </p>
+                        <p>
+                            Minions Ipsum - <a href="http://www.minionsipsum.com/" target="_blank" title="Minions Ipsum">http://www.minionsipsum.com/</a>
+                        </p>
+
+                    </article>
+                </section>
+
+                <section>
+                    <article>
+
+                        <h4>Lorem ipsum dolor sit</h4>
+
+                        <p>
+                            Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+                        </p>
+                        <p>
+                            Lorem Ipsum - <a href="http://www.loremipsum.de/" target="_blank" title="Minions Ipsum">http://www.loremipsum.de/</a>
+                        </p>
+
+                    </article>
+                </section>
+
             </div>
 		</main>
 

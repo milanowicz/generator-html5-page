@@ -14,7 +14,7 @@ module.exports = function(grunt) {
         clean: {
             js: [
                 'Public/JS/<%= _.slugify(websiteName) %>.js',<% if (includeModernizr) { %>
-                'Public/JS/Modernizr.js'<% } %>
+                'Public/JS/modernizr.js'<% } %>
             ],
             css: [
                 'Public/CSS/<%= _.slugify(websiteName) %>.css'
@@ -76,28 +76,24 @@ module.exports = function(grunt) {
             },
             main : {
                 src : [<% if (includeJquery) { %>
-                    'JavaScript/jQuery/jquery-1.11.0.js',
-                    'JavaScript/jQuery/jquery-ui-1.10.4.js',
-                    'JavaScript/jQuery/jquery.ui.touch-punch.js',
-                    'JavaScript/jQuery/jquery.anystretch.js',
-                    'JavaScript/jQuery/jquery.backstretch.js',
-                    'JavaScript/jQuery/jquery.ba-hashchange.js',
-                    'JavaScript/jQuery/jquery.buttons.js',
-                    'JavaScript/jQuery/jquery.fittext.js',
-                    'JavaScript/jQuery/jquery.prettyPhoto.js',
-                    'JavaScript/jQuery/jquery.waypoints.js',
-                    'JavaScript/Library/masonry.js',<% } if (includePolyfill) { %>
-                    'JavaScript/Library/imagesloaded.js',
-                    'JavaScript/Library/respond.js',<% } if (includeCreate) { %>
-                    'JavaScript/CreateJS/easeljs-0.7.1.combined.js',
-                    'JavaScript/CreateJS/tweenjs-0.5.1.combined.js',
-                    'JavaScript/CreateJS/preloadjs-0.4.1.combined.js',
-                    'JavaScript/CreateJS/soundjs-0.5.2.combined.js',<% } %>
-                    'JavaScript/Main/Canvas.js',
-                    'JavaScript/Main/Detection.js',
+                    'bower_components/jquery/jquery.js',
+                    'bower_components/jQueryui/ui/jquery-ui.js',
+                    'bower_components/jqueryui-touch-punch/jquery.ui.touch-punch.js ',
+                    'bower_components/jquery-backstretch/jquery.backstretch.js',
+                    'bower_components/FitText.js/jquery.fittext.js',
+                    'bower_components/jquery-waypoints/waypoints.js',
+                    'bower_components/Buttons/js/buttons.js',
+                    'bower_components/masonry/dist/masonry.pkgd.js',
+                    'bower_components/imagesloaded/imagesloaded.pkgd.js',<% } if (includePolyfill) { %>
+                    'bower_components/respond/dest/respond.src.js',<% } if (includeCreate) { %>
+                    'bower_components/easeljs/lib/easeljs-0.7.1.combined.js',
+                    'bower_components/createjs-tweenjs/lib/tweenjs-0.5.1.combined.js',
+                    'bower_components/createjs-preloadjs/lib/preloadjs-0.4.1.combined.js',
+                    'bower_components/createjs-soundjs/lib/soundjs-0.5.2.combined.js',
+                    'JavaScript/Canvas.js',<% } %>
+                    'JavaScript/Detection.js',
                     'JavaScript/Main/Main.js',
-                    'JavaScript/Main/MainTools.js',
-                    'JavaScript/Main/Init.js'
+                    'JavaScript/Main/MainTools.js'
                 ],
                 dest : 'Public/JS/<%= _.slugify(websiteName) %>.js'
             }
@@ -108,10 +104,54 @@ module.exports = function(grunt) {
                 files : [
                     {
                         expand: true,
-                        cwd: 'JavaScript/Library/',
-                        src : 'Modernizr.js',
+                        cwd: 'bower_components/modernizr/modernizr.js',
+                        src : 'modernizr.js',
                         dest : 'Public/JS/'
                     }
+                ]
+            },
+            dist : {
+                files : [
+                    <% if (includePolyfill) { %>
+                    {
+                        expand: true,
+                        cwd: 'bower_components/selectivizr/',
+                        src : 'selectivizr.js',
+                        dest : 'Public/JS/'
+                    },{
+                        expand: true,
+                        cwd: 'bower_components/css3pie/',
+                        src : 'PIE.js',
+                        dest : 'Public/JS/'
+                    },{
+                        expand: true,
+                        cwd: 'bower_components/css3pie/',
+                        src : 'PIE.htc',
+                        dest : 'Public/JS/'
+                    },{
+                        expand: true,
+                        cwd: 'bower_components/background-size-polyfill/',
+                        src : 'backgroundsize.min.htc',
+                        dest : 'Public/JS/'
+                    },{
+                        expand: true,
+                        cwd: 'bower_components/box-sizing-polyfill/',
+                        src : 'boxsizing.htc',
+                        dest : 'Public/JS/'
+                    },
+                    <% } %>
+                    {
+                        expand: true,
+                        cwd: 'bower_components/modernizr/',
+                        src : 'modernizr.js',
+                        dest : 'Public/JS/'
+                    },{
+                        expand: true,
+                        cwd: 'bower_components/font-awesome/fonts/',
+                        src : '*',
+                        dest : 'Public/Fonts/'
+                    }
+
                 ]
             }
         },
@@ -162,12 +202,8 @@ module.exports = function(grunt) {
             },
             src: {
                 src: [
-                    'JavaScript/Main/Init.js',
                     'JavaScript/Main/Main.js',
-                    'JavaScript/Main/MainTools.js',
-                    'JavaScript/Main/Canvas.js',
-                    'JavaScript/Main/Detection.js',
-                    'JavaScript/Main/Documentation.js'
+                    'JavaScript/Main/MainTools.js'
                 ]
             }
         },
@@ -297,30 +333,12 @@ module.exports = function(grunt) {
                 report : 'min'
             },<% if (includeModernizr) { %>
             Modernizr : {
-                src : 'Public/JS/Modernizr.js',
-                dest : 'Public/JS/Modernizr.min.js'
+                src : 'bower_components/modernizr/modernizr.js',
+                dest : 'Public/JS/modernizr.min.js'
             },<% } %>
             main : {
-                src : 'Public/JS/<%%= _.slugify(websiteName) %>.js',
+                src : 'Public/JS/<%= _.slugify(websiteName) %>.js',
                 dest : 'Public/JS/<%= _.slugify(websiteName) %>.min.js'
-            }
-        },
-
-        validation: {
-            options: {
-                doctype: 'HTML5',
-                charset: 'utf-8',
-                reset: grunt.option('reset') || false,
-                stoponerror: false,
-                relaxerror: [
-                    "Bad value X-UA-Compatible for attribute http-equiv on element meta."
-                ]
-            },
-            files: {
-                src: [
-                    'Public/index.html',
-                    'Documentation/index.html'
-                ]
             }
         },
 
@@ -352,7 +370,6 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-dev-update');
-    grunt.loadNpmTasks('grunt-html-validation');
     grunt.loadNpmTasks('grunt-jsdoc');
     grunt.loadNpmTasks('grunt-markdown');
     grunt.loadNpmTasks('grunt-notify');
@@ -361,15 +378,15 @@ module.exports = function(grunt) {
 
     grunt.task.run('notify_hooks');
 
-    grunt.registerTask('distribute-js', ['concat', 'uglify', 'copy:Modernizr', 'clean:js']);
+    grunt.registerTask('distribute-js', ['concat', 'uglify', 'clean:js']);
     grunt.registerTask('distribute-css', ['less', 'recess', 'clean:css']);
     grunt.registerTask('distribute-files', ['distribute-css', 'distribute-js'/*,'compress:scripts'*/]);
 
     grunt.registerTask('zip', ['compress:website', 'compress:docu']);
-    grunt.registerTask('test', ['validation', 'jshint']);
+    grunt.registerTask('test', ['jshint']);
     grunt.registerTask('doc', ['jsdoc', 'markdown']);
 
     grunt.registerTask('dev', ['clean:css', 'less', 'clean:js', 'concat', 'replace:dev', 'copy:dev', 'notify:dev', 'watch']);
-    grunt.registerTask('default', ['test', 'clean', 'distribute-files', 'replace:build', 'doc', 'notify:all']);
+    grunt.registerTask('default', ['test', 'clean', 'distribute-files', 'replace:build', 'copy:dist', 'doc', 'notify:all']);
 
 };

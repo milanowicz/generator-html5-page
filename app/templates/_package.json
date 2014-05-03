@@ -1,6 +1,6 @@
 {
   "name": "<%= _.slugify(websiteName) %>",
-  "description" : "<%= websiteName %> description",
+  "description" : "<%= websiteDescription %>",
   "version": "0.0.1",
   "dependencies": {},
   "devDependencies": {
@@ -15,7 +15,6 @@
     "grunt-contrib-watch": "^0.6.1",
     "grunt-devtools": "~0.2.1",
     "grunt-dev-update": "^0.5.5",
-    "grunt-html-validation": "^0.1.14",
     "grunt-jsdoc": "^0.5.4",
     "grunt-markdown": "~0.5.0",
     "grunt-notify": "^0.2.20",

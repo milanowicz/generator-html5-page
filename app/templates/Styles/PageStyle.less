@@ -1,8 +1,6 @@
 /**
  *    Website Style Definitions
- *
  */
-
 
 /* Content Definitions */
 @MainContentWidth: 1024px;
@@ -19,22 +17,20 @@
 
 
 /**
- *   Load Less Mixins
+ *   Import Styles from Plug-Ins
+ */
+@import (inline) '../../bower_components/normalize-css/normalize.css';
+@import (inline) '../../bower_components/jQueryui/themes/base/jquery-ui.css';
+@import (inline) '../../bower_components/font-awesome/css/font-awesome.css';
+@import (inline) '../../bower_components/Buttons/css/buttons.css';
+
+/**
+ *   Load Less Tookit Mixins
  */
 @import '../Mixins/LessToolkitDefinitions';
 @import '../Mixins/LessToolkitMixins';
 
 /**
- *   Import Styles from Plug-Ins or better ;)
- */
-@import '../Library/normalize';
-@import '../Library/jquery-ui';
-@import '../Library/font-awesome';
-@import '../Library/buttons';
-
-
-/**
  *    Load Page Style files
  */
-
 @import 'MainStyle';

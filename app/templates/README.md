@@ -12,6 +12,8 @@ NodeJS - [http://nodejs.org/](http://nodejs.org/)
 
 Yeoman - [http://yeoman.io/](http://yeoman.io/)
 
+Bower - [http://bower.io/](http://bower.io/)
+
 GruntJS - [http://gruntjs.com/](http://gruntjs.com/)
 
 Less - [http://www.lesscss.org/](http://www.lesscss.org/)

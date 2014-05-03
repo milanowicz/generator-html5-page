@@ -22,8 +22,6 @@
             /**
              * Init functions . . .
              */
-            Main.Animation.CreateIntro();
-
             Main.Tools.initMasonry('div.Wrapper', 'section', 500, 40);
             Main.Tools.showTooltip('a');
             Main.Tools.showTooltip('img');
@@ -104,3 +102,6 @@
     };
 
 })(window);
+
+
+$(document).ready(Main.init);
