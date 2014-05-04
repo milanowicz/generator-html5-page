@@ -20,7 +20,7 @@ module.exports = function(grunt) {
                 'Public/CSS/<%= _.slugify(websiteName) %>.css'
             ],
             docu: [
-                'Documentation/jsdoc/*'
+                'Documentation/**/*'
             ]
         },
 
@@ -75,15 +75,14 @@ module.exports = function(grunt) {
                 stripBanners: false
             },
             main : {
-                src : [<% if (includeJquery) { %>
-                    'bower_components/jquery/jquery.js',
+                src : [
+                    'bower_components/jquery/jquery.js',<% if (includeJqueryUi) { %>
                     'bower_components/jQueryui/ui/jquery-ui.js',
-                    'bower_components/jqueryui-touch-punch/jquery.ui.touch-punch.js ',
+                    'bower_components/jqueryui-touch-punch/jquery.ui.touch-punch.js ',<% } if (includeJqueryPlugins) { %>
                     'bower_components/jquery-backstretch/jquery.backstretch.js',
+                    'bower_components/Buttons/js/buttons.js',<% } if (includeExample) { %>
                     'bower_components/FitText.js/jquery.fittext.js',
-                    'bower_components/jquery-waypoints/waypoints.js',
-                    'bower_components/Buttons/js/buttons.js',
-                    'bower_components/Detection.js/Detection.js',
+                    'bower_components/BrowserDetection.js/BrowserDetection.js',<% } if (includeMasonry) { %>
                     'bower_components/masonry/dist/masonry.pkgd.js',
                     'bower_components/imagesloaded/imagesloaded.pkgd.js',<% } if (includePolyfill) { %>
                     'bower_components/respond/dest/respond.src.js',<% } if (includeCreate) { %>
@@ -91,9 +90,9 @@ module.exports = function(grunt) {
                     'bower_components/createjs-tweenjs/lib/tweenjs-0.5.1.combined.js',
                     'bower_components/createjs-preloadjs/lib/preloadjs-0.4.1.combined.js',
                     'bower_components/createjs-soundjs/lib/soundjs-0.5.2.combined.js',
-                    'JavaScript/Canvas.js',<% } %>
-                    'JavaScript/Main/Main.js',
-                    'JavaScript/Main/MainTools.js'
+                    'JavaScript/Canvas.js',<% } if (includeExample) { %>
+                    'Website/JavaScript/Main.js',
+                    'Website/JavaScript/MainTools.js'<% } %>
                 ],
                 dest : 'Public/JS/<%= _.slugify(websiteName) %>.js'
             }
@@ -101,12 +100,17 @@ module.exports = function(grunt) {
 
         copy : {
             dev : {
-                files : [
+                files : [<% if (includeModernizr) { %>
                     {
                         expand: true,
                         cwd: 'bower_components/modernizr/modernizr.js',
                         src : 'modernizr.js',
                         dest : 'Public/JS/'
+                    },<% } %>{
+                        expand: true,
+                        cwd: 'bower_components/font-awesome/fonts/',
+                        src : '*',
+                        dest : 'Public/Fonts/'
                     }
                 ]
             },
@@ -139,13 +143,13 @@ module.exports = function(grunt) {
                         src : 'boxsizing.htc',
                         dest : 'Public/JS/'
                     },
-                    <% } %>
+                    <% } if (includeModernizr) { %>
                     {
                         expand: true,
                         cwd: 'bower_components/modernizr/',
                         src : 'modernizr.js',
                         dest : 'Public/JS/'
-                    },{
+                    },<% } %>{
                         expand: true,
                         cwd: 'bower_components/font-awesome/fonts/',
                         src : '*',
@@ -185,7 +189,7 @@ module.exports = function(grunt) {
         jsdoc : {
             dist : {
                 src: [
-                    'JavaScript/Main/*.js'
+                    'Website/JavaScript/**/*.js'
                 ],
                 options: {
                     destination: 'Documentation/jsdoc'
@@ -195,15 +199,15 @@ module.exports = function(grunt) {
 
         jshint: {
             options: {
-                jshintrc: 'JavaScript/.jshintrc'
+                jshintrc: 'Website/JavaScript/.jshintrc'
             },
             gruntfile: {
                 src: 'Gruntfile.js'
             },
             src: {
-                src: [
-                    'JavaScript/Main/Main.js',
-                    'JavaScript/Main/MainTools.js'
+                src: [<% if (includeExample) { %>
+                    'Website/JavaScript/Main.js',
+                    'Website/JavaScript/MainTools.js'<% } %>
                 ]
             }
         },
@@ -217,7 +221,7 @@ module.exports = function(grunt) {
             },
             main: {
                 files: {
-                    'Public/CSS/<%= _.slugify(websiteName) %>.css': 'Less/Styles/PageStyle.less'
+                    'Public/CSS/<%= _.slugify(websiteName) %>.css': 'Website/Less/PageStyle.less'
                 }
             }
         },

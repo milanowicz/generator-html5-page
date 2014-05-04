@@ -10,20 +10,20 @@
     "selectivizr": "*",
     "background-size-polyfill": "*",
     "box-sizing-polyfill": "*",
-    "respond": "*",<% } if (includeJquery) { %>
-    "jquery": "*",
+    "respond": "*",
+    "css3-mediaqueries-js": "*",<% } %>
+    "jquery": "*",<% if (includeJqueryUi) { %>
     "jqueryui": "*",
-    "jqueryui-touch-punch": "*",
+    "jqueryui-touch-punch": "*",<% } if (includeJqueryPlugins) { %>
     "jquery-backstretch": "*",
-    "jquery-waypoints": "*",
+    "Buttons": "*",<% } if (includeExample) { %>
     "FitText.js": "https://github.com/Milanowicz/FitText.js.git",
-    "Detection.js": "https://github.com/Milanowicz/Detection.js.git",
-    "Buttons": "*",
+    "BrowserDetection.js": "https://github.com/Milanowicz/BrowserDetection.js.git",<% } if (includeMasonry) { %>
     "masonry": "*",
     "imagesloaded": "*",<% } if (includeModernizr) { %>
     "modernizr": "*",<% } %>
-    "CSSLessCollection": "https://github.com/Milanowicz/CSSLessCollection.git",
     "font-awesome": "~4.0.3",
+    "CSSLessCollection": "https://github.com/Milanowicz/CSSLessCollection.git",
     "normalize-css": "*"
   }
 }

@@ -17,6 +17,7 @@
         <% if (includeModernizr) { %>
         <script type="text/javascript" src="JS/modernizr.min.js"></script><% } %>
 
+        <% if (includeExample) { %>
         <link rel="apple-touch-icon-precomposed" sizes="144x144" href="Images/Favicon/apple-touch-icon-144x144-precomposed.png">
         <link rel="apple-touch-icon-precomposed" sizes="114x114" href="Images/Favicon/apple-touch-icon-114x114-precomposed.png">
         <link rel="apple-touch-icon-precomposed" sizes="72x72" href="Images/Favicon/apple-touch-icon-72x72-precomposed.png">
@@ -26,7 +27,17 @@
 
         <meta name="msapplication-TileImage" content="Images/Favicon/apple-touch-icon-144x144-precomposed.png">
         <meta name="msapplication-TileColor" content="#222222">
+        <% } else { %>
+        <link rel="apple-touch-icon-precomposed" sizes="144x144" href="apple-touch-icon-144x144-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="apple-touch-icon-114x114-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="apple-touch-icon-72x72-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" href="apple-touch-icon-57x57-precomposed.png">
+        <link rel="shortcut icon" sizes="196x196" href="touch-icon-196x196.png">
+        <link rel="shortcut icon" href="apple-touch-icon.png">
 
+        <meta name="msapplication-TileImage" content="apple-touch-icon-144x144-precomposed.png">
+        <meta name="msapplication-TileColor" content="#000000">
+        <% } %>
         <% if (includePolyfill) { %>
         <!--[if (gte IE 6)&(lte IE 9)]>
         <script type="text/javascript" src="JS/PIE.js"></script>
@@ -42,6 +53,7 @@
 	
 		<header class="page">
 
+            <% if (includeExample) { %>
             <figure>
                 <img class="Html" src="Images/Logo/HTML5/HTML5_Logo.svg" title="HTML5 Logo">
                 <figcaption>
@@ -59,17 +71,44 @@
                 <img src="Images/Logo/yeoman-masthead.png" title="Yeoman">
             </figure>
 
+            <% } else { %>
+
+            <h1>HTML5 Skeleton Website</h1>
+            <h2>Welcome to your new project <%= websiteName %> !</h2>
+            <h3>served by Yeoman</h3>
+            <% } %>
+
 		</header>
 
 
 		<main>
             <div class="Wrapper">
-
+                <% if (includeExample) { %>
                 <section>
                     <article class="Usage">
                         <figure>
                             <img src="Images/Logo/Bower.png" title="Bower Logo">
                         </figure>
+                        <h4>
+                            Bower Installation
+                        </h4>
+                        <pre>$ npm install -g bower</pre>
+
+                        <h4>
+                            Bower Usage
+                        </h4>
+
+                        <p>Using the dependencies listed in the current directory's bower.json</p>
+                        <pre>$ bower install</pre>
+
+                        <p>Using a local or remote package</p>
+                        <pre>$ bower install <package></pre>
+
+                        <p>Using a specific version of a package</p>
+                        <pre>$ bower install <package>#<version></pre>
+
+                        <p>Install package and safe into bower.json</p>
+                        <pre>$ bower install <package> -S</pre>
                     </article>
                 </section>
 
@@ -180,23 +219,6 @@
                 <section>
 
                     <article class="Info">
-
-                        <h3>Documentation</h3>
-
-                        <p>
-                            Documentation from the HTML5 Skeleton Website Project, the HTML files are generated from Markdown files and JavaScript files by jsDoc.
-                        </p>
-                        <p>
-                            <a href="../Documentation/index.html" target="_blank" title="Documentation Site generate from Markdown files">../Documentation/index.html</a>
-                        </p>
-
-                    </article>
-
-                </section>
-
-                <section>
-
-                    <article class="Info">
                         <figure>
                             <img src="Images/Logo/HTML5/css3.svg" title="CSS3">
                         </figure>
@@ -204,8 +226,9 @@
                         <ul class="List">
                             <li><a href="http://necolas.github.io/normalize.css/" target="_blank" title="normalize.css">normalize.css v3.0.0</a></li>
                             <li><a href="http://fontawesome.io/" target="_blank" title="Font Awesome">Font Awesome v4.0.3</a></li>
+                            <% if (includeJqueryPlugins) { %>
                             <li><a href="http://alexwolfe.github.io/Buttons/" target="_blank" title="">Buttons - A CSS button library</a></li>
-                            <li><a href="http://meyerweb.com/eric/tools/css/reset/" target="_blank" title="Reset">Reset v2.0</a></li>
+                            <% } %>
                         </ul>
 
                         <figure>
@@ -275,21 +298,27 @@
                                     <li>TweenJS v0.5.1</li>
                                 </ul>
                             </li>
-                            <% } if (includeJquery) { %>
+                            <% } %>
                             <li><a href="http://jquery.com/" target="_blank" title="jQuery">jQuery Framework</a>
                                 <ul>
-                                    <li>jQuery v1.11.0</li>
-                                    <li>jQuery User Interface v1.10.4</li>
+                                    <li>jQuery Framework</li>
+                                    <% if (includeJqueryUi) { %>
+                                    <li>jQuery User Interface</li>
+                                    <% } %>
                                 </ul>
                             </li>
+
                             <li><a href="http://plugins.jquery.com/" target="_blank" title="jQuery Plug-Ins">jQuery Plug-Ins</a>
                                 <ul>
+                                    <% if (includeJqueryPlugins) { %>
                                     <li><a href="http://srobbin.com/jquery-plugins/backstretch/" target="_blank" title="Backstretch">Backstretch v2.0.4</a></li>
-                                    <li><a href="https://github.com/Milanowicz/FitText.js" target="_blank" title="FitText.js">FitText.js v1.2.1</a></li>
+                                    <% } if (includeJqueryUi) { %>
                                     <li><a href="https://github.com/furf/jquery-ui-touch-punch" target="_blank" title="jQuery UI Touch Punch">jQuery UI Touch Punch v0.2.2</a></li>
-                                    <li><a href="https://github.com/imakewebthings/jquery-waypoints/" target="_blank" title="jQuery Waypoints">Waypoints v2.0.4</a></li>
+                                    <% } %>
+                                    <li><a href="https://github.com/Milanowicz/FitText.js" target="_blank" title="FitText.js">FitText.js v1.2.1</a></li>
                                 </ul>
                             </li>
+                            <% if (includeMasonry) { %>
                             <li>
                                 <a href="http://masonry.desandro.com/" target="_blank" title="Masonry - Cascading grid layout library">Masonry v3.1.4</a>
                             </li>
@@ -750,6 +779,7 @@
                     </article>
                 </section>
 
+                <% } %>
             </div>
 		</main>
 

@@ -35,22 +35,34 @@ var Html5Generator = yeoman.generators.Base.extend({
         },{
             type: 'checkbox',
             name: 'features',
-            message: 'What more would you like?',
+            message: 'What Software would you like to have for your new project?',
             choices: [{
-                name: 'jQuery',
-                value: 'includeJquery',
+                name: 'CreateJS Framework',
+                value: 'includeCreate',
+                checked: false
+            },{
+                name: 'Include Project description, example libraries, files and pictures',
+                value: 'includeExample',
+                checked: true
+            },{
+                name: 'Internet Explorer Polyfill libraries',
+                value: 'includePolyfill',
+                checked: true
+            },{
+                name: 'jQuery Plug-Ins - Backstretch and Buttons',
+                value: 'includeJqueryPlugins',
+                checked: false
+            },{
+                name: 'jQuery UserInterface Framework',
+                value: 'includeJqueryUi',
+                checked: true
+            },{
+                name: 'Masonry and Imagesloaded Plug-In',
+                value: 'includeMasonry',
                 checked: true
             },{
                 name: 'Modernizr',
                 value: 'includeModernizr',
-                checked: true
-            },{
-                name: 'CreateJS',
-                value: 'includeCreate',
-                checked: false
-            },{
-                name: 'Internet Explorer Polyfill',
-                value: 'includePolyfill',
                 checked: true
             }]
         }];
@@ -67,7 +79,11 @@ var Html5Generator = yeoman.generators.Base.extend({
             this.websiteName = answers.websiteName;
             this.websiteDescription = answers.websiteDescription;
 
-            this.includeJquery = hasFeature('includeJquery');
+
+            this.includeExample = hasFeature('includeExample');
+            this.includeJqueryUi = hasFeature('includeJqueryUi');
+            this.includeJqueryPlugins = hasFeature('includeJqueryPlugins');
+            this.includeMasonry = hasFeature('includeMasonry');
             this.includeModernizr = hasFeature('includeModernizr');
             this.includeCreate = hasFeature('includeCreate');
             this.includePolyfill = hasFeature('includePolyfill');
@@ -78,43 +94,17 @@ var Html5Generator = yeoman.generators.Base.extend({
         }.bind(this));
     },
 
-    documentation : function () {
-        this.mkdir('Documentation');
-    },
+    app: function () {
 
-    javascript : function () {
-        this.mkdir('JavaScript');
-        this.mkdir('JavaScript/Main');
-
-        if (!this.includeCreate) {
-            this.copy('Main/Canvas.js', 'JavaScript/Canvas.js');
-        }
-
-        this.copy('Main/Main.js', 'JavaScript/Main/Main.js');
-        this.copy('Main/MainTools.js', 'JavaScript/Main/MainTools.js');
-
-    },
-
-    less : function () {
-        this.mkdir('Less');
-        this.mkdir('Less/Styles');
-
-        this.directory('Styles', 'Less/Styles');
-    },
-
-    public: function () {
         this.mkdir('Public');
         this.mkdir('Public/CSS');
         this.mkdir('Public/Fonts');
         this.mkdir('Public/Images');
-        this.mkdir('Public/Images/Favicon');
+        if (this.includeExample) {
+            this.mkdir('Public/Images/Favicon');
+        }
         this.mkdir('Public/JS');
 
-        this.directory('Favicon', 'Public/Images/Favicon');
-        this.directory('Images', 'Public/Images/Logo');
-    },
-
-    app: function () {
         this.template('_package.json', 'package.json');
         this.template('_bower.json', 'bower.json');
         this.template('Gruntfile.js', 'Gruntfile.js');
@@ -126,7 +116,33 @@ var Html5Generator = yeoman.generators.Base.extend({
         this.copy('README.md', 'README.md');
         this.copy('editorconfig', '.editorconfig');
         this.copy('gitignore', '.gitignore');
-        this.copy('jshintrc', 'JavaScript/.jshintrc');
+
+        if (this.includeExample) {
+            this.directory('Favicon', 'Public/Images/Favicon');
+            this.directory('Images', 'Public/Images/Logo');
+        }
+
+    },
+
+    website : function () {
+
+        this.mkdir('Website');
+        this.mkdir('Website/JavaScript');
+        this.mkdir('Website/Less');
+
+        this.copy('jshintrc', 'Website/JavaScript/.jshintrc');
+
+        if (this.includeCreate) {
+            this.copy('Main/Canvas.js', 'Website/JavaScript/Canvas.js');
+        }
+
+        if (this.includeExample) {
+            this.copy('Main/Main.js', 'Website/JavaScript/Main.js');
+            this.copy('Main/MainTools.js', 'Website/JavaScript/MainTools.js');
+        }
+
+        this.directory('Styles', 'Website/Less');
+
     }
 
 });

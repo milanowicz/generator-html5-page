@@ -10,8 +10,6 @@ Basic Software
 
 NodeJS - [http://nodejs.org/](http://nodejs.org/)
 
-Yeoman - [http://yeoman.io/](http://yeoman.io/)
-
 Bower - [http://bower.io/](http://bower.io/)
 
 GruntJS - [http://gruntjs.com/](http://gruntjs.com/)
@@ -39,6 +37,21 @@ StyleSheets from you and Plug-Ins
 This directory is for the vistors
 
     Public
+
+Bower
+===================
+
+
+Bower Install
+---------------
+
+Be first time used ever then
+
+    $ npm install -g Bower
+
+Install all Grunt modules and let's roll
+
+    $ bower install
 
 
 GruntJS
