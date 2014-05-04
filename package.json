@@ -1,6 +1,6 @@
 {
   "name": "generator-html5",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Yeoman HTML5 Skeleton Website generator",
   "license": "MIT",
   "main": "app/index.js",

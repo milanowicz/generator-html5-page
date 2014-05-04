@@ -12,7 +12,12 @@ var Html5Generator = yeoman.generators.Base.extend({
 
         this.on('end', function () {
             if (!this.options['skip-install']) {
-                this.installDependencies();
+                this.installDependencies({
+                    skipInstall: this.options['skip-install'],
+                    callback: function () {
+                        this.spawnCommand('grunt');
+                    }.bind(this)
+                });
             }
         });
     },
