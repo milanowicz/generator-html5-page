@@ -9,7 +9,7 @@ module.exports = function(grunt) {
         banner: '/*!\n' +
             ' * <%%= pkg.name %> - <%%= grunt.template.today("yyyy") %> \n' +
             ' * Version <%%= pkg.version %>\n' +
-            ' */\n\n',
+            ' */\n',
 
         clean: {
             js: [
@@ -83,6 +83,7 @@ module.exports = function(grunt) {
                     'bower_components/FitText.js/jquery.fittext.js',
                     'bower_components/jquery-waypoints/waypoints.js',
                     'bower_components/Buttons/js/buttons.js',
+                    'bower_components/Detection.js/Detection.js',
                     'bower_components/masonry/dist/masonry.pkgd.js',
                     'bower_components/imagesloaded/imagesloaded.pkgd.js',<% } if (includePolyfill) { %>
                     'bower_components/respond/dest/respond.src.js',<% } if (includeCreate) { %>
@@ -91,7 +92,6 @@ module.exports = function(grunt) {
                     'bower_components/createjs-preloadjs/lib/preloadjs-0.4.1.combined.js',
                     'bower_components/createjs-soundjs/lib/soundjs-0.5.2.combined.js',
                     'JavaScript/Canvas.js',<% } %>
-                    'JavaScript/Detection.js',
                     'JavaScript/Main/Main.js',
                     'JavaScript/Main/MainTools.js'
                 ],
@@ -329,7 +329,7 @@ module.exports = function(grunt) {
 
         uglify : {
             options : {
-                banner : '/*! <%%= pkg.name %> <%%= grunt.template.today("yyyy-mm-dd") %> */\n',
+                banner : '<%%= banner %>',
                 report : 'min'
             },<% if (includeModernizr) { %>
             Modernizr : {

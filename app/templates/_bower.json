@@ -17,10 +17,12 @@
     "jquery-backstretch": "*",
     "jquery-waypoints": "*",
     "FitText.js": "https://github.com/Milanowicz/FitText.js.git",
+    "Detection.js": "https://github.com/Milanowicz/Detection.js.git",
     "Buttons": "*",
     "masonry": "*",
     "imagesloaded": "*",<% } if (includeModernizr) { %>
     "modernizr": "*",<% } %>
+    "CSSLessCollection": "https://github.com/Milanowicz/CSSLessCollection.git",
     "font-awesome": "~4.0.3",
     "normalize-css": "*"
   }

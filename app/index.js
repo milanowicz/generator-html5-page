@@ -90,8 +90,6 @@ var Html5Generator = yeoman.generators.Base.extend({
             this.copy('Main/Canvas.js', 'JavaScript/Canvas.js');
         }
 
-        this.copy('Main/Detection.js', 'JavaScript/Detection.js');
-
         this.copy('Main/Main.js', 'JavaScript/Main/Main.js');
         this.copy('Main/MainTools.js', 'JavaScript/Main/MainTools.js');
 
@@ -99,10 +97,8 @@ var Html5Generator = yeoman.generators.Base.extend({
 
     less : function () {
         this.mkdir('Less');
-        this.mkdir('Less/Mixins');
         this.mkdir('Less/Styles');
 
-        this.directory('Mixins', 'Less/Mixins');
         this.directory('Styles', 'Less/Styles');
     },
 
