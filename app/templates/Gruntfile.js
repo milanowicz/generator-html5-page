@@ -20,7 +20,7 @@ module.exports = function(grunt) {
                 'Public/CSS/<%= _.slugify(websiteName) %>.css'
             ],
             docu: [
-                'Documentation/**/*'
+                '<%= projectDirectory %>/Documentation/**/*'
             ]
         },
 
@@ -42,7 +42,7 @@ module.exports = function(grunt) {
                 },
                 files: [
                     {
-                        src: ['Documentation/**'],
+                        src: ['<%= projectDirectory %>/Documentation/**'],
                         dest: '/'
                     }
                 ]
@@ -90,9 +90,9 @@ module.exports = function(grunt) {
                     'bower_components/createjs-tweenjs/lib/tweenjs-0.5.1.combined.js',
                     'bower_components/createjs-preloadjs/lib/preloadjs-0.4.1.combined.js',
                     'bower_components/createjs-soundjs/lib/soundjs-0.5.2.combined.js',
-                    'JavaScript/Canvas.js',<% } if (includeExample) { %>
-                    'Website/JavaScript/Main.js',
-                    'Website/JavaScript/MainTools.js'<% } %>
+                    '<%= projectDirectory %>/JavaScript/Canvas.js',<% } if (includeExample) { %>
+                    '<%= projectDirectory %>/JavaScript/Main.js',
+                    '<%= projectDirectory %>/JavaScript/MainTools.js'<% } %>
                 ],
                 dest : 'Public/JS/<%= _.slugify(websiteName) %>.js'
             }
@@ -189,17 +189,17 @@ module.exports = function(grunt) {
         jsdoc : {
             dist : {
                 src: [
-                    'Website/JavaScript/**/*.js'
+                    '<%= projectDirectory %>/JavaScript/**/*.js'
                 ],
                 options: {
-                    destination: 'Documentation/jsdoc'
+                    destination: '<%= projectDirectory %>/Documentation/jsdoc'
                 }
             }
         },
 
         jshint: {
             options: {
-                jshintrc: 'Website/JavaScript/.jshintrc'
+                jshintrc: '<%= projectDirectory %>/JavaScript/.jshintrc'
             },
             gruntfile: {
                 src: 'Gruntfile.js'
@@ -221,7 +221,7 @@ module.exports = function(grunt) {
             },
             main: {
                 files: {
-                    'Public/CSS/<%= _.slugify(websiteName) %>.css': 'Website/Less/PageStyle.less'
+                    'Public/CSS/<%= _.slugify(websiteName) %>.css': '<%= projectDirectory %>/Less/PageStyle.less'
                 }
             }
         },
@@ -236,7 +236,7 @@ module.exports = function(grunt) {
                 files: [
                     {
                         src: 'README.md',
-                        dest: 'Documentation/ProjectReadMe.html'
+                        dest: '<%= projectDirectory %>/Documentation/ProjectReadMe.html'
                     }
                 ]
             }

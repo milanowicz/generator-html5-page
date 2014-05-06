@@ -17,13 +17,13 @@
     "jqueryui-touch-punch": "*",<% } if (includeJqueryPlugins) { %>
     "jquery-backstretch": "*",
     "Buttons": "*",<% } if (includeExample) { %>
-    "FitText.js": "https://github.com/Milanowicz/FitText.js.git",
-    "BrowserDetection.js": "https://github.com/Milanowicz/BrowserDetection.js.git",<% } if (includeMasonry) { %>
+    "FitText.js": "git://github.com/Milanowicz/FitText.js.git",
+    "BrowserDetection.js": "git://github.com/Milanowicz/BrowserDetection.js.git",<% } if (includeMasonry) { %>
     "masonry": "*",
     "imagesloaded": "*",<% } if (includeModernizr) { %>
     "modernizr": "*",<% } %>
     "font-awesome": "~4.0.3",
-    "CSSLessCollection": "https://github.com/Milanowicz/CSSLessCollection.git",
+    "CSSLessCollection": "git://github.com/Milanowicz/CSSLessCollection.git",
     "normalize-css": "*"
   }
 }

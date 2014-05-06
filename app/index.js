@@ -15,7 +15,10 @@ var Html5Generator = yeoman.generators.Base.extend({
                 this.installDependencies({
                     skipInstall: this.options['skip-install'],
                     callback: function () {
-                        this.spawnCommand('grunt');
+                        this.spawnCommand('grunt')
+                            .on('exit', function () {
+                                console.log('\n\n\t\tA new HTML5 Website is alive!\n');
+                            });
                     }.bind(this)
                 });
             }
@@ -37,6 +40,11 @@ var Html5Generator = yeoman.generators.Base.extend({
             type: 'input',
             name: 'websiteDescription',
             message: 'What is your description for it?'
+        },{
+            type: 'input',
+            name: 'projectDirectory',
+            message: 'Enter your Project Directory',
+            default: 'Website'
         },{
             type: 'checkbox',
             name: 'features',
@@ -83,6 +91,7 @@ var Html5Generator = yeoman.generators.Base.extend({
 
             this.websiteName = answers.websiteName;
             this.websiteDescription = answers.websiteDescription;
+            this.projectDirectory = answers.projectDirectory;
 
 
             this.includeExample = hasFeature('includeExample');
@@ -110,43 +119,41 @@ var Html5Generator = yeoman.generators.Base.extend({
         }
         this.mkdir('Public/JS');
 
-        this.template('_package.json', 'package.json');
-        this.template('_bower.json', 'bower.json');
-        this.template('Gruntfile.js', 'Gruntfile.js');
-        this.template('index.html', 'Public/index.html');
+        this.template('_package.json',      'package.json');
+        this.template('_bower.json',        'bower.json');
+        this.template('gitignore',          '.gitignore');
+        this.template('Gruntfile.js',       'Gruntfile.js');
+        this.template('index.html',         'Public/index.html');
+        this.copy(    'robots.txt',         'Public/robots.txt');
+        this.copy(    'htaccess',           'Public/_.htaccess');
+        this.copy(    'htaccess',           'Public/.htaccess');
+        this.copy(    'README.md',          'README.md');
+        this.copy(    'editorconfig',       '.editorconfig');
 
-        this.copy('robots.txt', 'Public/robots.txt');
-        this.copy('htaccess', 'Public/_.htaccess');
-        this.copy('htaccess', 'Public/.htaccess');
-        this.copy('README.md', 'README.md');
-        this.copy('editorconfig', '.editorconfig');
-        this.copy('gitignore', '.gitignore');
 
         if (this.includeExample) {
             this.directory('Favicon', 'Public/Images/Favicon');
             this.directory('Images', 'Public/Images/Logo');
         }
 
-    },
 
-    website : function () {
+        this.mkdir(this.projectDirectory);
+        this.mkdir(this.projectDirectory + '/JavaScript');
+        this.mkdir(this.projectDirectory + '/Less');
 
-        this.mkdir('Website');
-        this.mkdir('Website/JavaScript');
-        this.mkdir('Website/Less');
-
-        this.copy('jshintrc', 'Website/JavaScript/.jshintrc');
+        this.copy('jshintrc', this.projectDirectory + '/JavaScript/.jshintrc');
 
         if (this.includeCreate) {
-            this.copy('Main/Canvas.js', 'Website/JavaScript/Canvas.js');
+            this.copy('Main/Canvas.js', this.projectDirectory + '/JavaScript/Canvas.js');
         }
 
         if (this.includeExample) {
-            this.copy('Main/Main.js', 'Website/JavaScript/Main.js');
-            this.copy('Main/MainTools.js', 'Website/JavaScript/MainTools.js');
+            this.copy('Main/Main.js', this.projectDirectory + '/JavaScript/Main.js');
+            this.copy('Main/MainTools.js', this.projectDirectory + '/JavaScript/MainTools.js');
         }
 
-        this.directory('Styles', 'Website/Less');
+        this.template('Styles/PageStyle.less', this.projectDirectory + '/Less/PageStyle.less');
+        this.copy(    'Styles/MainStyle.less', this.projectDirectory + '/Less/MainStyle.less');
 
     }
 
