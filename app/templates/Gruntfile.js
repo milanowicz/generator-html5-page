@@ -76,7 +76,7 @@ module.exports = function(grunt) {
             },
             main : {
                 src : [
-                    'bower_components/jquery/jquery.js',<% if (includeJqueryUi) { %>
+                    'bower_components/jquery/dist/jquery.js',<% if (includeJqueryUi) { %>
                     'bower_components/jQueryui/ui/jquery-ui.js',
                     'bower_components/jqueryui-touch-punch/jquery.ui.touch-punch.js ',<% } if (includeJqueryPlugins) { %>
                     'bower_components/jquery-backstretch/jquery.backstretch.js',

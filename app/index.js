@@ -17,7 +17,7 @@ var Html5Generator = yeoman.generators.Base.extend({
                     callback: function () {
                         this.spawnCommand('grunt')
                             .on('exit', function () {
-                                console.log('\n\n\t\tA new HTML5 Website is alive!\n');
+                                console.log('\n\n\t\tA new HTML5 Website served by Yeoman\n\n');
                             });
                     }.bind(this)
                 });
@@ -45,6 +45,17 @@ var Html5Generator = yeoman.generators.Base.extend({
             name: 'projectDirectory',
             message: 'Enter your Project Directory',
             default: 'Website'
+        },{
+            type: 'list',
+            name: 'jQueryVerion',
+            message: 'Which jQuery Version should it be?',
+            choices: [{
+                name: 'Version 1.11.x',
+                value: 'One'
+            },{
+                name: 'Version 2.1.x',
+                value: 'Two'
+            }]
         },{
             type: 'checkbox',
             name: 'features',
@@ -82,27 +93,28 @@ var Html5Generator = yeoman.generators.Base.extend({
 
         this.prompt(prompts, function (answers) {
 
-            var features = answers.features;
-            var today = new Date();
+            var features    = answers.features;
+            var today       = new Date();
 
             function hasFeature (feat) {
                 return features.indexOf(feat) !== -1;
             }
 
-            this.websiteName = answers.websiteName;
-            this.websiteDescription = answers.websiteDescription;
-            this.projectDirectory = answers.projectDirectory;
+            this.websiteName            = answers.websiteName;
+            this.websiteDescription     = answers.websiteDescription;
+            this.projectDirectory       = answers.projectDirectory;
 
+            this.jQueryVerion           = answers.jQueryVerion;
 
-            this.includeExample = hasFeature('includeExample');
-            this.includeJqueryUi = hasFeature('includeJqueryUi');
-            this.includeJqueryPlugins = hasFeature('includeJqueryPlugins');
-            this.includeMasonry = hasFeature('includeMasonry');
-            this.includeModernizr = hasFeature('includeModernizr');
-            this.includeCreate = hasFeature('includeCreate');
-            this.includePolyfill = hasFeature('includePolyfill');
+            this.includeExample         = hasFeature('includeExample');
+            this.includeJqueryUi        = hasFeature('includeJqueryUi');
+            this.includeJqueryPlugins   = hasFeature('includeJqueryPlugins');
+            this.includeMasonry         = hasFeature('includeMasonry');
+            this.includeModernizr       = hasFeature('includeModernizr');
+            this.includeCreate          = hasFeature('includeCreate');
+            this.includePolyfill        = hasFeature('includePolyfill');
 
-            this.year = today.getFullYear();
+            this.year                   = today.getFullYear();
 
             done();
         }.bind(this));

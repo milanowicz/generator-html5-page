@@ -11,8 +11,9 @@
     "background-size-polyfill": "*",
     "box-sizing-polyfill": "*",
     "respond": "*",
-    "css3-mediaqueries-js": "*",<% } %>
-    "jquery": "*",<% if (includeJqueryUi) { %>
+    "css3-mediaqueries-js": "*",<% } if (jQueryVerion == 'One') { %>
+    "jquery": "~1.11",<% } if (jQueryVerion == 'Two') { %>
+    "jquery": "~2.1",<% } if (includeJqueryUi) { %>
     "jqueryui": "*",
     "jqueryui-touch-punch": "*",<% } if (includeJqueryPlugins) { %>
     "jquery-backstretch": "*",
