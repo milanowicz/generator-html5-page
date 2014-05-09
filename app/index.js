@@ -46,6 +46,11 @@ var Html5Generator = yeoman.generators.Base.extend({
             message: 'Enter your Project Directory',
             default: 'Website'
         },{
+            type: 'input',
+            name: 'bowerDirectory',
+            message: 'Enter your Bower Resource Directory',
+            default: 'bower_components'
+        },{
             type: 'list',
             name: 'jQueryVerion',
             message: 'Which jQuery Version should it be?',
@@ -73,7 +78,7 @@ var Html5Generator = yeoman.generators.Base.extend({
                 value: 'includePolyfill',
                 checked: true
             },{
-                name: 'jQuery Plug-Ins - Backstretch and Buttons',
+                name: 'jQuery Plug-Ins - Backstretch, Haschange and Buttons',
                 value: 'includeJqueryPlugins',
                 checked: false
             },{
@@ -103,6 +108,7 @@ var Html5Generator = yeoman.generators.Base.extend({
             this.websiteName            = answers.websiteName;
             this.websiteDescription     = answers.websiteDescription;
             this.projectDirectory       = answers.projectDirectory;
+            this.bowerDirectory         = answers.bowerDirectory;
 
             this.jQueryVerion           = answers.jQueryVerion;
 
@@ -133,6 +139,7 @@ var Html5Generator = yeoman.generators.Base.extend({
 
         this.template('_package.json',      'package.json');
         this.template('_bower.json',        'bower.json');
+        this.template('_bowerrc',           '.bowerrc');
         this.template('gitignore',          '.gitignore');
         this.template('Gruntfile.js',       'Gruntfile.js');
         this.template('index.html',         'Public/index.html');

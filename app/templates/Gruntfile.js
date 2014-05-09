@@ -80,6 +80,7 @@ module.exports = function(grunt) {
                     'bower_components/jQueryui/ui/jquery-ui.js',
                     'bower_components/jqueryui-touch-punch/jquery.ui.touch-punch.js ',<% } if (includeJqueryPlugins) { %>
                     'bower_components/jquery-backstretch/jquery.backstretch.js',
+                    'bower_components/jquery-hashchange/jquery.ba-hashchange.js',
                     'bower_components/Buttons/js/buttons.js',<% } if (includeExample) { %>
                     'bower_components/FitText.js/jquery.fittext.js',
                     'bower_components/BrowserDetection.js/BrowserDetection.js',<% } if (includeMasonry) { %>

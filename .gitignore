@@ -9,5 +9,6 @@
 npm-debug.log
 
 .settings/
+bower_components/
 node_modules/
 temp/

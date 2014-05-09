@@ -13,7 +13,7 @@
 local.json
 
 .settings/
-bower_components/
+<%= bowerDirectory %>
 <%= projectDirectory %>/Documentation/
 node_modules/
 npm-debug.log

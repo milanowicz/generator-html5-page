@@ -17,6 +17,7 @@
     "jqueryui": "*",
     "jqueryui-touch-punch": "*",<% } if (includeJqueryPlugins) { %>
     "jquery-backstretch": "*",
+    "jquery-hashchange": "*",
     "Buttons": "*",<% } if (includeExample) { %>
     "FitText.js": "git://github.com/Milanowicz/FitText.js.git",
     "BrowserDetection.js": "git://github.com/Milanowicz/BrowserDetection.js.git",<% } if (includeMasonry) { %>
