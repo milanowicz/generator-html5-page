@@ -2,6 +2,12 @@ module.exports = function(grunt) {
 
     "use strict";
 
+    // Load grunt tasks automatically
+    require('load-grunt-tasks')(grunt);
+
+    // Time how long tasks take. Can help when optimizing build times
+    require('time-grunt')(grunt);
+
     grunt.initConfig({
 
         pkg : grunt.file.readJSON('package.json'),
@@ -13,11 +19,11 @@ module.exports = function(grunt) {
 
         clean: {
             js: [
-                'Public/JS/<%= _.slugify(websiteName) %>.js',<% if (includeModernizr) { %>
-                'Public/JS/modernizr.js'<% } %>
+                '<%= distributeDirectory %>/JS/<%= _.slugify(websiteName) %>.js',<% if (includeModernizr) { %>
+                '<%= distributeDirectory %>/JS/modernizr.js'<% } %>
             ],
             css: [
-                'Public/CSS/<%= _.slugify(websiteName) %>.css'
+                '<%= distributeDirectory %>/CSS/<%= _.slugify(websiteName) %>.css'
             ],
             docu: [
                 '<%= projectDirectory %>/Documentation/**/*'
@@ -31,7 +37,7 @@ module.exports = function(grunt) {
                 },
                 files: [
                     {
-                        src: ['Public/**'],
+                        src: ['<%= distributeDirectory %>/**'],
                         dest: '/'
                     }
                 ]
@@ -54,15 +60,15 @@ module.exports = function(grunt) {
                 files: [
                     {
                         expand: true,
-                        cwd: 'Public/JS/',
+                        cwd: '<%= distributeDirectory %>/JS/',
                         src: ['*.js'],
-                        dest: 'Public/JS/',
+                        dest: '<%= distributeDirectory %>/JS/',
                         ext: '.gz.js'
                     },{
                         expand: true,
-                        cwd: 'Public/CSS/',
+                        cwd: '<%= distributeDirectory %>/CSS/',
                         src: ['*.css'],
-                        dest: 'Public/CSS/',
+                        dest: '<%= distributeDirectory %>/CSS/',
                         ext: '.gz.css'
                     }
                 ]
@@ -76,26 +82,35 @@ module.exports = function(grunt) {
             },
             main : {
                 src : [
-                    'bower_components/jquery/dist/jquery.js',<% if (includeJqueryUi) { %>
-                    'bower_components/jQueryui/ui/jquery-ui.js',
-                    'bower_components/jqueryui-touch-punch/jquery.ui.touch-punch.js ',<% } if (includeJqueryPlugins) { %>
-                    'bower_components/jquery-backstretch/jquery.backstretch.js',
-                    'bower_components/jquery-hashchange/jquery.ba-hashchange.js',
-                    'bower_components/Buttons/js/buttons.js',<% } if (includeExample) { %>
-                    'bower_components/FitText.js/jquery.fittext.js',
-                    'bower_components/BrowserDetection.js/BrowserDetection.js',<% } if (includeMasonry) { %>
-                    'bower_components/masonry/dist/masonry.pkgd.js',
-                    'bower_components/imagesloaded/imagesloaded.pkgd.js',<% } if (includePolyfill) { %>
-                    'bower_components/respond/dest/respond.src.js',<% } if (includeCreate) { %>
-                    'bower_components/easeljs/lib/easeljs-0.7.1.combined.js',
-                    'bower_components/createjs-tweenjs/lib/tweenjs-0.5.1.combined.js',
-                    'bower_components/createjs-preloadjs/lib/preloadjs-0.4.1.combined.js',
-                    'bower_components/createjs-soundjs/lib/soundjs-0.5.2.combined.js',
+                    '<%= bowerDirectory %>/jquery/dist/jquery.js',<% if (includeJqueryUi) { %>
+                    '<%= bowerDirectory %>/jQueryui/ui/jquery-ui.js',
+                    '<%= bowerDirectory %>/jqueryui-touch-punch/jquery.ui.touch-punch.js ',<% } if (includeJqueryPlugins) { %>
+                    '<%= bowerDirectory %>/jquery-backstretch/jquery.backstretch.js',
+                    '<%= bowerDirectory %>/jquery-hashchange/jquery.ba-hashchange.js',
+                    '<%= bowerDirectory %>/Buttons/js/buttons.js',<% } if (includeExample) { %>
+                    '<%= bowerDirectory %>/FitText.js/jquery.fittext.js',
+                    '<%= bowerDirectory %>/BrowserDetection.js/BrowserDetection.js',<% } if (includeMasonry) { %>
+                    '<%= bowerDirectory %>/masonry/dist/masonry.pkgd.js',
+                    '<%= bowerDirectory %>/imagesloaded/imagesloaded.pkgd.js',<% } if (includePolyfill) { %>
+                    '<%= bowerDirectory %>/respond/dest/respond.src.js',<% } if (includeCreate) { %>
+                    '<%= bowerDirectory %>/easeljs/lib/easeljs-0.7.1.combined.js',
+                    '<%= bowerDirectory %>/createjs-tweenjs/lib/tweenjs-0.5.1.combined.js',
+                    '<%= bowerDirectory %>/createjs-preloadjs/lib/preloadjs-0.4.1.combined.js',
+                    '<%= bowerDirectory %>/createjs-soundjs/lib/soundjs-0.5.2.combined.js',
                     '<%= projectDirectory %>/JavaScript/Canvas.js',<% } if (includeExample) { %>
                     '<%= projectDirectory %>/JavaScript/Main.js',
                     '<%= projectDirectory %>/JavaScript/MainTools.js'<% } %>
                 ],
-                dest : 'Public/JS/<%= _.slugify(websiteName) %>.js'
+                dest : '<%= distributeDirectory %>/JS/<%= _.slugify(websiteName) %>.js'
+            }
+        },
+
+        connect: {
+            options: {
+                port: 9000,
+                open: true,
+                livereload: 35729,
+                hostname: 'localhost'
             }
         },
 
@@ -104,14 +119,14 @@ module.exports = function(grunt) {
                 files : [<% if (includeModernizr) { %>
                     {
                         expand: true,
-                        cwd: 'bower_components/modernizr/modernizr.js',
+                        cwd: '<%= bowerDirectory %>/modernizr/modernizr.js',
                         src : 'modernizr.js',
-                        dest : 'Public/JS/'
+                        dest : '<%= distributeDirectory %>/JS/'
                     },<% } %>{
                         expand: true,
-                        cwd: 'bower_components/font-awesome/fonts/',
+                        cwd: '<%= bowerDirectory %>/font-awesome/fonts/',
                         src : '*',
-                        dest : 'Public/Fonts/'
+                        dest : '<%= distributeDirectory %>/Fonts/'
                     }
                 ]
             },
@@ -120,41 +135,41 @@ module.exports = function(grunt) {
                     <% if (includePolyfill) { %>
                     {
                         expand: true,
-                        cwd: 'bower_components/selectivizr/',
+                        cwd: '<%= bowerDirectory %>/selectivizr/',
                         src : 'selectivizr.js',
-                        dest : 'Public/JS/'
+                        dest : '<%= distributeDirectory %>/JS/'
                     },{
                         expand: true,
-                        cwd: 'bower_components/css3pie/',
+                        cwd: '<%= bowerDirectory %>/css3pie/',
                         src : 'PIE.js',
-                        dest : 'Public/JS/'
+                        dest : '<%= distributeDirectory %>/JS/'
                     },{
                         expand: true,
-                        cwd: 'bower_components/css3pie/',
+                        cwd: '<%= bowerDirectory %>/css3pie/',
                         src : 'PIE.htc',
-                        dest : 'Public/JS/'
+                        dest : '<%= distributeDirectory %>/JS/'
                     },{
                         expand: true,
-                        cwd: 'bower_components/background-size-polyfill/',
+                        cwd: '<%= bowerDirectory %>/background-size-polyfill/',
                         src : 'backgroundsize.min.htc',
-                        dest : 'Public/JS/'
+                        dest : '<%= distributeDirectory %>/JS/'
                     },{
                         expand: true,
-                        cwd: 'bower_components/box-sizing-polyfill/',
+                        cwd: '<%= bowerDirectory %>/box-sizing-polyfill/',
                         src : 'boxsizing.htc',
-                        dest : 'Public/JS/'
+                        dest : '<%= distributeDirectory %>/JS/'
                     },
                     <% } if (includeModernizr) { %>
                     {
                         expand: true,
-                        cwd: 'bower_components/modernizr/',
+                        cwd: '<%= bowerDirectory %>/modernizr/',
                         src : 'modernizr.js',
-                        dest : 'Public/JS/'
+                        dest : '<%= distributeDirectory %>/JS/'
                     },<% } %>{
                         expand: true,
-                        cwd: 'bower_components/font-awesome/fonts/',
+                        cwd: '<%= bowerDirectory %>/font-awesome/fonts/',
                         src : '*',
-                        dest : 'Public/Fonts/'
+                        dest : '<%= distributeDirectory %>/Fonts/'
                     }
 
                 ]
@@ -200,7 +215,8 @@ module.exports = function(grunt) {
 
         jshint: {
             options: {
-                jshintrc: '<%= projectDirectory %>/JavaScript/.jshintrc'
+                jshintrc: '<%= projectDirectory %>/JavaScript/.jshintrc',
+                reporter: require('jshint-stylish')
             },
             gruntfile: {
                 src: 'Gruntfile.js'
@@ -222,7 +238,7 @@ module.exports = function(grunt) {
             },
             main: {
                 files: {
-                    'Public/CSS/<%= _.slugify(websiteName) %>.css': '<%= projectDirectory %>/Less/PageStyle.less'
+                    '<%= distributeDirectory %>/CSS/<%= _.slugify(websiteName) %>.css': '<%= projectDirectory %>/Less/PageStyle.less'
                 }
             }
         },
@@ -285,16 +301,16 @@ module.exports = function(grunt) {
             },
             main: {
                 src: [
-                    'Public/CSS/<%= _.slugify(websiteName) %>.css'
+                    '<%= distributeDirectory %>/CSS/<%= _.slugify(websiteName) %>.css'
                 ],
-                dest: 'Public/CSS/<%= _.slugify(websiteName) %>.min.css'
+                dest: '<%= distributeDirectory %>/CSS/<%= _.slugify(websiteName) %>.min.css'
             }
         },
 
         replace: {
             dev: {
                 src: [
-                    'Public/index.html'
+                    '<%= distributeDirectory %>/index.html'
                 ],
                 overwrite: true,
                 replacements: [
@@ -313,7 +329,7 @@ module.exports = function(grunt) {
             },
             build: {
                 src: [
-                    'Public/index.html'
+                    '<%= distributeDirectory %>/index.html'
                 ],
                 overwrite: true,
                 replacements: [
@@ -338,12 +354,12 @@ module.exports = function(grunt) {
                 report : 'min'
             },<% if (includeModernizr) { %>
             Modernizr : {
-                src : 'bower_components/modernizr/modernizr.js',
-                dest : 'Public/JS/modernizr.min.js'
+                src : '<%= bowerDirectory %>/modernizr/modernizr.js',
+                dest : '<%= distributeDirectory %>/JS/modernizr.min.js'
             },<% } %>
             main : {
-                src : 'Public/JS/<%= _.slugify(websiteName) %>.js',
-                dest : 'Public/JS/<%= _.slugify(websiteName) %>.min.js'
+                src : '<%= distributeDirectory %>/JS/<%= _.slugify(websiteName) %>.js',
+                dest : '<%= distributeDirectory %>/JS/<%= _.slugify(websiteName) %>.min.js'
             }
         },
 
@@ -365,22 +381,6 @@ module.exports = function(grunt) {
 
     });
 
-
-    grunt.loadNpmTasks('grunt-contrib-clean');
-    grunt.loadNpmTasks('grunt-contrib-concat');
-    grunt.loadNpmTasks('grunt-contrib-compress');
-    grunt.loadNpmTasks('grunt-contrib-copy');
-    grunt.loadNpmTasks('grunt-contrib-less');
-    grunt.loadNpmTasks('grunt-contrib-jshint');
-    grunt.loadNpmTasks('grunt-contrib-uglify');
-    grunt.loadNpmTasks('grunt-contrib-watch');
-    grunt.loadNpmTasks('grunt-dev-update');
-    grunt.loadNpmTasks('grunt-jsdoc');
-    grunt.loadNpmTasks('grunt-markdown');
-    grunt.loadNpmTasks('grunt-notify');
-    grunt.loadNpmTasks('grunt-recess');
-    grunt.loadNpmTasks('grunt-text-replace');
-
     grunt.task.run('notify_hooks');
 
     grunt.registerTask('distribute-js', ['concat', 'uglify', 'clean:js']);
@@ -391,7 +391,36 @@ module.exports = function(grunt) {
     grunt.registerTask('test', ['jshint']);
     grunt.registerTask('doc', ['jsdoc', 'markdown']);
 
-    grunt.registerTask('dev', ['clean:css', 'less', 'clean:js', 'concat', 'replace:dev', 'copy:dev', 'notify:dev', 'watch']);
-    grunt.registerTask('default', ['test', 'clean', 'distribute-files', 'replace:build', 'copy:dist', 'doc', 'notify:all']);
+    grunt.registerTask('serve', function (target) {
+        if (target === 'dist') {
+            return grunt.task.run(['build', 'connect:dist:keepalive']);
+        }
+
+        grunt.task.run([
+            'clean:css',
+            'less',
+            'clean:js',
+            'concat',
+            'replace:dev',
+            'copy:dev',
+            //'connect:livereload',
+            'notify:dev',
+            'watch'
+        ]);
+    });
+
+    grunt.registerTask('build', [
+        'test',
+        'distribute-files',
+        'replace:build',
+        'copy:dist',
+    ]);
+
+    grunt.registerTask('default', [
+        'clean',
+        'build',
+        'doc',
+        'notify:all'
+    ]);
 
 };

@@ -35,7 +35,8 @@ var Html5Generator = yeoman.generators.Base.extend({
         var prompts = [{
             type: 'input',
             name: 'websiteName',
-            message: 'What do you want to call your Website?'
+            message: 'What do you want to call your Website?',
+            default: 'Project'
         },{
             type: 'input',
             name: 'websiteDescription',
@@ -45,6 +46,11 @@ var Html5Generator = yeoman.generators.Base.extend({
             name: 'projectDirectory',
             message: 'Enter your Project Directory',
             default: 'Website'
+        },{
+            type: 'input',
+            name: 'distributeDirectory',
+            message: 'Enter your Distribute Directory',
+            default: 'Public'
         },{
             type: 'input',
             name: 'bowerDirectory',
@@ -108,6 +114,7 @@ var Html5Generator = yeoman.generators.Base.extend({
             this.websiteName            = answers.websiteName;
             this.websiteDescription     = answers.websiteDescription;
             this.projectDirectory       = answers.projectDirectory;
+            this.distributeDirectory    = answers.distributeDirectory;
             this.bowerDirectory         = answers.bowerDirectory;
 
             this.jQueryVerion           = answers.jQueryVerion;
@@ -128,31 +135,31 @@ var Html5Generator = yeoman.generators.Base.extend({
 
     app: function () {
 
-        this.mkdir('Public');
-        this.mkdir('Public/CSS');
-        this.mkdir('Public/Fonts');
-        this.mkdir('Public/Images');
+        this.mkdir(this.distributeDirectory);
+        this.mkdir(this.distributeDirectory + '/CSS');
+        this.mkdir(this.distributeDirectory + '/Fonts');
+        this.mkdir(this.distributeDirectory + '/Images');
         if (this.includeExample) {
-            this.mkdir('Public/Images/Favicon');
+            this.mkdir(this.distributeDirectory + '/Images/Favicon');
         }
-        this.mkdir('Public/JS');
+        this.mkdir(this.distributeDirectory + '/JS');
 
         this.template('_package.json',      'package.json');
         this.template('_bower.json',        'bower.json');
         this.template('_bowerrc',           '.bowerrc');
         this.template('gitignore',          '.gitignore');
         this.template('Gruntfile.js',       'Gruntfile.js');
-        this.template('index.html',         'Public/index.html');
-        this.copy(    'robots.txt',         'Public/robots.txt');
-        this.copy(    'htaccess',           'Public/_.htaccess');
-        this.copy(    'htaccess',           'Public/.htaccess');
+        this.template('index.html',         this.distributeDirectory + '/index.html');
+        this.copy(    'robots.txt',         this.distributeDirectory + '/robots.txt');
+        this.copy(    'htaccess',           this.distributeDirectory + '/_.htaccess');
+        this.copy(    'htaccess',           this.distributeDirectory + '/.htaccess');
         this.copy(    'README.md',          'README.md');
         this.copy(    'editorconfig',       '.editorconfig');
 
 
         if (this.includeExample) {
-            this.directory('Favicon', 'Public/Images/Favicon');
-            this.directory('Images', 'Public/Images/Logo');
+            this.directory('Favicon', this.distributeDirectory + '/Images/Favicon');
+            this.directory('Images', this.distributeDirectory + '/Images/Logo');
         }
 
 
