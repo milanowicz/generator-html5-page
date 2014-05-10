@@ -105,15 +105,6 @@ module.exports = function(grunt) {
             }
         },
 
-        connect: {
-            options: {
-                port: 9000,
-                open: true,
-                livereload: 35729,
-                hostname: 'localhost'
-            }
-        },
-
         copy : {
             dev : {
                 files : [<% if (includeModernizr) { %>
@@ -363,12 +354,28 @@ module.exports = function(grunt) {
             }
         },
 
+        connect: {
+            options: {
+                port: 9000,
+                open: true,
+                livereload: 35729,
+                hostname: 'localhost'
+            },
+            livereload: {
+                options: {
+                    middleware: function(connect) {
+                        return [
+                            connect.static('<%= distributeDirectory %>')
+                        ];
+                    }
+                }
+            }
+        },
         watch : {
             options: {
                 livereload: true,
                 interval: 1223
             },
-
             src: {
                 files: '<%%= jshint.src.src %>',
                 tasks: ['jshint:src', 'clean:js', 'copy:dev', 'concat', 'notify:js']
@@ -376,6 +383,17 @@ module.exports = function(grunt) {
             less: {
                 files: 'Less/**/*.less',
                 tasks: ['clean:css', 'less', 'notify:less']
+            },
+            livereload: {
+                options: {
+                    livereload: '<%%= connect.options.livereload %>'
+                },
+                files: [
+                    '<%= distributeDirectory %>/{,*/}*.html',
+                    '<%= distributeDirectory %>/CSS/{,*/}*.css',
+                    '<%= distributeDirectory %>/JS/{,*/}*.js',
+                    '<%= distributeDirectory %>/Images/{,*/}*'
+                ]
             }
         }
 
@@ -391,23 +409,17 @@ module.exports = function(grunt) {
     grunt.registerTask('test', ['jshint']);
     grunt.registerTask('doc', ['jsdoc', 'markdown']);
 
-    grunt.registerTask('serve', function (target) {
-        if (target === 'dist') {
-            return grunt.task.run(['build', 'connect:dist:keepalive']);
-        }
-
-        grunt.task.run([
-            'clean:css',
-            'less',
-            'clean:js',
-            'concat',
-            'replace:dev',
-            'copy:dev',
-            //'connect:livereload',
-            'notify:dev',
-            'watch'
-        ]);
-    });
+    grunt.registerTask('serve', [
+        'clean:css',
+        'less',
+        'clean:js',
+        'concat',
+        'replace:dev',
+        'copy:dev',
+        'connect:livereload',
+        'notify:dev',
+        'watch'
+    ]);
 
     grunt.registerTask('build', [
         'test',
