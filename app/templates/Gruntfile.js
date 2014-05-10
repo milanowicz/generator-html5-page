@@ -2,15 +2,22 @@ module.exports = function(grunt) {
 
     "use strict";
 
-    // Load grunt tasks automatically
     require('load-grunt-tasks')(grunt);
-
-    // Time how long tasks take. Can help when optimizing build times
     require('time-grunt')(grunt);
+
+    // Read local JSON config into Variable
+    var setting = '';
+    if (grunt.file.exists('local.json')) {
+        setting = grunt.file.readJSON('local.json');
+    } else {
+        setting = false;
+    }
 
     grunt.initConfig({
 
         pkg : grunt.file.readJSON('package.json'),
+
+        setting : setting,
 
         banner: '/*!\n' +
             ' * <%%= pkg.name %> - <%%= grunt.template.today("yyyy") %> \n' +
@@ -401,13 +408,21 @@ module.exports = function(grunt) {
 
     grunt.task.run('notify_hooks');
 
-    grunt.registerTask('distribute-js', ['concat', 'uglify', 'clean:js']);
-    grunt.registerTask('distribute-css', ['less', 'recess', 'clean:css']);
+    grunt.registerTask('distribute-js', ['concat', 'uglify']);
+    grunt.registerTask('distribute-css', ['less', 'recess']);
     grunt.registerTask('distribute-files', ['distribute-css', 'distribute-js'/*,'compress:scripts'*/]);
 
     grunt.registerTask('zip', ['compress:website', 'compress:docu']);
     grunt.registerTask('test', ['jshint']);
     grunt.registerTask('doc', ['jsdoc', 'markdown']);
+
+    grunt.registerTask('build', [
+        'test',
+        'clean',
+        'distribute-files',
+        'replace:build',
+        'copy:dist',
+    ]);
 
     grunt.registerTask('serve', [
         'clean:css',
@@ -421,16 +436,10 @@ module.exports = function(grunt) {
         'watch'
     ]);
 
-    grunt.registerTask('build', [
-        'test',
-        'distribute-files',
-        'replace:build',
-        'copy:dist',
-    ]);
-
     grunt.registerTask('default', [
-        'clean',
         'build',
+        'clean:js',
+        'clean:css',
         'doc',
         'notify:all'
     ]);
