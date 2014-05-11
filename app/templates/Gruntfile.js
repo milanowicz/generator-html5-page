@@ -418,9 +418,9 @@ module.exports = function(grunt) {
 
     grunt.registerTask('build', [
         'test',
-        'clean',
+        'clean:css',
+        'clean:js',
         'distribute-files',
-        'replace:build',
         'copy:dist',
     ]);
 
@@ -438,8 +438,8 @@ module.exports = function(grunt) {
 
     grunt.registerTask('default', [
         'build',
-        'clean:js',
-        'clean:css',
+        'clean',
+        'replace:build',
         'doc',
         'notify:all'
     ]);

@@ -113,9 +113,9 @@ var Html5Generator = yeoman.generators.Base.extend({
 
             this.websiteName            = answers.websiteName;
             this.websiteDescription     = answers.websiteDescription;
-            this.projectDirectory       = answers.projectDirectory;
-            this.distributeDirectory    = answers.distributeDirectory;
-            this.bowerDirectory         = answers.bowerDirectory;
+            this.projectDirectory       = this._.slugify(answers.projectDirectory);
+            this.distributeDirectory    = this._.slugify(answers.distributeDirectory);
+            this.bowerDirectory         = this._.slugify(answers.bowerDirectory);
 
             this.jQueryVerion           = answers.jQueryVerion;
 
@@ -144,6 +144,7 @@ var Html5Generator = yeoman.generators.Base.extend({
         }
         this.mkdir(this.distributeDirectory + '/JS');
 
+
         this.template('_package.json',      'package.json');
         this.template('_bower.json',        'bower.json');
         this.template('_bowerrc',           '.bowerrc');
@@ -158,8 +159,8 @@ var Html5Generator = yeoman.generators.Base.extend({
 
 
         if (this.includeExample) {
-            this.directory('Favicon', this.distributeDirectory + '/Images/Favicon');
-            this.directory('Images', this.distributeDirectory + '/Images/Logo');
+            this.directory('Favicon',       this.distributeDirectory + '/Images/Favicon');
+            this.directory('Images',        this.distributeDirectory + '/Images/Logo');
         }
 
 
@@ -167,16 +168,17 @@ var Html5Generator = yeoman.generators.Base.extend({
         this.mkdir(this.projectDirectory + '/JavaScript');
         this.mkdir(this.projectDirectory + '/Less');
 
-        this.copy('jshintrc', this.projectDirectory + '/JavaScript/.jshintrc');
+        this.copy('jshintrc',               this.projectDirectory + '/JavaScript/.jshintrc');
 
         if (this.includeCreate) {
-            this.copy('Main/Canvas.js', this.projectDirectory + '/JavaScript/Canvas.js');
+            this.copy('Main/Canvas.js',     this.projectDirectory + '/JavaScript/Canvas.js');
         }
 
         if (this.includeExample) {
-            this.copy('Main/Main.js', this.projectDirectory + '/JavaScript/Main.js');
-            this.copy('Main/MainTools.js', this.projectDirectory + '/JavaScript/MainTools.js');
+            this.copy('Main/Main.js',       this.projectDirectory + '/JavaScript/Main.js');
+            this.copy('Main/MainTools.js',  this.projectDirectory + '/JavaScript/MainTools.js');
         }
+
 
         this.template('Styles/PageStyle.less', this.projectDirectory + '/Less/PageStyle.less');
         this.copy(    'Styles/MainStyle.less', this.projectDirectory + '/Less/MainStyle.less');
