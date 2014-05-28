@@ -156,6 +156,7 @@ var Html5Generator = yeoman.generators.Base.extend({
         this.copy(    'htaccess',           this.distributeDirectory + '/.htaccess');
         this.copy(    'README.md',          'README.md');
         this.copy(    'editorconfig',       '.editorconfig');
+        this.copy(    '_local.sh',          'local.sh');
 
 
         if (this.includeExample) {

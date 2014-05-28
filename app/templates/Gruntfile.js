@@ -117,7 +117,7 @@ module.exports = function(grunt) {
                 files : [<% if (includeModernizr) { %>
                     {
                         expand: true,
-                        cwd: '<%= bowerDirectory %>/modernizr/modernizr.js',
+                        cwd: '<%= bowerDirectory %>/modernizr/',
                         src : 'modernizr.js',
                         dest : '<%= distributeDirectory %>/JS/'
                     },<% } %>{
@@ -363,10 +363,10 @@ module.exports = function(grunt) {
 
         connect: {
             options: {
-                port: 9000,
+                port: setting.port,
                 open: true,
                 livereload: 35729,
-                hostname: 'localhost'
+                hostname: setting.localhost
             },
             livereload: {
                 options: {
@@ -388,7 +388,7 @@ module.exports = function(grunt) {
                 tasks: ['jshint:src', 'clean:js', 'copy:dev', 'concat', 'notify:js']
             },
             less: {
-                files: 'Less/**/*.less',
+                files: '<%= projectDirectory %>/Less/**/*.less',
                 tasks: ['clean:css', 'less', 'notify:less']
             },
             livereload: {
