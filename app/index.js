@@ -15,10 +15,15 @@ var Html5Generator = yeoman.generators.Base.extend({
                 this.installDependencies({
                     skipInstall: this.options['skip-install'],
                     callback: function () {
-                        this.spawnCommand('grunt')
-                            .on('exit', function () {
-                                console.log('\n\n\t\tA new HTML5 Website served by Yeoman\n\n');
-                            });
+                        if (this.GruntTask === 'build') {
+                            this.spawnCommand('grunt')
+                                .on('exit', function () {
+                                    console.log('\n\n\t\tA new HTML5 Website served by Yeoman\n\n');
+                                });
+                        } else if (this.GruntTask === 'serve') {
+                            console.log('\n\n\t\tA new HTML5 Website served by Yeoman\n\n');
+                            this.spawnCommand('grunt', ['serve']);
+                        }
                     }.bind(this)
                 });
             }
@@ -45,17 +50,30 @@ var Html5Generator = yeoman.generators.Base.extend({
             type: 'input',
             name: 'projectDirectory',
             message: 'Enter your Project Directory',
-            default: 'Website'
+            default: 'website'
         },{
             type: 'input',
             name: 'distributeDirectory',
             message: 'Enter your Distribute Directory',
-            default: 'Public'
+            default: 'public'
         },{
             type: 'input',
             name: 'bowerDirectory',
             message: 'Enter your Bower Resource Directory',
             default: 'bower_components'
+        },{
+            type: 'checkbox',
+            name: 'cssLang',
+            message: 'Which CSS extension language should be supported?',
+            choices: [{
+                name: 'LESS - http://lesscss.org/',
+                value: 'less',
+                checked: true
+            },{
+                name: 'SASS - http://sass-lang.com/',
+                value: 'sass',
+                checked: false
+            }]
         },{
             type: 'list',
             name: 'jQueryVerion',
@@ -72,13 +90,29 @@ var Html5Generator = yeoman.generators.Base.extend({
             name: 'features',
             message: 'What Software would you like to have for your new project?',
             choices: [{
+                name: 'Buttons - http://alexwolfe.github.io/Buttons/',
+                value: 'includeButtons',
+                checked: false
+            },{
+                name: 'BrowserDetection.js - https://github.com/Milanowicz/BrowserDetection.js',
+                value: 'includeBrowserDetection',
+                checked: true
+            },{
                 name: 'CreateJS Framework',
                 value: 'includeCreate',
                 checked: false
             },{
+                name: 'Font Awesome - http://fortawesome.github.io/Font-Awesome/',
+                value: 'includeFontAwesome',
+                checked: false
+            },{
+                name: 'FitText.js - https://github.com/Milanowicz/FitText.js',
+                value: 'includeFitText',
+                checked: true
+            },{
                 name: 'Include Project description, example libraries, files and pictures',
                 value: 'includeExample',
-                checked: true
+                checked: false
             },{
                 name: 'Internet Explorer Polyfill libraries',
                 value: 'includePolyfill',
@@ -90,42 +124,70 @@ var Html5Generator = yeoman.generators.Base.extend({
             },{
                 name: 'jQuery UserInterface Framework',
                 value: 'includeJqueryUi',
-                checked: true
+                checked: false
             },{
                 name: 'Masonry and Imagesloaded Plug-In',
                 value: 'includeMasonry',
-                checked: true
+                checked: false
             },{
                 name: 'Modernizr',
                 value: 'includeModernizr',
                 checked: true
+            }]
+        },{
+            type: 'list',
+            name: 'GruntTask',
+            message: 'What should GruntJS do?',
+            choices: [{
+                name: 'Run grunt command',
+                value: 'build'
+            },{
+                name: 'Run grunt serve command',
+                value: 'serve'
             }]
         }];
 
         this.prompt(prompts, function (answers) {
 
             var features    = answers.features;
+            var cssLang     = answers.cssLang;
             var today       = new Date();
 
             function hasFeature (feat) {
                 return features.indexOf(feat) !== -1;
+            }
+            function hasLang (lang) {
+                return cssLang.indexOf(lang) !== -1;
             }
 
             this.websiteName            = answers.websiteName;
             this.websiteDescription     = answers.websiteDescription;
             this.projectDirectory       = this._.slugify(answers.projectDirectory);
             this.distributeDirectory    = this._.slugify(answers.distributeDirectory);
-            this.bowerDirectory         = this._.slugify(answers.bowerDirectory);
+
+            if (answers.bowerDirectory === 'bower_components') {
+                this.bowerDirectory     = 'bower_components';
+            } else {
+                this.bowerDirectory     = this._.slugify(answers.bowerDirectory);
+            }
 
             this.jQueryVerion           = answers.jQueryVerion;
+            this.GruntTask              = answers.GruntTask;
 
+            this.includeButtons         = hasFeature('includeButtons');
+            this.includeBrowserDetection= hasFeature('includeBrowserDetection');
             this.includeExample         = hasFeature('includeExample');
+            this.includeFontAwesome     = hasFeature('includeFontAwesome');
+            this.includeFitText         = hasFeature('includeFitText');
             this.includeJqueryUi        = hasFeature('includeJqueryUi');
             this.includeJqueryPlugins   = hasFeature('includeJqueryPlugins');
             this.includeMasonry         = hasFeature('includeMasonry');
             this.includeModernizr       = hasFeature('includeModernizr');
             this.includeCreate          = hasFeature('includeCreate');
             this.includePolyfill        = hasFeature('includePolyfill');
+
+            this.supportLess            = hasLang('less');
+            this.supportSass            = hasLang('sass');
 
             this.year                   = today.getFullYear();
 
@@ -139,9 +201,7 @@ var Html5Generator = yeoman.generators.Base.extend({
         this.mkdir(this.distributeDirectory + '/CSS');
         this.mkdir(this.distributeDirectory + '/Fonts');
         this.mkdir(this.distributeDirectory + '/Images');
-        if (this.includeExample) {
-            this.mkdir(this.distributeDirectory + '/Images/Favicon');
-        }
+        this.mkdir(this.distributeDirectory + '/Images/Favicon');
         this.mkdir(this.distributeDirectory + '/JS');
 
 
@@ -156,33 +216,36 @@ var Html5Generator = yeoman.generators.Base.extend({
         this.copy(    'htaccess',           this.distributeDirectory + '/.htaccess');
         this.copy(    'README.md',          'README.md');
         this.copy(    'editorconfig',       '.editorconfig');
-        this.copy(    '_local.sh',          'local.sh');
+        this.copy(    '_local.json',        'local.json');
 
 
         if (this.includeExample) {
-            this.directory('Favicon',       this.distributeDirectory + '/Images/Favicon');
             this.directory('Images',        this.distributeDirectory + '/Images/Logo');
         }
+        this.directory('Favicon',           this.distributeDirectory + '/Images/Favicon');
 
 
         this.mkdir(this.projectDirectory);
         this.mkdir(this.projectDirectory + '/JavaScript');
-        this.mkdir(this.projectDirectory + '/Less');
-
         this.copy('jshintrc',               this.projectDirectory + '/JavaScript/.jshintrc');
-
+        this.template('Main/Main.js',       this.projectDirectory + '/JavaScript/Main.js');
         if (this.includeCreate) {
             this.copy('Main/Canvas.js',     this.projectDirectory + '/JavaScript/Canvas.js');
         }
-
         if (this.includeExample) {
-            this.copy('Main/Main.js',       this.projectDirectory + '/JavaScript/Main.js');
             this.copy('Main/MainTools.js',  this.projectDirectory + '/JavaScript/MainTools.js');
         }
 
 
-        this.template('Styles/PageStyle.less', this.projectDirectory + '/Less/PageStyle.less');
-        this.copy(    'Styles/MainStyle.less', this.projectDirectory + '/Less/MainStyle.less');
+        if (this.supportLess) {
+            this.mkdir(this.projectDirectory + '/Less');
+            this.template('Styles/PageStyle.less', this.projectDirectory + '/Less/PageStyle.less');
+            this.template('Styles/MainStyle.less', this.projectDirectory + '/Less/MainStyle.less');
+        }
+
+        if (this.supportSass) {
+            this.mkdir(this.projectDirectory + '/Sass');
+        }
 
     }
 

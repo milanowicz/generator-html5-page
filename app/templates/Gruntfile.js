@@ -93,9 +93,9 @@ module.exports = function(grunt) {
                     '<%= bowerDirectory %>/jQueryui/ui/jquery-ui.js',
                     '<%= bowerDirectory %>/jqueryui-touch-punch/jquery.ui.touch-punch.js ',<% } if (includeJqueryPlugins) { %>
                     '<%= bowerDirectory %>/jquery-backstretch/jquery.backstretch.js',
-                    '<%= bowerDirectory %>/jquery-hashchange/jquery.ba-hashchange.js',
-                    '<%= bowerDirectory %>/Buttons/js/buttons.js',<% } if (includeExample) { %>
-                    '<%= bowerDirectory %>/FitText.js/jquery.fittext.js',
+                    '<%= bowerDirectory %>/jquery-hashchange/jquery.ba-hashchange.js',<% } if (includeButtons) { %>
+                    '<%= bowerDirectory %>/Buttons/js/buttons.js',<% } if (includeFitText) { %>
+                    '<%= bowerDirectory %>/FitText.js/jquery.fittext.js',<% } if (includeBrowserDetection) { %>
                     '<%= bowerDirectory %>/BrowserDetection.js/BrowserDetection.js',<% } if (includeMasonry) { %>
                     '<%= bowerDirectory %>/masonry/dist/masonry.pkgd.js',
                     '<%= bowerDirectory %>/imagesloaded/imagesloaded.pkgd.js',<% } if (includePolyfill) { %>
@@ -104,8 +104,8 @@ module.exports = function(grunt) {
                     '<%= bowerDirectory %>/createjs-tweenjs/lib/tweenjs-0.5.1.combined.js',
                     '<%= bowerDirectory %>/createjs-preloadjs/lib/preloadjs-0.4.1.combined.js',
                     '<%= bowerDirectory %>/createjs-soundjs/lib/soundjs-0.5.2.combined.js',
-                    '<%= projectDirectory %>/JavaScript/Canvas.js',<% } if (includeExample) { %>
-                    '<%= projectDirectory %>/JavaScript/Main.js',
+                    '<%= projectDirectory %>/JavaScript/Canvas.js',<% } %>
+                    '<%= projectDirectory %>/JavaScript/Main.js'<% if (includeExample) { %>,
                     '<%= projectDirectory %>/JavaScript/MainTools.js'<% } %>
                 ],
                 dest : '<%= distributeDirectory %>/JS/<%= _.slugify(websiteName) %>.js'
@@ -120,12 +120,12 @@ module.exports = function(grunt) {
                         cwd: '<%= bowerDirectory %>/modernizr/',
                         src : 'modernizr.js',
                         dest : '<%= distributeDirectory %>/JS/'
-                    },<% } %>{
+                    }<% } if (includeFontAwesome && includeModernizr) { %>,<% } if (includeFontAwesome) { %>{
                         expand: true,
                         cwd: '<%= bowerDirectory %>/font-awesome/fonts/',
                         src : '*',
                         dest : '<%= distributeDirectory %>/Fonts/'
-                    }
+                    }<% } %>
                 ]
             },
             dist : {
@@ -163,12 +163,12 @@ module.exports = function(grunt) {
                         cwd: '<%= bowerDirectory %>/modernizr/',
                         src : 'modernizr.js',
                         dest : '<%= distributeDirectory %>/JS/'
-                    },<% } %>{
+                    }<% } if (includeFontAwesome && includeModernizr) { %>,<% } if (includeFontAwesome) { %>{
                         expand: true,
                         cwd: '<%= bowerDirectory %>/font-awesome/fonts/',
                         src : '*',
                         dest : '<%= distributeDirectory %>/Fonts/'
-                    }
+                    }<% } %>
 
                 ]
             }
@@ -225,7 +225,7 @@ module.exports = function(grunt) {
                     'Website/JavaScript/MainTools.js'<% } %>
                 ]
             }
-        },
+        },<% } if (supportLess) { %>
 
         less: {
             options: {
@@ -239,7 +239,7 @@ module.exports = function(grunt) {
                     '<%= distributeDirectory %>/CSS/<%= _.slugify(websiteName) %>.css': '<%= projectDirectory %>/Less/PageStyle.less'
                 }
             }
-        },
+        },<% } %>
 
         markdown: {
             all: {
