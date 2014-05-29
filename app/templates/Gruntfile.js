@@ -258,7 +258,7 @@ module.exports = function(grunt) {
         },
 
         notify: {
-            less: {
+            css: {
                 options: {
                     title: '<%%= pkg.name %>',
                     message: 'CSS ready'
@@ -344,7 +344,18 @@ module.exports = function(grunt) {
                     }
                 ]
             }
-        },
+        },<% if (supportSass) { %>
+
+        sass: {
+            dist: {
+                options: {
+                    style: 'expanded'
+                },
+                files: {
+                    '<%= distributeDirectory %>/CSS/<%= _.slugify(websiteName) %>.css': '<%= projectDirectory %>/Sass/PageStyle.scss'
+                }
+            }
+        },<% } %>
 
         uglify : {
             options : {
@@ -383,13 +394,27 @@ module.exports = function(grunt) {
                 livereload: true,
                 interval: 1223
             },
-            src: {
+            js: {
                 files: '<%%= jshint.src.src %>',
-                tasks: ['jshint:src', 'clean:js', 'copy:dev', 'concat', 'notify:js']
+                tasks: [
+                    'jshint:src',
+                    'clean:js',
+                    'copy:dev',
+                    'concat',
+                    'notify:js'
+                ]
             },
-            less: {
-                files: '<%= projectDirectory %>/Less/**/*.less',
-                tasks: ['clean:css', 'less', 'notify:less']
+            css: {
+                files: [
+                    <% if (supportLess) { %>'<%= projectDirectory %>/Less/**/*.less',<% } %>
+                    <% if (supportSass) { %>'<%= projectDirectory %>/Sass/**/*.scss',<% } %>
+                ],
+                tasks: [
+                    'clean:css',
+                    <% if (supportLess) { %>'less',<% } %>
+                    <% if (supportSass) { %>'sass',<% } %>
+                    'notify:css'
+                ]
             },
             livereload: {
                 options: {
@@ -408,9 +433,20 @@ module.exports = function(grunt) {
 
     grunt.task.run('notify_hooks');
 
-    grunt.registerTask('distribute-js', ['concat', 'uglify']);
-    grunt.registerTask('distribute-css', ['less', 'recess']);
-    grunt.registerTask('distribute-files', ['distribute-css', 'distribute-js'/*,'compress:scripts'*/]);
+    grunt.registerTask('distribute-js', [
+        'concat',
+        'uglify'
+    ]);
+    grunt.registerTask('distribute-css', [
+        <% if (supportLess) { %>'less',<% } %>
+        <% if (supportSass) { %>'sass',<% } %>
+        'recess'
+    ]);
+    grunt.registerTask('distribute-files', [
+        'distribute-css',
+        'distribute-js'/*,
+        'compress:scripts'*/
+    ]);
 
     grunt.registerTask('zip', ['compress:website', 'compress:docu']);
     grunt.registerTask('test', ['jshint']);
@@ -426,7 +462,8 @@ module.exports = function(grunt) {
 
     grunt.registerTask('serve', [
         'clean:css',
-        'less',
+        <% if (supportLess) { %>'less',<% } %>
+        <% if (supportSass) { %>'sass',<% } %>
         'clean:js',
         'concat',
         'replace:dev',

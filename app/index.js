@@ -73,6 +73,10 @@ var Html5Generator = yeoman.generators.Base.extend({
                 name: 'SASS - http://sass-lang.com/',
                 value: 'sass',
                 checked: false
+            },{
+                name: 'Compass - http://compass-style.org/',
+                value: 'compass',
+                checked: false
             }]
         },{
             type: 'list',
@@ -188,6 +192,7 @@ var Html5Generator = yeoman.generators.Base.extend({
 
             this.supportLess            = hasLang('less');
             this.supportSass            = hasLang('sass');
+            this.supportCompass         = hasLang('compass');
 
             this.year                   = today.getFullYear();
 
@@ -245,6 +250,8 @@ var Html5Generator = yeoman.generators.Base.extend({
 
         if (this.supportSass) {
             this.mkdir(this.projectDirectory + '/Sass');
+            this.template('Styles/PageStyle.scss', this.projectDirectory + '/Sass/PageStyle.scss');
+            this.template('Styles/MainStyle.scss', this.projectDirectory + '/Sass/MainStyle.scss');
         }
 
     }

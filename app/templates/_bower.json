@@ -25,7 +25,8 @@
     "imagesloaded": "~3.1",<% } if (includeModernizr) { %>
     "modernizr": "~2.8",<% } if (includeFontAwesome) { %>
     "font-awesome": "~4.0",<% } if (supportLess) { %>
-    "CSSLessCollection": "git://github.com/Milanowicz/CSSLessCollection.git",<% } %>
+    "CSSLessCollection": "git://github.com/Milanowicz/CSSLessCollection.git",<% } if (supportSass) { %>
+    "CSSSassCollection": "git://github.com/Milanowicz/CSSSassCollection.git",<% } %>
     "normalize-css": "~3.0"
   }
 }
