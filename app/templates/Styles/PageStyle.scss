@@ -1,13 +1,13 @@
-/**
- *    Website Style Definitions
- */
+//###########################################
+//##       Website Style Definitions       ##
+//###########################################
 
-/* Content Definitions */
+// Content Definitions
 $MainContentWidth: 1024px;
 $ResponsoveWidthBegin: 1040px;
 
 
-/* Font Types */
+// Font Types
 $FontHead: Arial, Verdana;
 $FontText: Arial, Verdana;
 $FontConsole: Courier New, Courier;
@@ -16,25 +16,12 @@ $FontSizeNormalText: 18;
 $FontLineHeightNormalText: 22;
 
 
-/**
- *   Import Styles from Plug-Ins
- */
-@import '../../bower_components/normalize-css/normalize.css';
-<% if (includeFontAwesome) { %>
-@import '../../bower_components/font-awesome/css/font-awesome.css';
-<% } if (includeJqueryUi) { %>
-@import '../../bower_components/jQueryui/themes/base/jquery-ui.css';
-<% } if (includeButtons) { %>
-@import '../../bower_components/Buttons/css/buttons.css';
-<% } %>
+//  Import Styles from Plug-Ins
+@import 'ImportLibrary';
 
-/**
- *   Load Sass Tookit Mixins
- */
+//  Load Sass Tookit Mixins
 @import '../../bower_components/CSSSassCollection/CSSSassCollectionDefinitions';
 @import '../../bower_components/CSSSassCollection/CSSSassCollectionMixins';
 
-/**
- *    Load Page Style files
- */
+//    Load Page Style files
 @import 'MainStyle';

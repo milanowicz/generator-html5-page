@@ -225,7 +225,7 @@ module.exports = function(grunt) {
                     'Website/JavaScript/MainTools.js'<% } %>
                 ]
             }
-        },<% } if (supportLess) { %>
+        },<% if (supportLess) { %>
 
         less: {
             options: {
@@ -346,11 +346,26 @@ module.exports = function(grunt) {
             }
         },<% if (supportSass) { %>
 
-        sass: {
-            dist: {
-                options: {
-                    style: 'expanded'
-                },
+        sass_imports: {
+            options: {
+                inlineCSS: true
+            },
+            main : {
+                src: [
+                    '<%= bowerDirectory %>/normalize-css/normalize.css'<% if (includeFontAwesome) { %>,
+                    '<%= bowerDirectory %>/font-awesome/css/font-awesome.css'<% } if (includeJqueryUi) { %>,
+                    '<%= bowerDirectory %>/jQueryui/themes/base/jquery-ui.css'<% } if (includeButtons) { %>,
+                    '<%= bowerDirectory %>/Buttons/css/buttons.css'<% } %>
+                ],
+                dest: '<%= projectDirectory %>/Sass/ImportLibrary.scss'
+            }
+        },
+
+        sass : {
+            options : {
+                style: 'expanded'
+            },
+            main : {
                 files: {
                     '<%= distributeDirectory %>/CSS/<%= _.slugify(websiteName) %>.css': '<%= projectDirectory %>/Sass/PageStyle.scss'
                 }
@@ -406,13 +421,14 @@ module.exports = function(grunt) {
             },
             css: {
                 files: [
-                    <% if (supportLess) { %>'<%= projectDirectory %>/Less/**/*.less',<% } %>
-                    <% if (supportSass) { %>'<%= projectDirectory %>/Sass/**/*.scss',<% } %>
+                    <% if (supportLess) { %>'<%= projectDirectory %>/Less/**/*.less'<% } if (supportLess && supportSass) { %>,
+                    <% } if (supportSass) { %>'<%= projectDirectory %>/Sass/**/*.scss'<% } %>
                 ],
                 tasks: [
-                    'clean:css',
-                    <% if (supportLess) { %>'less',<% } %>
-                    <% if (supportSass) { %>'sass',<% } %>
+                    'clean:css',<% if (supportLess) { %>
+                    'less',<% } if (supportSass) { %>
+                    'sass_imports',
+                    'sass',<% } %>
                     'notify:css'
                 ]
             },
@@ -437,9 +453,10 @@ module.exports = function(grunt) {
         'concat',
         'uglify'
     ]);
-    grunt.registerTask('distribute-css', [
-        <% if (supportLess) { %>'less',<% } %>
-        <% if (supportSass) { %>'sass',<% } %>
+    grunt.registerTask('distribute-css', [<% if (supportLess) { %>
+        'less',<% } if (supportSass) { %>
+        'sass_imports',
+        'sass',<% } %>
         'recess'
     ]);
     grunt.registerTask('distribute-files', [
@@ -461,9 +478,10 @@ module.exports = function(grunt) {
     ]);
 
     grunt.registerTask('serve', [
-        'clean:css',
-        <% if (supportLess) { %>'less',<% } %>
-        <% if (supportSass) { %>'sass',<% } %>
+        'clean:css',<% if (supportLess) { %>
+        'less',<% } if (supportSass) { %>
+        'sass_imports',
+        'sass',<% } %>
         'clean:js',
         'concat',
         'replace:dev',

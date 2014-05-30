@@ -64,15 +64,15 @@ var Html5Generator = yeoman.generators.Base.extend({
         },{
             type: 'checkbox',
             name: 'cssLang',
-            message: 'Which CSS extension language should be supported?',
+            message: 'Which CSS extension language should be GruntJS supported?',
             choices: [{
                 name: 'LESS - http://lesscss.org/',
                 value: 'less',
-                checked: true
+                checked: false
             },{
                 name: 'SASS - http://sass-lang.com/',
                 value: 'sass',
-                checked: false
+                checked: true
             },{
                 name: 'Compass - http://compass-style.org/',
                 value: 'compass',

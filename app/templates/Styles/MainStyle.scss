@@ -1,6 +1,3 @@
-// Load Website Style Definitions
-@import 'PageStyle';
-
 /**#######################################################################
  *                     Elementary HTML Website Styles
  * #######################################################################
@@ -16,60 +13,59 @@ html {
 }
 
 body {
-  @include Text(@FontText, @FontSizeNormalText, @ColorBlack, normal, @FontLineHeightNormalText, none, normal);
-  @include BackgroundOpacity(@ColorBlack, 0@include 1);
+  @include Text($FontText, $FontSizeNormalText, $ColorBlack, normal, $FontLineHeightNormalText, none, normal);
   font-size: 100%;
 }
 
 h1 {
-  @include Text(@FontHead, 40, @ColorBlack, normal, 50, uppercase, bold);
+  @include Text($FontHead, 40, $ColorBlack, normal, 50, uppercase, bold);
   @include MarginPadding(0, 20px 0);
 }
 
 h2 {
-  @include Text(@FontHead, 32, @ColorBlack, italic, 40, none, bold);
+  @include Text($FontHead, 32, $ColorBlack, italic, 40, none, bold);
   @include MarginPadding(0, 15px 0);
 }
 
 h3 {
-  @include Text(@FontHead, 24, @ColorBlack, normal, 38, none, bold);
+  @include Text($FontHead, 24, $ColorBlack, normal, 38, none, bold);
   @include MarginPadding(0, 10px 0);
 }
 
 h4 {
-  @include Text(@FontHead, 24, @ColorBlack, normal, 30, none, bold);
+  @include Text($FontHead, 24, $ColorBlack, normal, 30, none, bold);
   @include MarginPadding(0, 5px 0);
 }
 
 h5 {
-  @include Text(@FontHead, 20, @ColorBlack, normal, 24, none, bold);
+  @include Text($FontHead, 20, $ColorBlack, normal, 24, none, bold);
   @include MarginPadding(0, 10px 0);
 }
 
 h6 {
-  @include Text(@FontHead, 20, @ColorBlack, italic, 24, none, bold);
+  @include Text($FontHead, 20, $ColorBlack, italic, 24, none, bold);
   @include MarginPadding(0, 10px 0 5px);
 }
 
 a {
-  @include Text(@FontText, @FontSizeNormalText, @ColorLink, normal, @FontLineHeightNormalText, none, normal);
+  @include Text($FontText, $FontSizeNormalText, $ColorLink, normal, $FontLineHeightNormalText, none, normal);
   text-decoration: none;
 
   &:hover {
     text-decoration: underline;
-    color: @ColorLink;
+    color: $ColorLink;
     @include OutlineBorder;
   }
   &:active {
-    color: @ColorLink;
+    color: $ColorLink;
     @include OutlineBorder;
   }
   &:focus {
-    color: @ColorLink;
+    color: $ColorLink;
     @include OutlineBorder;
   }
   &:visited {
-    color: @ColorLink;
+    color: $ColorLink;
     @include OutlineBorder;
   }
 }
@@ -83,12 +79,12 @@ img {
 }
 
 p {
-  @include Text(@FontText, @FontSizeNormalText, @ColorBlack, normal, @FontLineHeightNormalText, none, normal);
+  @include Text($FontText, $FontSizeNormalText, $ColorBlack, normal, $FontLineHeightNormalText, none, normal);
   @include MarginPadding(5px 0);
 }
 
 pre {
-  @include Text(@FontConsole, @FontSizeNormalText, @ColorBlack, normal, @FontLineHeightNormalText, none, normal);
+  @include Text($FontConsole, $FontSizeNormalText, $ColorBlack, normal, $FontLineHeightNormalText, none, normal);
   text-align: left;
   @include MarginPadding(10px 0);
   word-break: keep-all;
@@ -96,12 +92,12 @@ pre {
 
 ul {
   list-style: none;
-  @include Text(@FontText, @FontSizeNormalText, @ColorBlack, normal, @FontLineHeightNormalText, none, normal);
+  @include Text($FontText, $FontSizeNormalText, $ColorBlack, normal, $FontLineHeightNormalText, none, normal);
   @include MarginPadding(5px 0 20px 15px);
 
   li {
     list-style: none;
-    @include Text(@FontText, @FontSizeNormalText, @ColorBlack, normal, @FontLineHeightNormalText, none, normal);
+    @include Text($FontText, $FontSizeNormalText, $ColorBlack, normal, $FontLineHeightNormalText, none, normal);
     @include MarginPadding(5px 0 0 15px);
 
     &:first-child {
@@ -205,19 +201,19 @@ div {
 
 header.Page {
   display: inline-block;
-  .BoxSize(100%, auto);
+  @include BoxSize(100%, auto);
 }
 
 
 main {
   display: inline-block;
-  .BoxSize(100%, auto);
+  @include BoxSize(100%, auto);
 }
 
 
 footer.Page {
   display: inline-block;
-  .BoxSize(100%, auto);
+  @include BoxSize(100%, auto);
 }
 
 

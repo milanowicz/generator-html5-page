@@ -13,6 +13,7 @@
 local.json
 
 .settings/
+<% if (supportSass) { %>.sass-cache<% } %>
 <%= bowerDirectory %>
 <%= projectDirectory %>/Documentation/
 node_modules/
