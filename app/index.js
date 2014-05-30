@@ -68,11 +68,11 @@ var Html5Generator = yeoman.generators.Base.extend({
             choices: [{
                 name: 'LESS - http://lesscss.org/',
                 value: 'less',
-                checked: false
+                checked: true
             },{
                 name: 'SASS - http://sass-lang.com/',
                 value: 'sass',
-                checked: true
+                checked: false
             },{
                 name: 'Compass - http://compass-style.org/',
                 value: 'compass',
@@ -81,7 +81,7 @@ var Html5Generator = yeoman.generators.Base.extend({
         },{
             type: 'list',
             name: 'jQueryVerion',
-            message: 'Which jQuery Version should it be?',
+            message: 'Which jQuery Version should it be? - http://jquery.com/',
             choices: [{
                 name: 'Version 1.11.x',
                 value: 'One'
@@ -102,7 +102,7 @@ var Html5Generator = yeoman.generators.Base.extend({
                 value: 'includeBrowserDetection',
                 checked: true
             },{
-                name: 'CreateJS Framework',
+                name: 'CreateJS Framework - http://www.createjs.com/',
                 value: 'includeCreate',
                 checked: false
             },{
@@ -122,19 +122,19 @@ var Html5Generator = yeoman.generators.Base.extend({
                 value: 'includePolyfill',
                 checked: true
             },{
-                name: 'jQuery Plug-Ins - Backstretch, Haschange and Buttons',
+                name: 'jQuery Plug-Ins - Backstretch and Haschange',
                 value: 'includeJqueryPlugins',
                 checked: false
             },{
-                name: 'jQuery UserInterface Framework',
+                name: 'jQuery UserInterface Framework - http://jqueryui.com/',
                 value: 'includeJqueryUi',
                 checked: false
             },{
-                name: 'Masonry and Imagesloaded Plug-In',
+                name: 'Masonry and Imagesloaded Plug-In - http://masonry.desandro.com/',
                 value: 'includeMasonry',
                 checked: false
             },{
-                name: 'Modernizr',
+                name: 'Modernizr - http://modernizr.com/',
                 value: 'includeModernizr',
                 checked: true
             }]
@@ -215,11 +215,11 @@ var Html5Generator = yeoman.generators.Base.extend({
         this.template('_bowerrc',           '.bowerrc');
         this.template('gitignore',          '.gitignore');
         this.template('Gruntfile.js',       'Gruntfile.js');
+        this.template('README.md',          'README.md');
         this.template('index.html',         this.distributeDirectory + '/index.html');
         this.copy(    'robots.txt',         this.distributeDirectory + '/robots.txt');
         this.copy(    'htaccess',           this.distributeDirectory + '/_.htaccess');
         this.copy(    'htaccess',           this.distributeDirectory + '/.htaccess');
-        this.copy(    'README.md',          'README.md');
         this.copy(    'editorconfig',       '.editorconfig');
         this.copy(    '_local.json',        'local.json');
 

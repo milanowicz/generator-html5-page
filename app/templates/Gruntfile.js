@@ -60,6 +60,25 @@ module.exports = function(grunt) {
                     }
                 ]
             },
+            project: {
+                options: {
+                    archive: '../<%%= grunt.template.today("yyyymmdd") %>_<%%= pkg.name %>.zip'
+                },
+                files: [
+                    {
+                        src: [
+                            '<%= projectDirectory %>',
+                            '<%= distributeDirectory %>',
+                            'README.md',
+                            '.bowerrc',
+                            'bower.json',
+                            'Gruntfile.js',
+                            'package.json'
+                        ],
+                        dest: '/'
+                    }
+                ]
+            },
             scripts: {
                 options: {
                     mode: 'gzip'
@@ -129,9 +148,7 @@ module.exports = function(grunt) {
                 ]
             },
             dist : {
-                files : [
-                    <% if (includePolyfill) { %>
-                    {
+                files : [<% if (includePolyfill) { %>{
                         expand: true,
                         cwd: '<%= bowerDirectory %>/selectivizr/',
                         src : 'selectivizr.js',
@@ -156,9 +173,7 @@ module.exports = function(grunt) {
                         cwd: '<%= bowerDirectory %>/box-sizing-polyfill/',
                         src : 'boxsizing.htc',
                         dest : '<%= distributeDirectory %>/JS/'
-                    },
-                    <% } if (includeModernizr) { %>
-                    {
+                    },<% } if (includeModernizr) { %>{
                         expand: true,
                         cwd: '<%= bowerDirectory %>/modernizr/',
                         src : 'modernizr.js',
@@ -465,7 +480,6 @@ module.exports = function(grunt) {
         'compress:scripts'*/
     ]);
 
-    grunt.registerTask('zip', ['compress:website', 'compress:docu']);
     grunt.registerTask('test', ['jshint']);
     grunt.registerTask('doc', ['jsdoc', 'markdown']);
 

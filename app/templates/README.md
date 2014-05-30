@@ -1,22 +1,25 @@
-HTML5 Skeleton Website
+<% websiteName %>
 ===================
 
-This is init skeleton website project.
-It's like a special fork from the html5 boilerplate project to develop what you want.
+<% websiteDescription %>
 
 
 Basic Software
 ---------------
 
-NodeJS - [http://nodejs.org/](http://nodejs.org/)
-
 Bower - [http://bower.io/](http://bower.io/)
 
-GruntJS - [http://gruntjs.com/](http://gruntjs.com/)
-
-Less - [http://www.lesscss.org/](http://www.lesscss.org/)
+NodeJS - [http://nodejs.org/](http://nodejs.org/)
 
 Git - [http://git-scm.com/](http://git-scm.com/)
+
+GruntJS - [http://gruntjs.com/](http://gruntjs.com/)<% if (supportLess) { %>
+
+Less - [http://www.lesscss.org/](http://www.lesscss.org/)<% } if (supportSass) { %>
+
+Sass - [http://sass-lang.com/](http://sass-lang.com/)<% } if (supportCompass) { %>
+
+Compass - [http://compass-style.org/](http://compass-style.org/)<% } %>
 
 
 Directory Structure
@@ -28,15 +31,20 @@ Your Documentation about what ever
 
 All JavaScripts libraries or scripts from you or somewhere else
 
-    JavaScript
+    JavaScript<% if (supportLess) { %>
 
-StyleSheets from you and Plug-Ins
+Your Less StyleSheets are here
 
-    Less
+    Less<% } if (supportSass) { %>
 
-This directory is for the vistors
+Your Sass StyleSheets are here
 
-    Public
+    Sass<% } %>
+
+This directory is for the visitors
+
+    <% distributeDirectory %>
+
 
 Bower
 ===================
@@ -49,9 +57,17 @@ Be first time used ever then
 
     $ npm install -g Bower
 
+
+Bower Usage
+---------------
+
 Install all Grunt modules and let's roll
 
     $ bower install
+
+Update all
+
+    $ bower update
 
 
 GruntJS
@@ -70,24 +86,50 @@ Install all Grunt modules and let's roll
     $ npm install
 
 
-GruntJS Handling
+Create this file to use "$ grunt serve"
+
+    local.json
+
+        {
+          "localhost" : "localhost",
+          "port": "9000"
+        }
+
+
+GruntJS Usage
 ---------------
-
-Generate development files
-
-    $ grunt dev
 
 Grunt Watch if files are changes and generate them new
 
-    $ grunt watch
+    $ grunt serve
+
+Let Grunt generates all files
+
+    $ grunt build
 
 Do run all Tasks for a Release
 
     $ grunt
 
-Create a archiv from the Public and Documentation
 
-    $ grunt zip
+Compress files
+---------------
+
+Create a archiv from the Public directory
+
+    $ grunt compress:website
+
+Create a archiv from whole the Project with all files in it
+
+    $ grunt compress:project
+
+Create a archiv from the Documentation
+
+    $ grunt compress:docu
+
+
+GruntJS updating
+---------------
 
 Check Grunt Modules
 
