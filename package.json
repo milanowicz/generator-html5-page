@@ -2,12 +2,22 @@
   "name": "generator-html5",
   "version": "0.0.3",
   "description": "Yeoman HTML5 Skeleton Website generator",
-  "license": "MIT",
-  "main": "app/index.js",
-  "repository": "milanowicz/generator-html5",
+  "keywords": [
+    "yeoman-generator",
+    "html5",
+    "website"
+  ],
+  "homepage": "https://github.com/Milanowicz/generator-html5",
+  "bugs": "https://github.com/Milanowicz/generator-html5/issues",
   "author": {
     "name": "Milanowicz",
     "email": "amaru-jive@gmx.de"
+  },
+  "license": "MIT",
+  "main": "app/index.js",
+  "repository": {
+    "type": "git",
+	"url": "git://github.com/Milanowicz/generator-html5.git",
   },
   "engines": {
     "node": ">=0.10.0"

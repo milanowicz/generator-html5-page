@@ -1,4 +1,4 @@
-# generator-html5 [![Build Status](https://secure.travis-ci.org/someuser/generator-html5.png?branch=master)](https://travis-ci.org/someuser/generator-html5)
+# generator-html5
 
 > [Yeoman](http://yeoman.io) generator
 
