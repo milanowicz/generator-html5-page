@@ -122,7 +122,7 @@ var Html5Generator = yeoman.generators.Base.extend({
                 value: 'includePolyfill',
                 checked: true
             },{
-                name: 'jQuery Plug-Ins - Backstretch and Haschange',
+                name: 'jQuery Plug-Ins - Backstretch and Hashchange',
                 value: 'includeJqueryPlugins',
                 checked: false
             },{

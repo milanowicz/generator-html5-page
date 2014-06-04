@@ -19,14 +19,14 @@
     "jquery-backstretch": "*",
     "jquery-hashchange": "~",<% } if (includeButtons) { %>
     "Buttons": "*",<% } if (includeFitText) { %>
-    "FitText.js": "git://github.com/Milanowicz/FitText.js.git",<% } if (includeBrowserDetection) { %>
-    "BrowserDetection.js": "git://github.com/Milanowicz/BrowserDetection.js.git",<% } if (includeMasonry) { %>
+    "RWD-FitText.js": "*",<% } if (includeBrowserDetection) { %>
+    "BrowserDetection.js": "*",<% } if (includeMasonry) { %>
     "masonry": "~3.1",
     "imagesloaded": "~3.1",<% } if (includeModernizr) { %>
     "modernizr": "~2.8",<% } if (includeFontAwesome) { %>
     "font-awesome": "~4.0",<% } if (supportLess) { %>
-    "CSSLessCollection": "git://github.com/Milanowicz/CSSLessCollection.git",<% } if (supportSass) { %>
-    "CSSSassCollection": "git://github.com/Milanowicz/CSSSassCollection.git",<% } %>
+    "CSSLessCollection": "*",<% } if (supportSass) { %>
+    "CSSSassCollection": "*",<% } %>
     "normalize-css": "~3.0"
   }
 }
