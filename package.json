@@ -17,7 +17,7 @@
   "main": "app/index.js",
   "repository": {
     "type": "git",
-	"url": "git://github.com/Milanowicz/generator-html5-page.git",
+	"url": "git://github.com/Milanowicz/generator-html5-page.git"
   },
   "engines": {
     "node": ">=0.10.0"
