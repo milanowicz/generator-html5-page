@@ -1,4 +1,4 @@
-# generator-html5
+# generator-html5-page
 
 > [Yeoman](http://yeoman.io) generator for a HTML5 skeleton website
 
@@ -51,16 +51,16 @@ $ npm install -g yo
 
 Yeoman travels light. He didn't pack any generators when he moved in. You can think of a generator like a plug-in. You get to choose what type of application you wish to create, such as a Backbone application or even a Chrome extension.
 
-To install generator-html5 from npm, run:
+To install generator-html5-page from npm, run:
 
 ```
-$ npm install -g generator-html5
+$ npm install -g generator-html5-page
 ```
 
 Finally, initiate the generator:
 
 ```
-$ yo html5
+$ yo html5-page
 ```
 
 ### Getting To Know Yeoman

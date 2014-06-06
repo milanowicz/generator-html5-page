@@ -1,5 +1,5 @@
 {
-  "name": "generator-html5",
+  "name": "generator-html5-page",
   "version": "0.0.3",
   "description": "Yeoman HTML5 Skeleton Website generator",
   "keywords": [
@@ -7,8 +7,8 @@
     "html5",
     "website"
   ],
-  "homepage": "https://github.com/Milanowicz/generator-html5",
-  "bugs": "https://github.com/Milanowicz/generator-html5/issues",
+  "homepage": "https://github.com/Milanowicz/generator-html5-page",
+  "bugs": "https://github.com/Milanowicz/generator-html5-page/issues",
   "author": {
     "name": "Milanowicz",
     "email": "amaru-jive@gmx.de"
@@ -17,7 +17,7 @@
   "main": "app/index.js",
   "repository": {
     "type": "git",
-	"url": "git://github.com/Milanowicz/generator-html5.git",
+	"url": "git://github.com/Milanowicz/generator-html5-page.git",
   },
   "engines": {
     "node": ">=0.10.0"
