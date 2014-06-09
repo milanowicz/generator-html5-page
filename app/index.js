@@ -212,7 +212,9 @@ var Html5Generator = yeoman.generators.Base.extend({
 
         this.template('_package.json',      'package.json');
         this.template('_bower.json',        'bower.json');
-        this.template('_bowerrc',           '.bowerrc');
+        if (this.bowerDirectory !== 'bower_components') {
+            this.template('_bowerrc',           '.bowerrc');
+        }
         this.template('gitignore',          '.gitignore');
         this.template('Gruntfile.js',       'Gruntfile.js');
         this.template('README.md',          'README.md');
