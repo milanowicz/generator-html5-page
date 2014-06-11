@@ -23,12 +23,12 @@
 
 ### Internet Explorer Polyfill libraries
 
+* [css3-mediaqueries-js](https://github.com/livingston/css3-mediaqueries-js)
 * [css3pie](http://css3pie.com/)
-* [selectivizr](http://selectivizr.com/)
 * [background-size-polyfill](http://louisremi.github.io/background-size-polyfill/)
 * [box-sizing-polyfill](https://github.com/Schepp/box-sizing-polyfill)
 * [respond](https://github.com/scottjehl/Respond)
-* [css3-mediaqueries-js](https://github.com/livingston/css3-mediaqueries-js)
+* [selectivizr](http://selectivizr.com/)
 
 
 ## Getting Started
@@ -68,6 +68,27 @@ $ yo html5-page
 Yeoman has a heart of gold. He's a person with feelings and opinions, but he's very easy to work with. If you think he's too opinionated, he can be easily convinced.
 
 If you'd like to get to know Yeoman better and meet some of his friends, [Grunt](http://gruntjs.com) and [Bower](http://bower.io), check out the complete [Getting Started Guide](https://github.com/yeoman/yeoman/wiki/Getting-Started).
+
+
+
+## Getting Developed
+
+
+Clone the generator-typo3 repository.
+
+```
+$ git clone git@github.com:Milanowicz/generator-html5-page.git
+```
+
+That'll install your project dependencies and symlink a global module to your local file. After npm is done, you'll be able to call yo name and you should see the console.log defined earlier outputted in the terminal. Congratulation, you just built your first generator!
+
+```
+$ cd generator-html5-page/
+```
+
+```
+$ npm link
+```
 
 
 ## License

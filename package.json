@@ -1,6 +1,6 @@
 {
   "name": "generator-html5-page",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Yeoman HTML5 Skeleton Website generator",
   "keywords": [
     "yeoman-generator",
@@ -27,9 +27,6 @@
   },
   "files": [
     "app"
-  ],
-  "keywords": [
-    "yeoman-generator"
   ],
   "dependencies": {
     "yeoman-generator": "~0.16.0",

@@ -1,38 +1,11 @@
 (function (w) {
 
     /**
-     * Website Object
+     * Main Object
      * @namespace Main
      * @version 0.0.2
      */
-    w.Main = {
-
-        /**
-         * Main.Init call all functions you want ;)
-         * @return void
-         */
-        init : function () {
-
-            /**
-             * Fill Main object variables by these functions
-             */
-            Detection.CheckAll();
-
-
-            /**
-             * Init functions . . .
-             */
-            Main.Tools.initMasonry('div.Wrapper', 'section', 500, 40);
-            Main.Tools.showTooltip('a');
-            Main.Tools.showTooltip('img');
-            Main.Tools.fitText();
-            Main.Tools.checkSvg();
-
-            // Set a trigger
-            Main.trigger();
-
-        },
-
+    w.Main = w.Main || {
 
         /**
          * Ajax Cache
@@ -93,7 +66,9 @@
 
             $(window).resize(function () {
 
+                <% if (includeBrowserDetection) { %>
                 Detection.WindowSize();
+                <% } %>
 
             });
 
@@ -102,6 +77,3 @@
     };
 
 })(window);
-
-
-$(document).ready(Main.init);

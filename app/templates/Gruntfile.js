@@ -122,10 +122,11 @@ module.exports = function(grunt) {
                     '<%= bowerDirectory %>/easeljs/lib/easeljs-0.7.1.combined.js',
                     '<%= bowerDirectory %>/createjs-tweenjs/lib/tweenjs-0.5.1.combined.js',
                     '<%= bowerDirectory %>/createjs-preloadjs/lib/preloadjs-0.4.1.combined.js',
-                    '<%= bowerDirectory %>/createjs-soundjs/lib/soundjs-0.5.2.combined.js',
+                    '<%= bowerDirectory %>/createjs-soundjs/lib/soundjs-0.5.2.combined.js',<% } %>
+                    '<%= projectDirectory %>/JavaScript/Main.js',<% if (includeExample) { %>
+                    '<%= projectDirectory %>/JavaScript/MainTools.js',<% } if (includeExample && includeCreate) { %>
                     '<%= projectDirectory %>/JavaScript/Canvas.js',<% } %>
-                    '<%= projectDirectory %>/JavaScript/Main.js'<% if (includeExample) { %>,
-                    '<%= projectDirectory %>/JavaScript/MainTools.js'<% } %>
+                    '<%= projectDirectory %>/JavaScript/<%= _.slugify(websiteName) %>.js'
                 ],
                 dest : '<%= distributeDirectory %>/JS/<%= _.slugify(websiteName) %>.js'
             }

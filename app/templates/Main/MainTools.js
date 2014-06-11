@@ -20,7 +20,7 @@
                 });
             }
 
-        },
+        }<% if (includeFitText) { %>,
 
 
         /**
@@ -57,7 +57,7 @@
                 'maxLineHeight' : 24
             });
 
-        },
+        }<% if (includeMasonry) { %>,
 
 
         /**
@@ -80,23 +80,7 @@
                     });
                 });
             }
-        },
-
-
-        /**
-         * Scroll to Html element offset
-         * @param {string} HtmlSelector - HtmlSelector
-         * @return void
-         */
-        scrollTo : function (HtmlSelector) {
-
-            $('html,body').animate({
-
-                scrollTop: $(HtmlSelector).offset().top
-
-            }, 'medium');
-
-        },
+        }<% if (includeJqueryUi) { %>,,
 
 
         /**
@@ -116,6 +100,21 @@
             }
 
             Body.find(HtmlSelector).tooltip();
+
+        }>% } %>,
+
+        /**
+         * Scroll to Html element offset
+         * @param {string} HtmlSelector - HtmlSelector
+         * @return void
+         */
+        scrollTo : function (HtmlSelector) {
+
+            $('html,body').animate({
+
+                scrollTop: $(HtmlSelector).offset().top
+
+            }, 'medium');
 
         }
 
