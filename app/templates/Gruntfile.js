@@ -26,11 +26,11 @@ module.exports = function(grunt) {
 
         clean: {
             js: [
-                '<%= distributeDirectory %>/JS/<%= _.slugify(websiteName) %>.js',<% if (includeModernizr) { %>
-                '<%= distributeDirectory %>/JS/modernizr.js'<% } %>
+                '<%= distributeDirectory %>/js/<%= _.slugify(websiteName) %>.js',<% if (includeModernizr) { %>
+                '<%= distributeDirectory %>/js/modernizr.js'<% } %>
             ],
             css: [
-                '<%= distributeDirectory %>/CSS/<%= _.slugify(websiteName) %>.css'
+                '<%= distributeDirectory %>/css/<%= _.slugify(websiteName) %>.css'
             ],
             docu: [
                 '<%= projectDirectory %>/Documentation/**/*'
@@ -86,15 +86,15 @@ module.exports = function(grunt) {
                 files: [
                     {
                         expand: true,
-                        cwd: '<%= distributeDirectory %>/JS/',
+                        cwd: '<%= distributeDirectory %>/js/',
                         src: ['*.js'],
-                        dest: '<%= distributeDirectory %>/JS/',
+                        dest: '<%= distributeDirectory %>/js/',
                         ext: '.gz.js'
                     },{
                         expand: true,
-                        cwd: '<%= distributeDirectory %>/CSS/',
+                        cwd: '<%= distributeDirectory %>/css/',
                         src: ['*.css'],
-                        dest: '<%= distributeDirectory %>/CSS/',
+                        dest: '<%= distributeDirectory %>/css/',
                         ext: '.gz.css'
                     }
                 ]
@@ -122,25 +122,47 @@ module.exports = function(grunt) {
                     '<%= bowerDirectory %>/easeljs/lib/easeljs-0.7.1.combined.js',
                     '<%= bowerDirectory %>/createjs-tweenjs/lib/tweenjs-0.5.1.combined.js',
                     '<%= bowerDirectory %>/createjs-preloadjs/lib/preloadjs-0.4.1.combined.js',
-                    '<%= bowerDirectory %>/createjs-soundjs/lib/soundjs-0.5.2.combined.js',<% } %>
+                    '<%= bowerDirectory %>/createjs-soundjs/lib/soundjs-0.5.2.combined.js',<% } if (includeBootstrap) { %>
+                    '<%= bowerDirectory %>/bootstrap/dist/js/bootstrap.js'<% } if (includeFoundation) { %>
+                    '<%= bowerDirectory %>/foundation/js/foundation/foundation.js'
+                    '<%= bowerDirectory %>/foundation/js/foundation/foundation.abide.js'
+                    '<%= bowerDirectory %>/foundation/js/foundation/foundation.accordion.js'
+                    '<%= bowerDirectory %>/foundation/js/foundation/foundation.alert.js'
+                    '<%= bowerDirectory %>/foundation/js/foundation/foundation.clearing.js'
+                    '<%= bowerDirectory %>/foundation/js/foundation/foundation.dropdown.js'
+                    '<%= bowerDirectory %>/foundation/js/foundation/foundation.equalizer.js'
+                    '<%= bowerDirectory %>/foundation/js/foundation/foundation.interchange.js'
+                    '<%= bowerDirectory %>/foundation/js/foundation/foundation.joyride.js'
+                    '<%= bowerDirectory %>/foundation/js/foundation/foundation.magellan.js'
+                    '<%= bowerDirectory %>/foundation/js/foundation/foundation.offcanvas.js'
+                    '<%= bowerDirectory %>/foundation/js/foundation/foundation.orbit.js'
+                    '<%= bowerDirectory %>/foundation/js/foundation/foundation.reveal.js'
+                    '<%= bowerDirectory %>/foundation/js/foundation/foundation.slider.js'
+                    '<%= bowerDirectory %>/foundation/js/foundation/foundation.tab.js'
+                    '<%= bowerDirectory %>/foundation/js/foundation/foundation.tooltip.js'
+                    '<%= bowerDirectory %>/foundation/js/foundation/foundation.topbar.js'<% } %>
                     '<%= projectDirectory %>/JavaScript/Main.js',<% if (includeExample) { %>
                     '<%= projectDirectory %>/JavaScript/MainTools.js',<% } if (includeExample && includeCreate) { %>
                     '<%= projectDirectory %>/JavaScript/Canvas.js',<% } %>
                     '<%= projectDirectory %>/JavaScript/<%= _.slugify(websiteName) %>.js'
                 ],
-                dest : '<%= distributeDirectory %>/JS/<%= _.slugify(websiteName) %>.js'
+                dest : '<%= distributeDirectory %>/js/<%= _.slugify(websiteName) %>.js'
             }
         },
 
         copy : {
             dev : {
-                files : [<% if (includeModernizr) { %>
-                    {
+                files : [<% if (includeBootstrap) { %>{
+                        expand: true,
+                        cwd: '<%= bowerDirectory %>/bootstrap/dist/fonts',
+                        src : '*',
+                        dest : '<%= distributeDirectory %>/fonts/'
+                    }<% } if (includeBootstrap && includeModernizr) { %>,<% } if (includeModernizr) { %>{
                         expand: true,
                         cwd: '<%= bowerDirectory %>/modernizr/',
                         src : 'modernizr.js',
-                        dest : '<%= distributeDirectory %>/JS/'
-                    }<% } if (includeFontAwesome && includeModernizr) { %>,<% } if (includeFontAwesome) { %>{
+                        dest : '<%= distributeDirectory %>/js/'
+                    }<% } if ((includeBootstrap || includeModernizr) && includeFontAwesome) { %>,<% } if (includeFontAwesome) { %>{
                         expand: true,
                         cwd: '<%= bowerDirectory %>/font-awesome/fonts/',
                         src : '*',
@@ -149,43 +171,47 @@ module.exports = function(grunt) {
                 ]
             },
             dist : {
-                files : [<% if (includePolyfill) { %>{
+                files : [<% if (includeBootstrap) { %>{
+                        expand: true,
+                        cwd: '<%= bowerDirectory %>/bootstrap/dist/fonts',
+                        src : '*',
+                        dest : '<%= distributeDirectory %>/fonts/'
+                    }<% } if (includeBootstrap && includePolyfill) { %>,<% } if (includePolyfill) {%>{
                         expand: true,
                         cwd: '<%= bowerDirectory %>/selectivizr/',
                         src : 'selectivizr.js',
-                        dest : '<%= distributeDirectory %>/JS/'
+                        dest : '<%= distributeDirectory %>/js/'
                     },{
                         expand: true,
                         cwd: '<%= bowerDirectory %>/css3pie/',
                         src : 'PIE.js',
-                        dest : '<%= distributeDirectory %>/JS/'
+                        dest : '<%= distributeDirectory %>/js/'
                     },{
                         expand: true,
                         cwd: '<%= bowerDirectory %>/css3pie/',
                         src : 'PIE.htc',
-                        dest : '<%= distributeDirectory %>/JS/'
+                        dest : '<%= distributeDirectory %>/js/'
                     },{
                         expand: true,
                         cwd: '<%= bowerDirectory %>/background-size-polyfill/',
                         src : 'backgroundsize.min.htc',
-                        dest : '<%= distributeDirectory %>/JS/'
+                        dest : '<%= distributeDirectory %>/js/'
                     },{
                         expand: true,
                         cwd: '<%= bowerDirectory %>/box-sizing-polyfill/',
                         src : 'boxsizing.htc',
-                        dest : '<%= distributeDirectory %>/JS/'
-                    },<% } if (includeModernizr) { %>{
+                        dest : '<%= distributeDirectory %>/js/'
+                    }<% } if ((includeBootstrap || includePolyfill) && includeModernizr) { %>,<% } if (includeModernizr) {%>{
                         expand: true,
                         cwd: '<%= bowerDirectory %>/modernizr/',
                         src : 'modernizr.js',
-                        dest : '<%= distributeDirectory %>/JS/'
-                    }<% } if (includeFontAwesome && includeModernizr) { %>,<% } if (includeFontAwesome) { %>{
+                        dest : '<%= distributeDirectory %>/js/'
+                    }<% } if ((includeBootstrap || includePolyfill || includeModernizr) && includeFontAwesome) { %>,<% } if (includeFontAwesome) { %>{
                         expand: true,
                         cwd: '<%= bowerDirectory %>/font-awesome/fonts/',
                         src : '*',
-                        dest : '<%= distributeDirectory %>/Fonts/'
+                        dest : '<%= distributeDirectory %>/fonts/'
                     }<% } %>
-
                 ]
             }
         },
@@ -252,7 +278,7 @@ module.exports = function(grunt) {
             },
             main: {
                 files: {
-                    '<%= distributeDirectory %>/CSS/<%= _.slugify(websiteName) %>.css': '<%= projectDirectory %>/Less/PageStyle.less'
+                    '<%= distributeDirectory %>/css/<%= _.slugify(websiteName) %>.css': '<%= projectDirectory %>/Less/PageStyle.less'
                 }
             }
         },<% } %>
@@ -315,9 +341,9 @@ module.exports = function(grunt) {
             },
             main: {
                 src: [
-                    '<%= distributeDirectory %>/CSS/<%= _.slugify(websiteName) %>.css'
+                    '<%= distributeDirectory %>/css/<%= _.slugify(websiteName) %>.css'
                 ],
-                dest: '<%= distributeDirectory %>/CSS/<%= _.slugify(websiteName) %>.min.css'
+                dest: '<%= distributeDirectory %>/css/<%= _.slugify(websiteName) %>.min.css'
             }
         },
 
@@ -383,7 +409,7 @@ module.exports = function(grunt) {
             },
             main : {
                 files: {
-                    '<%= distributeDirectory %>/CSS/<%= _.slugify(websiteName) %>.css': '<%= projectDirectory %>/Sass/PageStyle.scss'
+                    '<%= distributeDirectory %>/css/<%= _.slugify(websiteName) %>.css': '<%= projectDirectory %>/Sass/PageStyle.scss'
                 }
             }
         },<% } %>
@@ -395,11 +421,11 @@ module.exports = function(grunt) {
             },<% if (includeModernizr) { %>
             Modernizr : {
                 src : '<%= bowerDirectory %>/modernizr/modernizr.js',
-                dest : '<%= distributeDirectory %>/JS/modernizr.min.js'
+                dest : '<%= distributeDirectory %>/js/modernizr.min.js'
             },<% } %>
             main : {
-                src : '<%= distributeDirectory %>/JS/<%= _.slugify(websiteName) %>.js',
-                dest : '<%= distributeDirectory %>/JS/<%= _.slugify(websiteName) %>.min.js'
+                src : '<%= distributeDirectory %>/js/<%= _.slugify(websiteName) %>.js',
+                dest : '<%= distributeDirectory %>/js/<%= _.slugify(websiteName) %>.min.js'
             }
         },
 
@@ -454,9 +480,9 @@ module.exports = function(grunt) {
                 },
                 files: [
                     '<%= distributeDirectory %>/{,*/}*.html',
-                    '<%= distributeDirectory %>/CSS/{,*/}*.css',
-                    '<%= distributeDirectory %>/JS/{,*/}*.js',
-                    '<%= distributeDirectory %>/Images/{,*/}*'
+                    '<%= distributeDirectory %>/css/{,*/}*.css',
+                    '<%= distributeDirectory %>/js/{,*/}*.js',
+                    '<%= distributeDirectory %>/images/{,*/}*'
                 ]
             }
         }

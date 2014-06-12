@@ -18,22 +18,20 @@
 
 /**
  *   Import Styles from Plug-Ins
- */
-@import (inline) '../../bower_components/normalize-css/normalize.css';
-<% if (includeFontAwesome) { %>
-@import (inline) '../../bower_components/font-awesome/css/font-awesome.css';
-<% } if (includeJqueryUi) { %>
-@import (inline) '../../bower_components/jQueryui/themes/base/jquery-ui.css';
-<% } if (includeButtons) { %>
-@import (inline) '../../bower_components/Buttons/css/buttons.css';
-<% } %>
+ */<% } if (includeBootstrap) { %>
+@import (inline) '/bower_components/bootstrap/css/bootstrap.css';
+@import (inline) '/bower_components/bootstrap/css/bootstrap-theme.css';<% } else { %>
+@import (inline) '/bower_components/normalize-css/normalize.css';<% } if (includeFontAwesome) { %>
+@import (inline) '/bower_components/font-awesome/css/font-awesome.css';<% } if (includeJqueryUi) { %>
+@import (inline) '/bower_components/jQueryui/themes/base/jquery-ui.css';<% } if (includeButtons) { %>
+@import (inline) '/bower_components/Buttons/css/buttons.css';<% } %>
 
 
 /**
  *   Load Less Tookit Mixins
  */
-@import '../../bower_components/CSSLessCollection/CSSLessCollectionDefinitions';
-@import '../../bower_components/CSSLessCollection/CSSLessCollectionMixins';
+@import '/bower_components/CSSLessCollection/CSSLessCollectionDefinitions';
+@import '/bower_components/CSSLessCollection/CSSLessCollectionMixins';
 
 /**
  *    Load Page Style files

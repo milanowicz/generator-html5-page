@@ -91,6 +91,19 @@ Html5PageGenerator.prototype.askFor = function askFor () {
             checked: false
         }]
     },{
+        type: 'checkbox',
+        name: 'cssFramework',
+        message: 'Which CSS extension language should be GruntJS supported?',
+        choices: [{
+            name: 'Bootstrap - http://getbootstrap.com/',
+            value: 'bootstrap',
+            checked: false
+        },{
+            name: 'Foundation - http://foundation.zurb.com/',
+            value: 'foundation',
+            checked: false
+        }]
+    },{
         type: 'list',
         name: 'jQueryVerion',
         message: 'Which jQuery Version should it be? - http://jquery.com/',
@@ -167,6 +180,7 @@ Html5PageGenerator.prototype.askFor = function askFor () {
 
         var features    = answers.features;
         var cssLang     = answers.cssLang;
+        var cssFramwork = answers.cssFramework;
         var today       = new Date();
 
         function hasFeature (feat) {
@@ -174,6 +188,9 @@ Html5PageGenerator.prototype.askFor = function askFor () {
         }
         function hasLang (lang) {
             return cssLang.indexOf(lang) !== -1;
+        }
+        function hasFramework (framework) {
+            return cssFramwork.indexOf(framework) !== -1;
         }
 
         this.websiteName            = answers.websiteName;
@@ -190,11 +207,13 @@ Html5PageGenerator.prototype.askFor = function askFor () {
         this.jQueryVerion           = answers.jQueryVerion;
         this.GruntTask              = answers.GruntTask;
 
+        this.includeBootstrap       = hasFramework('bootstrap')
         this.includeButtons         = hasFeature('includeButtons');
         this.includeBrowserDetection= hasFeature('includeBrowserDetection');
         this.includeCreate          = hasFeature('includeCreate');
         this.includeExample         = hasFeature('includeExample');
         this.includeFontAwesome     = hasFeature('includeFontAwesome');
+        this.includeFoundation      = hasFramework('foundation')
         this.includeFitText         = hasFeature('includeFitText');
         this.includeJqueryUi        = hasFeature('includeJqueryUi');
         this.includeJqueryPlugins   = hasFeature('includeJqueryPlugins');
@@ -219,11 +238,11 @@ Html5PageGenerator.prototype.askFor = function askFor () {
 Html5PageGenerator.prototype.app = function app () {
 
     this.mkdir(this.distributeDirectory);
-    this.mkdir(this.distributeDirectory + '/CSS');
-    this.mkdir(this.distributeDirectory + '/Fonts');
-    this.mkdir(this.distributeDirectory + '/Images');
-    this.mkdir(this.distributeDirectory + '/Images/Favicon');
-    this.mkdir(this.distributeDirectory + '/JS');
+    this.mkdir(this.distributeDirectory + '/css');
+    this.mkdir(this.distributeDirectory + '/fonts');
+    this.mkdir(this.distributeDirectory + '/images');
+    this.mkdir(this.distributeDirectory + '/images/favicon');
+    this.mkdir(this.distributeDirectory + '/js');
 
 
     this.template('_package.json',      'package.json');
@@ -243,9 +262,9 @@ Html5PageGenerator.prototype.app = function app () {
 
 
     if (this.includeExample) {
-        this.directory('Images',        this.distributeDirectory + '/Images/Logo');
+        this.directory('Images',        this.distributeDirectory + '/images/Logo');
     }
-    this.directory('Favicon',           this.distributeDirectory + '/Images/Favicon');
+    this.directory('Favicon',           this.distributeDirectory + '/images/favicon');
 
 
     this.mkdir(this.projectDirectory);

@@ -12,19 +12,17 @@
         <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
 		<meta http-equiv="X-UA-Compatible" content="IE=100,chrome=1">
 
-        <link type="text/css" rel="stylesheet" href="CSS/<%= _.slugify(websiteName) %>.min.css" media="all">
+        <link type="text/css" rel="stylesheet" href="css/<%= _.slugify(websiteName) %>.min.css" media="all"><% if (includeModernizr) { %>
+        <script type="text/javascript" src="js/modernizr.min.js"></script><% } %>
 
-        <% if (includeModernizr) { %>
-        <script type="text/javascript" src="JS/modernizr.min.js"></script><% } %>
+        <link rel="apple-touch-icon-precomposed" sizes="144x144" href="images/favicon/apple-touch-icon-144x144-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="images/favicon/apple-touch-icon-114x114-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="images/favicon/apple-touch-icon-72x72-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" href="images/favicon/apple-touch-icon-57x57-precomposed.png">
+        <link rel="shortcut icon" sizes="196x196" href="images/favicon/touch-icon-196x196.png">
+        <link rel="shortcut icon" href="images/favicon/apple-touch-icon.png">
 
-        <link rel="apple-touch-icon-precomposed" sizes="144x144" href="Images/Favicon/apple-touch-icon-144x144-precomposed.png">
-        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="Images/Favicon/apple-touch-icon-114x114-precomposed.png">
-        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="Images/Favicon/apple-touch-icon-72x72-precomposed.png">
-        <link rel="apple-touch-icon-precomposed" href="Images/Favicon/apple-touch-icon-57x57-precomposed.png">
-        <link rel="shortcut icon" sizes="196x196" href="Images/Favicon/touch-icon-196x196.png">
-        <link rel="shortcut icon" href="Images/Favicon/apple-touch-icon.png">
-
-        <meta name="msapplication-TileImage" content="Images/Favicon/apple-touch-icon-144x144-precomposed.png">
+        <meta name="msapplication-TileImage" content="images/favicon/apple-touch-icon-144x144-precomposed.png">
         <meta name="msapplication-TileColor" content="#222222">
 
         <% if (includePolyfill) { %>
@@ -44,7 +42,7 @@
 
             <% if (includeExample) { %>
             <figure>
-                <img class="Html" src="Images/Logo/HTML5/HTML5_Logo.svg" title="HTML5 Logo">
+                <img class="Html" src="images/Logo/HTML5/HTML5_Logo.svg" title="HTML5 Logo">
                 <figcaption>
                     <h1>Skeleton Website</h1>
                 </figcaption>
@@ -57,7 +55,7 @@
                     <h2>Welcome to your new project <%= websiteName %> !</h2>
                     <h3>served by Yeoman</h3>
                 </figcaption>
-                <img src="Images/Logo/yeoman-masthead.png" title="Yeoman">
+                <img src="images/Logo/yeoman-masthead.png" title="Yeoman">
             </figure>
 
             <% } else { %>
@@ -76,7 +74,7 @@
                 <section>
                     <article class="Usage">
                         <figure>
-                            <img src="Images/Logo/Bower.png" title="Bower Logo">
+                            <img src="images/Logo/Bower.png" title="Bower Logo">
                         </figure>
                         <h4>
                             Bower Installation
@@ -104,7 +102,7 @@
                 <section>
                     <article class="Usage">
                         <figure>
-                            <img src="Images/Logo/Grunt_Logo.png" title="GruntJS">
+                            <img src="images/Logo/Grunt_Logo.png" title="GruntJS">
                         </figure>
     
                         <h4>
@@ -157,7 +155,7 @@
 
                     <article class="Usage">
                         <figure>
-                            <img src="Images/Logo/Git-Logo-2Color.png" title="Git">
+                            <img src="images/Logo/Git-Logo-2Color.png" title="Git">
                         </figure>
 
                         <h4>
@@ -209,7 +207,7 @@
 
                     <article class="Info">
                         <figure>
-                            <img src="Images/Logo/HTML5/css3.svg" title="CSS3">
+                            <img src="images/Logo/HTML5/css3.svg" title="CSS3">
                         </figure>
 
                         <ul class="List">
@@ -221,7 +219,7 @@
                         </ul>
 
                         <figure>
-                            <img src="Images/Logo/Less_Logo.png" title="Less">
+                            <img src="images/Logo/Less_Logo.png" title="Less">
                             <figcaption>
                                 <h5>
                                     The dynamic stylesheet language.
@@ -244,7 +242,7 @@
 
                         <% if (includePolyfill) { %>
                         <figure>
-                            <img src="Images/Logo/pie.png" title="CSS3 PIE - progressive internet explorer">
+                            <img src="images/Logo/pie.png" title="CSS3 PIE - progressive internet explorer">
                             <figcaption>
                                 <h5>
                                     progressive internet explorer - CSS3 PIE
@@ -331,7 +329,7 @@
                     <article class="Info">
 
                         <figure>
-                            <img src="Images/Logo/Grunt_Logo.png" title="GruntJS">
+                            <img src="images/Logo/Grunt_Logo.png" title="GruntJS">
                             <figcaption>
                                 <p>
                                     <a href="http://gruntjs.com/plugins" target="_blank" title="GruntJS Plug-Ins">GruntJS Plug-Ins</a>
@@ -365,7 +363,7 @@
                 <section>
                     <article>
                         <figure>
-                            <img src="Images/Logo/w3c.svg" title="W3C">
+                            <img src="images/Logo/w3c.svg" title="W3C">
                             <figcaption>
                                 <ul class="List">
                                     <li><a href="http://www.w3.org/" target="_blank" title="">W3C</a>
@@ -390,7 +388,7 @@
                 <section>
                     <article>
                         <figure>
-                            <img src="Images/Logo/HTML5/HTML5_Logo.png" title="HTML5">
+                            <img src="images/Logo/HTML5/HTML5_Logo.png" title="HTML5">
                         </figure>
 
                         <ul class="List">
@@ -426,7 +424,7 @@
                 <section>
                     <article class="Description">
                         <figure>
-                            <img src="Images/Logo/Modernizr/Modernizr-2-Logo-vertical-big.png" title="Modernizr">
+                            <img src="images/Logo/Modernizr/Modernizr-2-Logo-vertical-big.png" title="Modernizr">
                             <figcaption>
                                 <h5>Modernizr is a JavaScript library that detects HTML5 and CSS3 features in the user’s browser.</h5>
                                 <p>
@@ -443,7 +441,7 @@
                 <section>
                     <article class="Description">
                         <figure>
-                            <img src="Images/Logo/Grunt_Logo.png" title="GruntJS">
+                            <img src="images/Logo/Grunt_Logo.png" title="GruntJS">
                             <figcaption>
                                 <h5>The JavaScript Task Runner</h5>
                                 <h6>Why use a task runner?</h6>
@@ -466,7 +464,7 @@
                 <section>
                     <article class="Description">
                         <figure>
-                            <img src="Images/Logo/Git-Logo-2Color.png" title="Git">
+                            <img src="images/Logo/Git-Logo-2Color.png" title="Git">
                             <figcaption>
                                 <p>
                                     Git is a free and open source distributed version control system designed to handle everything from small to very large projects with speed and efficiency.
@@ -504,7 +502,7 @@
                 <section>
                     <article class="Description">
                         <figure>
-                            <img src="Images/Logo/Node.js_Logo.png" title="NodeJS">
+                            <img src="images/Logo/Node.js_Logo.png" title="NodeJS">
                             <figcaption>
                                 <h5>NodeJS</h5>
                                 <p>
@@ -521,7 +519,7 @@
                 <section>
                     <article class="Description">
                         <figure>
-                            <img src="Images/Logo/CreateJS/easeljs.png" title="EaselJS">
+                            <img src="images/Logo/CreateJS/easeljs.png" title="EaselJS">
                             <figcaption>
                                 <h5>A Javascript library that makes working with the HTML5 Canvas element easy.</h5>
                                 <p>
@@ -538,7 +536,7 @@
                 <section>
                     <article class="Description">
                         <figure>
-                            <img src="Images/Logo/CreateJS/tweenjs.png" title="TweenJS">
+                            <img src="images/Logo/CreateJS/tweenjs.png" title="TweenJS">
                             <figcaption>
                                 <h5>A Javascript library for tweening and animating HTML5 and Javascript properties.</h5>
                                 <p>
@@ -555,7 +553,7 @@
                 <section>
                     <article class="Description">
                         <figure>
-                            <img src="Images/Logo/CreateJS/preloadjs.png" title="PreloadJS">
+                            <img src="images/Logo/CreateJS/preloadjs.png" title="PreloadJS">
                             <figcaption>
                                 <h5>A Javascript library that lets you manage and co-ordinate the loading of assets.</h5>
                                 <p>
@@ -572,7 +570,7 @@
                 <section>
                     <article class="Description">
                         <figure>
-                            <img src="Images/Logo/CreateJS/soundjs.png" title="SoundJS">
+                            <img src="images/Logo/CreateJS/soundjs.png" title="SoundJS">
                             <figcaption>
                                 <h5>A Javascript library that provides a simple API, and powerful features to make working with audio a breeze.</h5>
                                 <p>
@@ -589,7 +587,7 @@
                 <section>
                     <article class="Description">
                         <figure>
-                            <img src="Images/Logo/GitHub-Mark-120px-plus.png" title="GitHub">
+                            <img src="images/Logo/GitHub-Mark-120px-plus.png" title="GitHub">
                             <figcaption>
                                 <h5>Build software better, together.</h5>
                                 <p>
@@ -606,7 +604,7 @@
                 <section>
                     <article class="Description">
                         <figure>
-                            <img src="Images/Logo/HTML5/HTML5_Badge.svg" title="HTML5 Logo">
+                            <img src="images/Logo/HTML5/HTML5_Badge.svg" title="HTML5 Logo">
                             <figcaption>
                                 <h5>HTML5 Logo</h5>
                                 <p>
@@ -623,7 +621,7 @@
                 <section>
                     <article class="Description">
                         <figure>
-                            <img src="Images/Logo/HTML5/html5_css3_styling.svg" title="Class: CSS3">
+                            <img src="images/Logo/HTML5/html5_css3_styling.svg" title="Class: CSS3">
                             <figcaption>
                                 <h5>Class: CSS3</h5>
                                 <p>
@@ -637,7 +635,7 @@
                 <section>
                     <article class="Description">
                         <figure>
-                            <img src="Images/Logo/HTML5/html5_multimedia.svg" title="Class: Multimedia">
+                            <img src="images/Logo/HTML5/html5_multimedia.svg" title="Class: Multimedia">
                             <figcaption>
                                 <h5>Class: Multimedia</h5>
                                 <p>
@@ -651,7 +649,7 @@
                 <section>
                     <article class="Description">
                         <figure>
-                            <img src="Images/Logo/HTML5/html5_3d_effects.svg" title="Class: 3D, Graphics and Effects">
+                            <img src="images/Logo/HTML5/html5_3d_effects.svg" title="Class: 3D, Graphics and Effects">
                             <figcaption>
                                 <h5>Class: 3D, Graphics and Effects</h5>
                                 <p>
@@ -665,7 +663,7 @@
                 <section>
                     <article class="Description">
                         <figure>
-                            <img src="Images/Logo/HTML5/html5_connectivity.svg" title="Class: Connectivity">
+                            <img src="images/Logo/HTML5/html5_connectivity.svg" title="Class: Connectivity">
                             <figcaption>
                                 <h5>Class: Connectivity</h5>
                                 <p>
@@ -679,7 +677,7 @@
                 <section>
                     <article class="Description">
                         <figure>
-                            <img src="Images/Logo/HTML5/html5_device_access.svg" title="Class: Device Access">
+                            <img src="images/Logo/HTML5/html5_device_access.svg" title="Class: Device Access">
                             <figcaption>
                                 <h5>Class: Device Access</h5>
                                 <p>
@@ -693,7 +691,7 @@
                 <section>
                     <article class="Description">
                         <figure>
-                            <img src="Images/Logo/HTML5/html5_offline_storage.svg" title="Class: Offline and Storage">
+                            <img src="images/Logo/HTML5/html5_offline_storage.svg" title="Class: Offline and Storage">
                             <figcaption>
                                 <h5>Class: Offline and Storage</h5>
                                 <p>
@@ -707,7 +705,7 @@
                 <section>
                     <article class="Description">
                         <figure>
-                            <img src="Images/Logo/HTML5/html5_perfintegration.svg" title="Class: Performance and Integration">
+                            <img src="images/Logo/HTML5/html5_perfintegration.svg" title="Class: Performance and Integration">
                             <figcaption>
                                 <h5>Class: Performance and Integration</h5>
                                 <p>
@@ -721,7 +719,7 @@
                 <section>
                     <article class="Description">
                         <figure>
-                            <img src="Images/Logo/HTML5/html5_semantics.svg" title="Class: Semantics">
+                            <img src="images/Logo/HTML5/html5_semantics.svg" title="Class: Semantics">
                             <figcaption>
                                 <h5>Class: Semantics</h5>
                                 <p>
@@ -734,7 +732,7 @@
 
                 <section>
                     <article>
-                        <img src="Images/Logo/HTML5/HTML5_sticker.svg" title="HTML5 Sticker">
+                        <img src="images/Logo/HTML5/HTML5_sticker.svg" title="HTML5 Sticker">
                     </article>
                 </section>
 
@@ -779,7 +777,7 @@
 			</p>
 		</footer>
 		
-		<script type="text/javascript" src="JS/<%= _.slugify(websiteName) %>.min.js"></script>
+		<script type="text/javascript" src="js/<%= _.slugify(websiteName) %>.min.js"></script>
 
     </body>
 </html>

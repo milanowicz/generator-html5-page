@@ -1,7 +1,9 @@
 {
   "name": "<%= _.slugify(websiteName) %>",
   "version": "0.0.0",
-  "dependencies": {<% if (includeCreate) { %>
+  "dependencies": {<% if (includeBootstrap) { %>
+    "bootstrap": "*",<% } if (includeFoundation) { %>
+    "zurb/bower-foundation": "*",<% } if (includeCreate) { %>
     "createjs-preloadjs": "*",
     "createjs-tweenjs": "*",
     "createjs-soundjs": "*",
