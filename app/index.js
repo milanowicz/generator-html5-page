@@ -93,7 +93,7 @@ Html5PageGenerator.prototype.askFor = function askFor () {
     },{
         type: 'checkbox',
         name: 'cssFramework',
-        message: 'Which CSS extension language should be GruntJS supported?',
+        message: 'Would you like to develop with a CSS Framework?',
         choices: [{
             name: 'Bootstrap - http://getbootstrap.com/',
             value: 'bootstrap',
@@ -129,6 +129,14 @@ Html5PageGenerator.prototype.askFor = function askFor () {
         },{
             name: 'CreateJS Framework - http://www.createjs.com/',
             value: 'includeCreate',
+            checked: false
+        },{
+            name: 'CSSLessCollection - https://github.com/Milanowicz/CSSLessCollection',
+            value: 'includeLessCollection',
+            checked: true
+        },{
+            name: 'CSSSassCollection - https://github.com/Milanowicz/CSSSassCollection',
+            value: 'includeSassCollection',
             checked: false
         },{
             name: 'Font Awesome - http://fortawesome.github.io/Font-Awesome/',
@@ -219,7 +227,9 @@ Html5PageGenerator.prototype.askFor = function askFor () {
         this.includeJqueryPlugins   = hasFeature('includeJqueryPlugins');
         this.includeMasonry         = hasFeature('includeMasonry');
         this.includeModernizr       = hasFeature('includeModernizr');
+        this.includeLessCollection  = hasFeature('includeLessCollection');
         this.includePolyfill        = hasFeature('includePolyfill');
+        this.includeSassCollection  = hasFeature('includeSassCollection');
 
         this.supportLess            = hasLang('less');
         this.supportSass            = hasLang('sass');

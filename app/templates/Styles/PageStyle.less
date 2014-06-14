@@ -1,13 +1,13 @@
-/**
- *    Website Style Definitions
- */
+//###########################################
+//##       Website Style Definitions       ##
+//###########################################
 
-/* Content Definitions */
+// Content Definitions
 @MainContentWidth: 1024px;
 @ResponsoveWidthBegin: 1040px;
 
 
-/* Font Types */
+// Font Types
 @FontHead: Arial, Verdana;
 @FontText: Arial, Verdana;
 @FontConsole: Courier New, Courier;
@@ -16,10 +16,8 @@
 @FontLineHeightNormalText: 22;
 
 
-/**
- *   Import Styles from Plug-Ins
- */<% } if (includeBootstrap) { %>
-@import (inline) '/bower_components/bootstrap/css/bootstrap.css';
+// Import Styles from Plug-Ins
+<% if (includeBootstrap) { %>@import (inline) '/bower_components/bootstrap/css/bootstrap.css';
 @import (inline) '/bower_components/bootstrap/css/bootstrap-theme.css';<% } else { %>
 @import (inline) '/bower_components/normalize-css/normalize.css';<% } if (includeFontAwesome) { %>
 @import (inline) '/bower_components/font-awesome/css/font-awesome.css';<% } if (includeJqueryUi) { %>
@@ -27,13 +25,10 @@
 @import (inline) '/bower_components/Buttons/css/buttons.css';<% } %>
 
 
-/**
- *   Load Less Tookit Mixins
- */
+<% if (includeLessCollection) { %>//   Load Less Tookit Mixins
 @import '/bower_components/CSSLessCollection/CSSLessCollectionDefinitions';
-@import '/bower_components/CSSLessCollection/CSSLessCollectionMixins';
+@import '/bower_components/CSSLessCollection/CSSLessCollectionMixins';<% } %>
 
-/**
- *    Load Page Style files
- */
+
+//    Load Page Style files
 @import 'MainStyle';

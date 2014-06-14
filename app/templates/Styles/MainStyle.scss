@@ -1,8 +1,8 @@
-/**#######################################################################
- *                     Elementary HTML Website Styles
- * #######################################################################
- */
+//#######################################################################
+//##                   Elementary HTML Website Styles                  ##
+//#######################################################################
 
+<% if (includeSassCollection) {%>
 * {
   @include MarginPadding;
   @include BoxSizing;
@@ -104,7 +104,7 @@ ul {
       @include MarginPadding(10px 0 0 15px);
     }
   }
-}
+}<% } %>
 
 
 /**
@@ -200,27 +200,26 @@ div {
  */
 
 header.Page {
-  display: inline-block;
-  @include BoxSize(100%, auto);
+  display: inline-block;<% if (includeSassCollection) { %>
+  @include BoxSize(100%, auto);<% } %>
 }
 
 
 main {
-  display: inline-block;
-  @include BoxSize(100%, auto);
+  display: inline-block;<% if (includeSassCollection) { %>
+  @include BoxSize(100%, auto);<% } %>
 }
 
 
 footer.Page {
-  display: inline-block;
-  @include BoxSize(100%, auto);
+  display: inline-block;<% if (includeSassCollection) { %>
+  @include BoxSize(100%, auto);<% } %>
 }
 
 
-/**#######################################################################
- *                      Media Queries for Responsive
- * #######################################################################
- */
+//#######################################################################
+//                      Media Queries for Responsive
+//#######################################################################
 
 
 // OVER Main Content Width

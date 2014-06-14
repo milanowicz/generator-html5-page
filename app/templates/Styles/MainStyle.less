@@ -1,11 +1,11 @@
 // Load Website Style Definitions
 @import 'PageStyle';
 
-/**#######################################################################
- *                     Elementary HTML Website Styles
- * #######################################################################
- */
+//#######################################################################
+//##                   Elementary HTML Website Styles                  ##
+//#######################################################################
 
+<% if (includeLessCollection) {%>
 * {
   .MarginPadding;
   .BoxSizing;
@@ -108,8 +108,7 @@ ul {
       .MarginPadding(10px 0 0 15px);
     }
   }
-}
-
+}<% } %>
 
 /**
  * HTML Helper
@@ -198,14 +197,13 @@ div {
 }
 
 
-/**#######################################################################
- *                          Main Website Layout 
- * #######################################################################
- */
+//#######################################################################
+//                          Main Website Layout
+//#######################################################################
 
 header.Page {
-  display: inline-block;
-  .BoxSize(100%, auto);<% if (includeExample) { %>
+  display: inline-block;<% if (includeLessCollection) { %>
+  .BoxSize(100%, auto);<% } if (includeExample && includeLessCollection) { %>
   .MarginPadding(0 auto);
   .BackgroundOpacity(@ColorBlack, 0.2);
   text-align: center;
@@ -234,8 +232,8 @@ header.Page {
 
 
 main {
-  display: inline-block;
-  .BoxSize(100%, auto);<% if (includeExample) { %>
+  display: inline-block;<% if (includeLessCollection) { %>
+  .BoxSize(100%, auto);<% } if (includeExample && includeLessCollection) { %>
   .MarginPadding(0, 0 0 50px 0);
   .BackgroundOpacity(#ccc, 0.5);
 
@@ -357,8 +355,8 @@ main {
 
 
 footer.Page {
-  display: inline-block;
-  .BoxSize(100%, auto);<% if (includeExample) { %>
+  display: inline-block;<% if (includeLessCollection) { %>
+  .BoxSize(100%, auto);<% } if (includeExample && includeLessCollection) { %>
   .MarginPadding(0, 10px 0 5px 0);
   .BackgroundOpacity(@ColorBlack, 0.35);
 
@@ -371,12 +369,11 @@ footer.Page {
 }
 
 
-/**#######################################################################
- *                      Media Queries for Responsive
- * #######################################################################
- */
+//#######################################################################
+//                      Media Queries for Responsive
+//#######################################################################
 
-<% if (includeExample) { %>
+<% if (includeExample && includeLessCollection) { %>
 @media all and (max-width: 450px) {
   main {
     .Wrapper {

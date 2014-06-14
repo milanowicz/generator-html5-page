@@ -9,12 +9,18 @@
 * [Compass](http://compass-style.org/) support (Optional)
 * [jQuery](http://jquery.com/) Version 1 or 2
 
+## CSS Framework
+
+* [Bootstrap](http://getbootstrap.com/) (Optional)
+* [Foundation](http://foundation.zurb.com/) (Optional)
 
 ## Frontend Software
 
 * [Buttons](http://alexwolfe.github.io/Buttons/)
 * [BrowserDetection.js](https://github.com/Milanowicz/BrowserDetection.js)
 * [CreateJS Framework](http://www.createjs.com/)
+* [CSSLessCollection](https://github.com/Milanowicz/CSSLessCollection)
+* [CSSSassCollection](https://github.com/Milanowicz/CSSSassCollection)
 * [Font Awesome](http://fortawesome.github.io/Font-Awesome/)
 * [FitText.js](https://github.com/Milanowicz/FitText.js)
 * [jQuery UserInterface Framework](http://jqueryui.com/)
