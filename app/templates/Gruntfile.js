@@ -20,9 +20,39 @@ module.exports = function(grunt) {
         setting : setting,
 
         banner: '/*!\n' +
-            ' * <%%= pkg.name %> - <%%= grunt.template.today("yyyy") %> \n' +
-            ' * Version <%%= pkg.version %>\n' +
-            ' */\n',
+                ' * <%%= pkg.name %> - <%%= grunt.template.today("yyyy") %> \n' +
+                ' * Version <%%= pkg.version %>\n' +
+                ' */\n',<% if (supportAssemble) { %>
+
+        assemble: {
+            options: {
+                prettify: {
+                    indent: 2
+                },
+                marked: {
+                    sanitize: false
+                },
+                production: true,
+                data: '<%= projectDirectory %>/Page/**/*.{json,yml}',
+                layoutdir: '<%= projectDirectory %>/Page/Layouts',
+                partials: [
+                    '<%= projectDirectory %>/Page/Partials/**/*.hbs'
+                ]
+            },
+            site: {
+                options: {
+                    layout: 'Default.hbs'
+                },
+                files: [{
+                    expand: true,
+                    cwd: '<%= projectDirectory %>/Page/Sites',
+                    src: [
+                        '*.hbs'
+                    ],
+                    dest: '<%= distributeDirectory %>/'
+                }]
+            }
+        },<% } %>
 
         clean: {
             js: [
@@ -34,8 +64,11 @@ module.exports = function(grunt) {
             ],
             docu: [
                 '<%= projectDirectory %>/Documentation/**/*'
-            ]
-        },
+            ]<% if (supportAssemble) { %>,
+            site: [
+                '<%= distributeDirectory %>/**/*.{html,md}'
+            ]<% } %>
+        },<% if (supportCompress) { %>
 
         compress: {
             website: {
@@ -99,7 +132,7 @@ module.exports = function(grunt) {
                     }
                 ]
             }
-        },
+        },<% } %>
 
         concat : {
             options: {
@@ -240,7 +273,22 @@ module.exports = function(grunt) {
                     packageJson: null
                 }
             }
-        },
+        },<% if (supportHtmlmin) { %>
+
+        htmlmin: {
+            build: {
+                options: {
+                    removeComments: true,
+                    collapseWhitespace: true
+                },
+                expand: true,
+                cwd: '<%= distributeDirectory %>',
+                src: [
+                    '**/*.html'
+                ],
+                dest: '<%= distributeDirectory %>/'
+            }
+        },<% } %>
 
         jsdoc : {
             dist : {
@@ -262,9 +310,8 @@ module.exports = function(grunt) {
                 src: 'Gruntfile.js'
             },
             src: {
-                src: [<% if (includeExample) { %>
-                    'Website/JavaScript/Main.js',
-                    'Website/JavaScript/MainTools.js'<% } %>
+                src: [
+                    '<%= projectDirectory %>/JavaScript/**/*.js'
                 ]
             }
         },<% if (supportLess) { %>
@@ -317,7 +364,13 @@ module.exports = function(grunt) {
                     title: '<%%= pkg.name %>',
                     message: 'Grunt has create development environment'
                 }
-            },
+            },<% if (supportAssemble) { %>
+            hbs: {
+                options: {
+                    title: '<%%= pkg.name %>',
+                    message: 'Handlebars ready'
+                }
+            },<% } %>
             all: {
                 options: {
                     title: '<%%= pkg.name %>',
@@ -350,7 +403,7 @@ module.exports = function(grunt) {
         replace: {
             dev: {
                 src: [
-                    '<%= distributeDirectory %>/index.html'
+                    '<%= distributeDirectory %>/**/*.html'
                 ],
                 overwrite: true,
                 replacements: [
@@ -369,7 +422,7 @@ module.exports = function(grunt) {
             },
             build: {
                 src: [
-                    '<%= distributeDirectory %>/index.html'
+                    '<%= distributeDirectory %>/**/*.html'
                 ],
                 overwrite: true,
                 replacements: [
@@ -473,7 +526,20 @@ module.exports = function(grunt) {
                     'sass',<% } %>
                     'notify:css'
                 ]
-            },
+            },<% if (supportAssemble) { %>
+            hbs: {
+                files: [
+                    '<%= projectDirectory %>/Page/**/*.hbs',
+                    '<%= projectDirectory %>/Page/**/*.json',
+                    '<%= projectDirectory %>/Page/**/*.yml'
+                ],
+                tasks: [
+                    'clean:site',
+                    'assemble',
+                    'replace:dev',
+                    'notify:hbs'
+                ]
+            },<% } %>
             livereload: {
                 options: {
                     livereload: '<%%= connect.options.livereload %>'
@@ -503,8 +569,7 @@ module.exports = function(grunt) {
     ]);
     grunt.registerTask('distribute-files', [
         'distribute-css',
-        'distribute-js'/*,
-        'compress:scripts'*/
+        'distribute-js'
     ]);
 
     grunt.registerTask('test', ['jshint']);
@@ -524,7 +589,9 @@ module.exports = function(grunt) {
         'sass_imports',
         'sass',<% } %>
         'clean:js',
-        'concat',
+        'concat',<% if (supportAssemble) { %>
+        'clean:site',
+        'assemble',<% } %>
         'replace:dev',
         'copy:dev',
         'connect:livereload',
@@ -534,8 +601,10 @@ module.exports = function(grunt) {
 
     grunt.registerTask('default', [
         'build',
-        'clean',
-        'replace:build',
+        'clean',<% if (supportAssemble) { %>
+        'assemble',<% } %>
+        'replace:build',<% if (supportHtmlmin) { %>
+        'htmlmin',<% } %>
         'doc',
         'notify:all'
     ]);

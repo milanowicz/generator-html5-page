@@ -172,6 +172,23 @@ Html5PageGenerator.prototype.askFor = function askFor () {
             checked: true
         }]
     },{
+        type: 'checkbox',
+        name: 'GruntJob',
+        message: 'What should be supported by GruntJS for you?',
+        choices: [{
+            name: 'Assemble - http://assemble.io/',
+            value: 'assemble',
+            checked: true
+        },{
+            name: 'grunt-contrib-htmlmin - https://github.com/gruntjs/grunt-contrib-htmlmin',
+            value: 'htmlmin',
+            checked: true
+        },{
+            name: 'grunt-contrib-compress - https://github.com/gruntjs/grunt-contrib-compress',
+            value: 'compress',
+            checked: false
+        }]
+    },{
         type: 'list',
         name: 'GruntTask',
         message: 'What should GruntJS do?',
@@ -186,10 +203,11 @@ Html5PageGenerator.prototype.askFor = function askFor () {
 
     this.prompt(prompts, function (answers) {
 
-        var features    = answers.features;
-        var cssLang     = answers.cssLang;
-        var cssFramwork = answers.cssFramework;
-        var today       = new Date();
+        var features        = answers.features;
+        var cssLang         = answers.cssLang;
+        var cssFramwork     = answers.cssFramework;
+        var gruntJob        = answers.GruntJob;
+        var today           = new Date();
 
         function hasFeature (feat) {
             return features.indexOf(feat) !== -1;
@@ -199,6 +217,9 @@ Html5PageGenerator.prototype.askFor = function askFor () {
         }
         function hasFramework (framework) {
             return cssFramwork.indexOf(framework) !== -1;
+        }
+        function hasJob (job) {
+            return gruntJob.indexOf(job) !== -1;
         }
 
         this.websiteName            = answers.websiteName;
@@ -231,9 +252,12 @@ Html5PageGenerator.prototype.askFor = function askFor () {
         this.includePolyfill        = hasFeature('includePolyfill');
         this.includeSassCollection  = hasFeature('includeSassCollection');
 
+        this.supportAssemble        = hasJob('assemble');
+        this.supportCompass         = hasLang('compass');
+        this.supportCompress        = hasJob('compress');
+        this.supportHtmlmin         = hasJob('htmlmin');
         this.supportLess            = hasLang('less');
         this.supportSass            = hasLang('sass');
-        this.supportCompass         = hasLang('compass');
 
         this.year                   = today.getFullYear();
 
@@ -247,6 +271,9 @@ Html5PageGenerator.prototype.askFor = function askFor () {
  */
 Html5PageGenerator.prototype.app = function app () {
 
+    /**
+     * Generate Distribute Directory
+     */
     this.mkdir(this.distributeDirectory);
     this.mkdir(this.distributeDirectory + '/css');
     this.mkdir(this.distributeDirectory + '/fonts');
@@ -254,7 +281,7 @@ Html5PageGenerator.prototype.app = function app () {
     this.mkdir(this.distributeDirectory + '/images/favicon');
     this.mkdir(this.distributeDirectory + '/js');
 
-
+    // Main project files
     this.template('_package.json',      'package.json');
     this.template('_bower.json',        'bower.json');
     if (this.bowerDirectory !== 'bower_components') {
@@ -263,21 +290,41 @@ Html5PageGenerator.prototype.app = function app () {
     this.template('gitignore',          '.gitignore');
     this.template('Gruntfile.js',       'Gruntfile.js');
     this.template('README.md',          'README.md');
-    this.template('index.html',         this.distributeDirectory + '/index.html');
+    if (!this.supportAssemble) {
+        this.template('index.html',     this.distributeDirectory + '/index.html');
+    }
     this.copy(    'robots.txt',         this.distributeDirectory + '/robots.txt');
     this.copy(    'htaccess',           this.distributeDirectory + '/_.htaccess');
     this.copy(    'htaccess',           this.distributeDirectory + '/.htaccess');
     this.copy(    'editorconfig',       '.editorconfig');
     this.copy(    '_local.json',        'local.json');
 
-
+    // Copy Logos and Favicons
     if (this.includeExample) {
         this.directory('Images',        this.distributeDirectory + '/images/Logo');
     }
     this.directory('Favicon',           this.distributeDirectory + '/images/favicon');
 
 
+    /**
+     * Generate Project Directory
+     */
     this.mkdir(this.projectDirectory);
+
+    // Handlebars templates
+    if (this.supportAssemble) {
+        this.mkdir(this.projectDirectory + '/Page');
+        this.mkdir(this.projectDirectory + '/Page/Layouts');
+        this.mkdir(this.projectDirectory + '/Page/Partials');
+        this.mkdir(this.projectDirectory + '/Page/Sites');
+
+        this.template('Page/Layouts/Default.hbs',   this.projectDirectory + '/Page/Layouts/Default.hbs');
+        this.template('Page/Partials/Default.hbs',  this.projectDirectory + '/Page/Partials/Footer.hbs');
+        this.template('Page/Partials/Default.hbs',  this.projectDirectory + '/Page/Partials/Navigation.hbs');
+        this.template('Page/Sites/index.hbs',       this.projectDirectory + '/Page/Sites/index.hbs');
+    }
+
+    // JavaScript files for the new Project
     this.mkdir(this.projectDirectory + '/JavaScript');
     this.copy('jshintrc',               this.projectDirectory + '/JavaScript/.jshintrc');
     this.template('Main/Main.js',       this.projectDirectory + '/JavaScript/Main.js');
@@ -289,13 +336,14 @@ Html5PageGenerator.prototype.app = function app () {
         }
     }
 
-
+    // Copy Less files
     if (this.supportLess) {
         this.mkdir(this.projectDirectory + '/Less');
         this.template('Styles/PageStyle.less', this.projectDirectory + '/Less/PageStyle.less');
         this.template('Styles/MainStyle.less', this.projectDirectory + '/Less/MainStyle.less');
     }
 
+    // Copy Sass files
     if (this.supportSass) {
         this.mkdir(this.projectDirectory + '/Sass');
         this.template('Styles/PageStyle.scss', this.projectDirectory + '/Sass/PageStyle.scss');

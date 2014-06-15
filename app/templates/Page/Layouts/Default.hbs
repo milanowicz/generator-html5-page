@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+
+        <meta charset="utf-8">
+        <meta http-equiv="Content-Type" charset="UTF-8">
+        <title>{{ title }}</title>
+
+        <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+        <meta http-equiv="X-UA-Compatible" content="IE=100,chrome=1">
+
+        <link type="text/css" rel="stylesheet" href="css/<%= _.slugify(websiteName) %>.min.css" media="all">
+        <script type="text/javascript" src="js/modernizr.min.js"></script>
+
+        <link rel="apple-touch-icon-precomposed" sizes="144x144" href="images/favicon/apple-touch-icon-144x144-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="images/favicon/apple-touch-icon-114x114-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="images/favicon/apple-touch-icon-72x72-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" href="images/favicon/apple-touch-icon-57x57-precomposed.png">
+        <link rel="shortcut icon" sizes="196x196" href="images/favicon/touch-icon-196x196.png">
+        <link rel="shortcut icon" href="images/favicon/apple-touch-icon.png">
+
+        <meta name="msapplication-TileImage" content="images/favicon/apple-touch-icon-144x144-precomposed.png">
+        <meta name="msapplication-TileColor" content="#222222">
+
+        <% if (includePolyfill) { %>
+        <!--[if (gte IE 6)&(lte IE 9)]>
+        <script type="text/javascript" src="JS/PIE.js"></script>
+        <![endif]-->
+        <!--[if (gte IE 6)&(lte IE 8)]>
+        <script type="text/javascript" src="JS/selectivizr.js"></script>
+        <![endif]--><% }%>
+
+    </head>
+
+
+    <body>
+
+        <header class="Page">
+            <div class="Wrapper">
+                {{> Navigation }}
+            </div>
+        </header>
+
+
+        <main>
+            <div class="Wrapper">
+                {{> body }}
+            </div>
+        </main>
+
+        <footer class="Page">
+            <div class="Wrapper">
+                {{> Footer }}
+            </div>
+        </footer>
+
+        <script type="text/javascript" src="js/<%= _.slugify(websiteName) %>.min.js"></script>
+
+    </body>
+</html>
