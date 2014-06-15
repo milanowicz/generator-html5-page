@@ -5,7 +5,12 @@
 //##                   Elementary HTML Website Styles                  ##
 //#######################################################################
 
-<% if (includeLessCollection) {%>
+<% if (supportAssemble) {%>
+[data-locale="de"] {
+  display: none;
+}
+
+<% } if (includeLessCollection) {%>
 * {
   .MarginPadding;
   .BoxSizing;

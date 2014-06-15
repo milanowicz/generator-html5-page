@@ -314,14 +314,17 @@ Html5PageGenerator.prototype.app = function app () {
     // Handlebars templates
     if (this.supportAssemble) {
         this.mkdir(this.projectDirectory + '/Page');
+        this.mkdir(this.projectDirectory + '/Page/Data');
         this.mkdir(this.projectDirectory + '/Page/Layouts');
         this.mkdir(this.projectDirectory + '/Page/Partials');
         this.mkdir(this.projectDirectory + '/Page/Sites');
 
-        this.template('Page/Layouts/Default.hbs',   this.projectDirectory + '/Page/Layouts/Default.hbs');
-        this.template('Page/Partials/Default.hbs',  this.projectDirectory + '/Page/Partials/Footer.hbs');
-        this.template('Page/Partials/Default.hbs',  this.projectDirectory + '/Page/Partials/Navigation.hbs');
-        this.template('Page/Sites/index.hbs',       this.projectDirectory + '/Page/Sites/index.hbs');
+        this.template('Page/Data/Main.json',            this.projectDirectory + '/Page/Data/Main.json');
+        this.template('Page/Layouts/Default.hbs',       this.projectDirectory + '/Page/Layouts/Default.hbs');
+        this.template('Page/Partials/Footer.hbs',       this.projectDirectory + '/Page/Partials/Footer.hbs');
+        this.copy(    'Page/Partials/Main.hbs',         this.projectDirectory + '/Page/Partials/Main.hbs');
+        this.copy(    'Page/Partials/Navigation.hbs',   this.projectDirectory + '/Page/Partials/Navigation.hbs');
+        this.template('Page/Sites/index.hbs',           this.projectDirectory + '/Page/Sites/index.hbs');
     }
 
     // JavaScript files for the new Project

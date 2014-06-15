@@ -1,0 +1,16 @@
+{
+    "Welcome": {
+        "Headline": {
+            "de": "Willkommen zu deinem neuen Project",
+            "en": "Welcome to your new project"
+        },
+        "Subline": {
+            "de": "<%= websiteName %>",
+            "en": "<%= websiteName %>"
+        },
+        "Content": {
+            "de": "Eine neue HTML5 Webseite generiert von Yeoman.",
+            "en": "A new HTML5 Website served by Yeoman."
+        }
+    }
+}

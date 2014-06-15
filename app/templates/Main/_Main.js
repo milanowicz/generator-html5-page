@@ -8,10 +8,28 @@
     w.<%= _.slugify(websiteName) %> = w.<%= _.slugify(websiteName) %> || {
 
         /**
+         * Current Language from the Website
+         * @type {string}
+         * @global
+         */
+        Lang : 'en',
+
+        /**
          * Main.Init call all functions you want ;)
          * @return void
          */
         init : function () {
+
+            /**
+             * Get Language from User
+             */
+            try {
+                <%= _.slugify(websiteName) %>.Lang = window.navigator.userLanguage || window.navigator.language;
+            } catch (e) {
+                if (Main.Debug) {
+                    console.log(e);
+                }
+            }
 
             <% if (includeBrowserDetection) { %>
             /**

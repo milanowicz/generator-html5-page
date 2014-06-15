@@ -555,6 +555,7 @@ module.exports = function(grunt) {
 
     });
 
+    grunt.loadNpmTasks('assemble');
     grunt.task.run('notify_hooks');
 
     grunt.registerTask('distribute-js', [

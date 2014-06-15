@@ -2,7 +2,12 @@
 //##                   Elementary HTML Website Styles                  ##
 //#######################################################################
 
-<% if (includeSassCollection) {%>
+<% if (supportAssemble) {%>
+[data-locale="de"] {
+  display: none;
+}
+
+<% } if (includeSassCollection) {%>
 * {
   @include MarginPadding;
   @include BoxSizing;
