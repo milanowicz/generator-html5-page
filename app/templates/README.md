@@ -1,11 +1,11 @@
-<% websiteName %>
-===================
+# <% websiteName %>
 
 <% websiteDescription %>
 
 
-Basic Software
----------------
+## Basic Software<% if (supportAssemble) { %>
+
+Assemble - [http://assemble.io/](http://assemble.io/)<% } %>
 
 Bower - [http://bower.io/](http://bower.io/)
 
@@ -22,8 +22,34 @@ Sass - [http://sass-lang.com/](http://sass-lang.com/)<% } if (supportCompass) { 
 Compass - [http://compass-style.org/](http://compass-style.org/)<% } %>
 
 
-Directory Structure
-===================
+### Development Software<% if (includeBootstrap) { %>
+
+Bootstrap - [http://getbootstrap.com/](http://getbootstrap.com/)<% } if (includeButtons) { %>
+
+Buttons - [http://alexwolfe.github.io/Buttons/](http://alexwolfe.github.io/Buttons/)<% } if (includeBrowserDetection) { %>
+
+BrowserDetection.js - [https://github.com/Milanowicz/BrowserDetection.js](https://github.com/Milanowicz/BrowserDetection.js)<% } if (includeCreate) { %>
+
+CreateJS - [http://www.createjs.com/](http://www.createjs.com/)<% } if (includeFontAwesome) { %>
+
+FontAwesome - [http://fontawesome.io/](http://fontawesome.io/)<% } if (includeFoundation) { %>
+
+Foundation - [http://foundation.zurb.com/](http://foundation.zurb.com/)<% } if (includeFitText) { %>
+
+FitText.js - [https://github.com/Milanowicz/FitText.js](https://github.com/Milanowicz/FitText.js)<% } if (includeJqueryUi) { %>
+
+jQuery UI - [http://jqueryui.com/](http://jqueryui.com/)<% } if (includeMasonry) { %>
+
+Masonry - [http://masonry.desandro.com/](http://masonry.desandro.com/)<% } if (includeModernizr) { %>
+
+Modernizr - [http://modernizr.com/](http://modernizr.com/)<% } if (LessCollection) { %>
+
+LessCollection - [https://github.com/Milanowicz/CSSLessCollection](https://github.com/Milanowicz/CSSLessCollection)<% } if (includeSassCollection) { %>
+
+SassCollection - [https://github.com/Milanowicz/CSSSassCollection](https://github.com/Milanowicz/CSSSassCollection)<% } %>
+
+
+## Directory Structure
 
 Your Documentation about what ever
 
@@ -46,20 +72,17 @@ This directory is for the visitors
     <% distributeDirectory %>
 
 
-Bower
-===================
+## Bower
 
 
-Bower Install
----------------
+### Bower Install
 
 Be first time used ever then
 
     $ npm install -g Bower
 
 
-Bower Usage
----------------
+### Bower Usage
 
 Install all Grunt modules and let's roll
 
@@ -70,12 +93,10 @@ Update all
     $ bower update
 
 
-GruntJS
-===================
+## GruntJS
 
 
-GruntJS Install
----------------
+### GruntJS Install
 
 Be first time used ever then
 
@@ -96,8 +117,7 @@ Create this file to use "$ grunt serve"
         }
 
 
-GruntJS Usage
----------------
+### GruntJS Usage
 
 Grunt Watch if files are changes and generate them new
 
@@ -112,8 +132,7 @@ Do run all Tasks for a Release
     $ grunt
 
 
-Compress files
----------------
+<% if (supportCompress) { %>### Compress files
 
 Create a archiv from the Public directory
 
@@ -125,11 +144,10 @@ Create a archiv from whole the Project with all files in it
 
 Create a archiv from the Documentation
 
-    $ grunt compress:docu
+    $ grunt compress:docu<% } %>
 
 
-GruntJS updating
----------------
+### GruntJS updating
 
 Check Grunt Modules
 

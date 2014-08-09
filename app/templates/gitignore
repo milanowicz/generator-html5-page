@@ -12,13 +12,13 @@
 .htpasswd
 Thumbs.db
 local.json
+*.log
 
 .settings/
 <% if (supportSass) { %>.sass-cache<% } %>
 <%= bowerDirectory %>/
 <%= projectDirectory %>/Documentation/
 node_modules/
-npm-debug.log
 
 validation-report.json
 validation-status.json
