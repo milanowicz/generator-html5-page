@@ -56,7 +56,7 @@ module.exports = function(grunt) {
 
         clean: {
             js: [
-                '<%= distributeDirectory %>/js/<%= _.slugify(websiteName) %>.js',<% if (includeModernizr) { %>
+                '<%= distributeDirectory %>/js/<%= _.slugify(websiteName) %>.js'<% if (includeModernizr) { %>,
                 '<%= distributeDirectory %>/js/modernizr.js'<% } %>
             ],
             css: [
@@ -581,7 +581,7 @@ module.exports = function(grunt) {
         'clean:css',
         'clean:js',
         'distribute-files',
-        'copy:dist',
+        'copy:dist'
     ]);
 
     grunt.registerTask('serve', [

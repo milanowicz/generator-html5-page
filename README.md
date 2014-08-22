@@ -2,18 +2,18 @@
 
 > [Yeoman](http://yeoman.io) generator for a HTML5 skeleton website
 
-## Features
 
-* [Less](http://lesscss.org/) support (Optional)
-* [Sass](http://sass-lang.com/) support (Optional)
-* [Compass](http://compass-style.org/) support (Optional)
-* [jQuery](http://jquery.com/) Version 1 or 2
-* [Assemble](http://assemble.io/) (Optional)
+## CSS Preprocessor
+
+* [Less](http://lesscss.org/)
+* [Sass](http://sass-lang.com/)
+
 
 ## CSS Framework
 
-* [Bootstrap](http://getbootstrap.com/) (Optional)
-* [Foundation](http://foundation.zurb.com/) (Optional)
+* [Bootstrap](http://getbootstrap.com/)
+* [Foundation](http://foundation.zurb.com/)
+
 
 ## Frontend Software
 
@@ -24,9 +24,11 @@
 * [CSSSassCollection](https://github.com/Milanowicz/CSSSassCollection)
 * [Font Awesome](http://fortawesome.github.io/Font-Awesome/)
 * [FitText.js](https://github.com/Milanowicz/FitText.js)
+* [jQuery](http://jquery.com/) Version 1 or 2
 * [jQuery UserInterface Framework](http://jqueryui.com/)
 * [Masonry and Imagesloaded](http://masonry.desandro.com/)
 * [Modernizr](http://modernizr.com/)
+
 
 ### Internet Explorer Polyfill libraries
 
@@ -36,6 +38,14 @@
 * [box-sizing-polyfill](https://github.com/Schepp/box-sizing-polyfill)
 * [respond](https://github.com/scottjehl/Respond)
 * [selectivizr](http://selectivizr.com/)
+
+
+## GruntJS Support
+
+* [Assemble](http://assemble.io/)
+* [Compass](http://compass-style.org/)
+* [grunt-contrib-htmlmin](https://github.com/gruntjs/grunt-contrib-htmlmin)
+* [grunt-contrib-compress](https://github.com/gruntjs/grunt-contrib-compress)
 
 
 ## Getting Started
