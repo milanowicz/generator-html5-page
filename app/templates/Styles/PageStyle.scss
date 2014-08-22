@@ -17,14 +17,14 @@ $FontLineHeightNormalText: 22;
 
 
 //  Import Styles from Plug-Ins
-<% if (includeFoundation) { %>@import '/bower_components/foundation/scss/normalize';
-@import '/bower_components/foundation/scss/foundation';<% } %>
+<% if (includeFoundation) { %>@import '<%= bowerDirectory %>/foundation/scss/normalize';
+@import '<%= bowerDirectory %>/foundation/scss/foundation';<% } %>
 @import 'ImportLibrary';
 
 
 <% if (includeSassCollection) { %>//  Load Sass Tookit Mixins
-@import '/bower_components/CSSSassCollection/CSSSassCollectionDefinitions';
-@import '/bower_components/CSSSassCollection/CSSSassCollectionMixins';<% } %>
+@import '<%= bowerDirectory %>/CSSSassCollection/CSSSassCollectionDefinitions';
+@import '<%= bowerDirectory %>/CSSSassCollection/CSSSassCollectionMixins';<% } %>
 
 
 //    Load Page Style files

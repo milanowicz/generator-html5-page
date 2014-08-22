@@ -259,6 +259,7 @@ Html5PageGenerator.prototype.askFor = function askFor () {
         this.supportLess            = hasLang('less');
         this.supportSass            = hasLang('sass');
 
+        this.JsObjectName           = this._.slugify(answers.websiteName).replace('-', '');
         this.year                   = today.getFullYear();
 
         done();

@@ -42,7 +42,7 @@ jQuery UI - [http://jqueryui.com/](http://jqueryui.com/)<% } if (includeMasonry)
 
 Masonry - [http://masonry.desandro.com/](http://masonry.desandro.com/)<% } if (includeModernizr) { %>
 
-Modernizr - [http://modernizr.com/](http://modernizr.com/)<% } if (LessCollection) { %>
+Modernizr - [http://modernizr.com/](http://modernizr.com/)<% } if (includeLessCollection) { %>
 
 LessCollection - [https://github.com/Milanowicz/CSSLessCollection](https://github.com/Milanowicz/CSSLessCollection)<% } if (includeSassCollection) { %>
 

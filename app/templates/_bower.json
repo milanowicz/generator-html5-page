@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "dependencies": {<% if (includeBootstrap) { %>
     "bootstrap": "*",<% } if (includeFoundation) { %>
-    "zurb/bower-foundation": "*",<% } if (includeCreate) { %>
+    "foundation": "*",<% } if (includeCreate) { %>
     "createjs-preloadjs": "*",
     "createjs-tweenjs": "*",
     "createjs-soundjs": "*",

@@ -2,10 +2,10 @@
 
     /**
      * <%= websiteName %> Object
-     * @namespace <%= _.slugify(websiteName) %>
+     * @namespace <%= JsObjectName %>
      * @version 0.0.1
      */
-    w.<%= _.slugify(websiteName) %> = w.<%= _.slugify(websiteName) %> || {
+    w.<%= JsObjectName %> = w.<%= JsObjectName %> || {
 
         /**
          * Current Language from the Website
@@ -24,7 +24,7 @@
              * Get Language from User
              */
             try {
-                <%= _.slugify(websiteName) %>.Lang = window.navigator.userLanguage || window.navigator.language;
+                <%= JsObjectName %>.Lang = window.navigator.userLanguage || window.navigator.language;
             } catch (e) {
                 if (Main.Debug) {
                     console.log(e);
@@ -65,6 +65,6 @@ if (typeof(jQuery) === 'undefined') {
     console.log('CreateJS Framework is required!');<% } %>
 } else {
 
-    $(document).ready(<%= _.slugify(websiteName) %>.init);
+    $(document).ready(<%= JsObjectName %>.init);
 
 } // End of if
